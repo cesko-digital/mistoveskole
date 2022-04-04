@@ -12,6 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
+      { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' },
     ],
   },
 
@@ -21,6 +22,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/vue-easytable', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
