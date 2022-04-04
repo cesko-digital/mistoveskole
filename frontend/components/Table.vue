@@ -6,7 +6,7 @@
       :columns="columns"
       :table-data="tableData"
       row-key-field-name="ico"
-      :max-height="500"
+      :max-height="600"
       :virtual-scroll-option="{
         enable: true,
       }"
@@ -41,15 +41,25 @@ export default {
           title: 'Okres',
           sortBy: '',
           align: 'left',
-          width: '20%',
+          width: '15%',
         },
         {
           field: 'ico',
           key: 'ico',
           title: 'ICO',
-          align: 'right',
+          align: 'left',
           sortBy: '',
-          width: '20%',
+          width: '15%',
+        },
+        {
+          field: 'schools',
+          key: 'schools',
+          title: 'Kapacity',
+          align: 'left',
+          width: '30%',
+          renderBodyCell: ({ row, column, rowIndex }, h) => {
+              return (<RowSchools row={row} />);
+          },
         },
       ],
       tableData: [],
