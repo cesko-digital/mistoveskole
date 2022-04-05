@@ -138,7 +138,7 @@ class Zarizeni
     private $mistoRuianKod;
 
     /**
-     * @var \TypZarizeni
+     * @var TypZarizeni
      *
      * @ORM\ManyToOne(targetEntity="TypZarizeni")
      * @ORM\JoinColumns({
@@ -148,7 +148,7 @@ class Zarizeni
     private $idSkolaTyp;
 
     /**
-     * @var \JazykVyuky
+     * @var JazykVyuky
      *
      * @ORM\ManyToOne(targetEntity="JazykVyuky")
      * @ORM\JoinColumns({
@@ -158,7 +158,7 @@ class Zarizeni
     private $idJazyk;
 
     /**
-     * @var \Reditelstvi
+     * @var Reditelstvi
      *
      * @ORM\ManyToOne(targetEntity="Reditelstvi")
      * @ORM\JoinColumns({
@@ -168,7 +168,7 @@ class Zarizeni
     private $idReditelstvi;
 
     /**
-     * @var \Trida[]
+     * @var Trida[]
      *
      * @ORM\OneToMany(targetEntity="Trida", mappedBy="idZarizeni", cascade={"persist"}, orphanRemoval=true)
      */

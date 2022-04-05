@@ -65,14 +65,17 @@ class Reditelstvi
     private $redAdresa3;
 
     /**
-     * @var int
+     * @var Orp
      *
-     * @ORM\Column(name="id_orp", type="smallint", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Orp")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_orp", referencedColumnName="id", nullable=false)
+     * })
      */
     private $idOrp;
 
     /**
-     * @var \Okres
+     * @var Okres
      *
      * @ORM\ManyToOne(targetEntity="Okres")
      * @ORM\JoinColumns({
@@ -158,12 +161,12 @@ class Reditelstvi
         return $this;
     }
 
-    public function getIdOrp(): ?int
+    public function getIdOrp(): ?Orp
     {
         return $this->idOrp;
     }
 
-    public function setIdOrp(int $idOrp): self
+    public function setIdOrp(Orp $idOrp): self
     {
         $this->idOrp = $idOrp;
 

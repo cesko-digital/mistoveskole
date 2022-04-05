@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Okres
+ * Obec s rozšířenou působností
  *
- * @ORM\Table(name="okres", indexes={@ORM\Index(name="okres_id_kraj", columns={"id_kraj"})})
+ * @ORM\Table(name="orp")
  * @ORM\Entity
  */
-class Okres
+class Orp
 {
     /**
      * @var int
@@ -18,14 +18,14 @@ class Okres
      * @ORM\Column(name="id", type="smallint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\SequenceGenerator(sequenceName="okres_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="orp_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="id_nuts", type="string", length=6, nullable=false)
+     * @ORM\Column(name="id_nuts", type="smallint", nullable=false)
      */
     private $idNuts;
 
@@ -43,16 +43,6 @@ class Okres
      */
     private $jmenoUk;
 
-    /**
-     * @var Kraj
-     *
-     * @ORM\ManyToOne(targetEntity="Kraj")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_kraj", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $idKraj;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -63,7 +53,7 @@ class Okres
         return $this->idNuts;
     }
 
-    public function setIdNuts(string $idNuts): self
+    public function setIdNuts(int $idNuts): self
     {
         $this->idNuts = $idNuts;
 
@@ -90,18 +80,6 @@ class Okres
     public function setJmenoUk(string $jmenoUk): self
     {
         $this->jmenoUk = $jmenoUk;
-
-        return $this;
-    }
-
-    public function getIdKraj(): Kraj
-    {
-        return $this->idKraj;
-    }
-
-    public function setIdKraj(?Kraj $idKraj): self
-    {
-        $this->idKraj = $idKraj;
 
         return $this;
     }
