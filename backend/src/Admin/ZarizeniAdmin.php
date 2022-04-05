@@ -118,6 +118,7 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('kontaktJmeno')
             ->add('kontaktEmail')
             ->add('kontaktTelefon')
+            ->add('kontaktWww')
             ->end()
             ->with('Adresa výuky', array('class' => 'col-md-6'))
             ->add('mistoAdresa1')
@@ -148,5 +149,37 @@ class ZarizeniAdmin extends AbstractAdmin
             ->end()
         ;
     }
+
+    protected function configureExportFields(): array
+    {
+        $fieldsArray = array(
+            'Id',
+            'idReditelstvi.redPlnyNazev',
+            'idReditelstvi.idOkres.jmenoCz',
+            'idReditelstvi.idOkres.idKraj.jmenoCz',
+            'idReditelstvi.redIzo',
+            'Izo',
+            'SkolaPlnyNazev',
+            'idSkolaTyp',
+            'idJazyk',
+//            'SkolaKapacita',
+//            'Aktivni',
+            'MistoAdresa1',
+            'MistoAdresa2',
+            'MistoAdresa3',
+            'MistoRuianKod',
+            'KontaktEmail',
+            'KontaktTelefon',
+            'KontaktJmeno',
+            'KontaktWww',
+//            'KapacitaUkObsazenoCelkem',
+            'KapacitaUkVolnoCelkem',
+            'PoznamkaCz',
+            'PoznamkaUk',
+        );
+
+        return $fieldsArray;
+    }
+
 }
 
