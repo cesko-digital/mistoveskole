@@ -1,0 +1,43 @@
+security:
+    password_hashers:
+        # auto hasher with custom options for all PasswordAuthenticatedUserInterface instances
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            algorithm: 'auto'
+        Symfony\Component\Security\Core\User\User:
+            algorithm: 'auto'
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        backend_users:
+            memory:
+                users:
+                    honza: { password: '$argon2id$v=19$m=65536,t=4,p=1$xZMFadt6Q1vh6Azhcfcf2g$i5d7QxtagH/b9I3CDOHfFvBDjOCVm72CMmR6TCCBV38', roles: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN'] }
+                    cd: { password: '$argon2id$v=19$m=65536,t=4,p=1$eX5TNd3jXgsmneff5LIdIg$5MCN/bGq72DHmsO6VNKXbHzZ/mxAQIuwlM6SX2GBLQE', roles: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN'] }
+
+        users_in_memory: { memory: null }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+#            anonymous: lazy
+            provider: backend_users
+
+            logout:
+                path: /odhlaseni
+                target: /prihlaseni
+
+# tmp, FIXME
+            http_basic:
+                realm: Secured Area
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+         - { path: ^/report, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

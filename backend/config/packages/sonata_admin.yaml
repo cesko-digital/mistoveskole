@@ -1,0 +1,35 @@
+sonata_admin:
+    title: 'Sonata Admin'
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+        groups: #main menu
+            skoly:
+                label: Školy a třídy
+                icon: fas fa-school
+                items:
+                    - admin.zarizeni
+                    - admin.trida
+                    - admin.reditelstvi
+            ciselniky:
+                label: Číselníky
+#                roles:        [ ROLE_ADMIN_ANNONCE ]
+                icon: fas fa-table
+                items:
+                    - admin.okres
+                    - admin.kraj
+                    - admin.typ_zarizeni
+                    - admin.jazyk_vyuky
+
+#    options:
+#        legacy_twig_text_extension: false
+
+    show_mosaic_button: false
+
+    templates:
+        layout: '@SonataTranslation/standard_layout.html.twig'
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

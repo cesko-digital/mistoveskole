@@ -1,0 +1,54 @@
+{
+    "require": {
+        "php": "^8.1",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-pgsql": "*",
+        "ext-curl": "*",
+        "ext-readline": "*",
+        "ext-xml": "*",
+        "ext-zend-opcache": "*",
+        "symfony/flex": "^2.1",
+        "symfony/dotenv": "^6.0",
+        "symfony/yaml": "^6.0",
+        "symfony/monolog-bundle": "*",
+        "symfony/maker-bundle": "*",
+        "sonata-project/intl-bundle": "^2.11",
+        "sonata-project/admin-bundle": "^4.0",
+        "sonata-project/doctrine-orm-admin-bundle": "^4.0",
+        "doctrine/orm": "^2.11",
+        "doctrine/doctrine-bundle": "^2.6",
+        "symfony/framework-bundle": "6.0.*",
+        "sonata-project/translation-bundle": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "license": "proprietary",
+    "require-dev": {
+        "symfony/debug-bundle": "^6.0",
+        "symfony/stopwatch": "^6.0",
+        "symfony/web-profiler-bundle": "6.0.*"
+    },
+    "extra": {
+      "symfony": {
+          "allow-contrib": false,
+           "require": "6.0.*"
+      }
+    }
+}
