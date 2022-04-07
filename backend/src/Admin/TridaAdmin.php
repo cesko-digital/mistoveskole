@@ -79,9 +79,15 @@ class TridaAdmin extends AbstractAdmin
                 'multiple' => true,
                 'choices' => array_flip($this->loadVlastnostiChoices()),
             ))
-            ->add('aktualniKapacitaUkObsazeno')
-            ->add('aktualniKapacitaUkVolno')
-            ->add('poznamkaCz')
+            ->add('aktualniKapacitaUkObsazeno', null, array(
+                'editable' => true,
+            ))
+            ->add('aktualniKapacitaUkVolno', null, array(
+                'editable' => true,
+            ))
+            ->add('poznamkaCz', null, array(
+                'editable' => true,
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
