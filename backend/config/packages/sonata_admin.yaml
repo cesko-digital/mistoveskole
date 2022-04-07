@@ -3,6 +3,41 @@ sonata_admin:
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+
+            -
+                position: top
+                class: col-xs-6 col-sm-3
+                type: sonata.admin.block.stats
+                settings:
+                    code: admin.zarizeni
+                    icon: fas fa-school
+                    text: Zařízení
+                    color: bg-yellow
+                    filters:
+                        aktivni: {value: true}
+
+            -
+                position: top
+                class: col-xs-6 col-sm-3
+                type: sonata.admin.block.stats
+                settings:
+                    code: admin.trida
+                    icon: fas fa-chalkboard
+                    text: Třídy
+                    color: bg-blue
+                    filters:
+                        aktivni: {value: true}
+
+            -
+                position: top
+                class: col-sm-12 col-md-12 col-12
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Vítejte v reportu kapacit školských zařízení</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam eget nisl. Fusce consectetuer risus a nunc. Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam dictum tincidunt diam. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Integer tempor. Mauris metus. Donec iaculis gravida nulla.
+            
+
         groups: #main menu
             skoly:
                 label: Školy a třídy
