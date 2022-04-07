@@ -23,11 +23,18 @@ class Okres
     private $id;
 
     /**
-     * @var string
+     * @var string New nuts since 2004
      *
      * @ORM\Column(name="id_nuts", type="string", length=6, nullable=false)
      */
     private $idNuts;
+
+    /**
+     * @var string Legacy nuts ID used by MŠMT
+     *
+     * @ORM\Column(name="id_nuts2", type="string", length=6, nullable=false)
+     */
+    private $idNuts2;
 
     /**
      * @var string
@@ -109,5 +116,17 @@ class Okres
     public function __toString(): string
     {
         return $this->getJmenoCz();
+    }
+
+    public function getIdNuts2(): ?string
+    {
+        return $this->idNuts2;
+    }
+
+    public function setIdNuts2(string $idNuts2): self
+    {
+        $this->idNuts2 = $idNuts2;
+
+        return $this;
     }
 }
