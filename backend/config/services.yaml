@@ -78,3 +78,8 @@ services:
     App\EntityListener\TridaListener:
         tags:
             - { name: doctrine.event_listener, event: onFlush }
+
+    App\Service\RedIzoService:
+        arguments:
+            $file: '../skoly.json'
+
