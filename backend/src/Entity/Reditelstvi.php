@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -80,6 +82,18 @@ class Reditelstvi
      * })
      */
     private $idOkres;
+
+    /**
+     * @var Zarizeni[]
+     *
+     * @ORM\OneToMany(targetEntity="Zarizeni", mappedBy="idReditelstvi", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $zarizeni;
+
+    public function __construct()
+    {
+        $this->zarizeni = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -186,4 +200,35 @@ class Reditelstvi
     {
         return $this->getRedPlnyNazev().' ('.$this->getRedIzo().')';
     }
+
+    /**
+     * @return Collection<int, Zarizeni>
+     */
+    public function getZarizeni(): Collection
+    {
+        return $this->zarizeni;
+    }
+
+    public function addZarizeni(Zarizeni $zarizeni): self
+    {
+        if (!$this->zarizeni->contains($zarizeni)) {
+            $this->zarizeni[] = $zarizeni;
+            $zarizeni->setIdReditelstvi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeZarizeni(Zarizeni $zarizeni): self
+    {
+        if ($this->zarizeni->removeElement($zarizeni)) {
+            // set the owning side to null (unless already changed)
+            if ($zarizeni->getIdReditelstvi() === $this) {
+                $zarizeni->setIdReditelstvi(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

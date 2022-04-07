@@ -160,7 +160,7 @@ class Zarizeni
     /**
      * @var \Reditelstvi
      *
-     * @ORM\ManyToOne(targetEntity="Reditelstvi")
+     * @ORM\ManyToOne(targetEntity="Reditelstvi", inversedBy="zarizeni")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_reditelstvi", referencedColumnName="id", nullable=false)
      * })
