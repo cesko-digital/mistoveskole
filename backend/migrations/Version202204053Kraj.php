@@ -21,20 +21,20 @@ final class Version202204053Kraj extends AbstractMigration
     {
         // Manupulate data as necessary
         $this->addSql('INSERT INTO "kraj" ("id", "id_nuts", "jmeno_cz", "jmeno_uk") VALUES'.
-"(101,    'CZ010',        'Hlavní město Praha',   'Hlavní město Praha'),
-(201,    'CZ020',        'Středočeský kraj',     'Středočeský kraj'),
-(311,    'CZ031',        'Jihočeský kraj',       'Jihočeský kraj'),
-(321,    'CZ032',        'Plzeňský kraj',        'Plzeňský kraj'),
-(411,    'CZ041',        'Karlovarský kraj',     'Karlovarský kraj'),
-(421,    'CZ042',        'Ústecký kraj', 'Ústecký kraj'),
-(511,    'CZ051',        'Liberecký kraj',       'Liberecký kraj'),
-(521,    'CZ052',        'Královéhradecký kraj', 'Královéhradecký kraj'),
-(531,    'CZ053',        'Pardubický kraj',      'Pardubický kraj'),
-(6311,    'CZ063',        'Kraj Vysočina',        'Kraj Vysočina'),
-(641,    'CZ064',        'Jihomoravský kraj',    'Jihomoravský kraj'),
-(711,    'CZ071',        'Olomoucký kraj',       'Olomoucký kraj'),
-(721,    'CZ072',        'Zlínský kraj', 'Zlínský kraj'),
-(801,    'CZ080',        'Moravskoslezský kraj', 'Moravskoslezský kraj');"
+"(10,    'CZ010',        'Hlavní město Praha',   'Hlavní město Praha'),
+(20,    'CZ020',        'Středočeský kraj',     'Středočeský kraj'),
+(31,    'CZ031',        'Jihočeský kraj',       'Jihočeský kraj'),
+(32,    'CZ032',        'Plzeňský kraj',        'Plzeňský kraj'),
+(41,    'CZ041',        'Karlovarský kraj',     'Karlovarský kraj'),
+(42,    'CZ042',        'Ústecký kraj', 'Ústecký kraj'),
+(51,    'CZ051',        'Liberecký kraj',       'Liberecký kraj'),
+(52,    'CZ052',        'Královéhradecký kraj', 'Královéhradecký kraj'),
+(53,    'CZ053',        'Pardubický kraj',      'Pardubický kraj'),
+(63,    'CZ063',        'Kraj Vysočina',        'Kraj Vysočina'),
+(64,    'CZ064',        'Jihomoravský kraj',    'Jihomoravský kraj'),
+(71,    'CZ071',        'Olomoucký kraj',       'Olomoucký kraj'),
+(72,    'CZ072',        'Zlínský kraj', 'Zlínský kraj'),
+(80,    'CZ080',        'Moravskoslezský kraj', 'Moravskoslezský kraj');"
         );
     }
 
