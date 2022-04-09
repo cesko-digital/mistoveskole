@@ -32,9 +32,9 @@ class TridaVlastnosti
     /**
      * @var string
      *
-     * @ORM\Column(name="jmeno_en", type="string", length=100, nullable=false)
+     * @ORM\Column(name="jmeno_uk", type="string", length=100, nullable=false)
      */
-    private $jmenoEn;
+    private $jmenoUk;
 
     /**
      * @var bool
@@ -60,14 +60,14 @@ class TridaVlastnosti
         return $this;
     }
 
-    public function getJmenoEn(): ?string
+    public function getJmenoUk(): ?string
     {
-        return $this->jmenoEn;
+        return $this->jmenoUk;
     }
 
-    public function setJmenoEn(string $jmenoEn): self
+    public function setJmenoUk(string $jmenoUk): self
     {
-        $this->jmenoEn = $jmenoEn;
+        $this->jmenoUk = $jmenoUk;
 
         return $this;
     }
