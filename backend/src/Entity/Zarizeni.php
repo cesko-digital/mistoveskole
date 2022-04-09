@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * Zarizeni
@@ -479,4 +480,84 @@ class Zarizeni
         $this->setKapacitaUkObsazenoCelkem($full);
     }
 
+    protected function getCountByTrida(int $vlastnost): ?int
+    {
+        foreach($this->getTridy() as $trida) {
+            $vlastnosti = $trida->getVlastnosti();
+            if (is_array($vlastnosti) && in_array($vlastnost, $vlastnosti)) {
+                return $trida->getAktualniKapacitaUkVolno();
+            }
+        }
+        return null;
+    }
+
+    public function getTrida2r(): ?int
+    {
+        return $this->getCountByTrida(20);
+    }
+    public function getTrida3r(): ?int
+    {
+        return $this->getCountByTrida(30);
+    }
+    public function getTrida4r(): ?int
+    {
+        return $this->getCountByTrida(40);
+    }
+    public function getTrida5r(): ?int
+    {
+        return $this->getCountByTrida(50);
+    }
+    public function getTrida6r(): ?int
+    {
+        return $this->getCountByTrida(60);
+    }
+    public function getTrida7r(): ?int
+    {
+        return $this->getCountByTrida(70);
+    }
+    public function getTrida8r(): ?int
+    {
+        return $this->getCountByTrida(80);
+    }
+    public function getTrida9r(): ?int
+    {
+        return $this->getCountByTrida(90);
+    }
+    public function getTrida10r(): ?int
+    {
+        return $this->getCountByTrida(100);
+    }
+    public function getTrida11r(): ?int
+    {
+        return $this->getCountByTrida(110);
+    }
+    public function getTrida12r(): ?int
+    {
+        return $this->getCountByTrida(120);
+    }
+    public function getTrida13r(): ?int
+    {
+        return $this->getCountByTrida(130);
+    }
+    public function getTrida14r(): ?int
+    {
+        return $this->getCountByTrida(140);
+    }
+    public function getTrida15r(): ?int
+    {
+        return $this->getCountByTrida(150);
+    }
+    public function getTrida16r(): ?int
+    {
+        return $this->getCountByTrida(160);
+    }
+    public function getTrida17r(): ?int
+    {
+        return $this->getCountByTrida(170);
+    }
+    public function getTrida18r(): ?int
+    {
+        return $this->getCountByTrida(180);
+    }
 }
+
