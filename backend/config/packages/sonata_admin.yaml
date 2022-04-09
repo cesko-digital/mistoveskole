@@ -36,7 +36,6 @@ sonata_admin:
                     content: >
                         <h2>Vítejte v reportu kapacit školských zařízení</h2>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam eget nisl. Fusce consectetuer risus a nunc. Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam dictum tincidunt diam. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Integer tempor. Mauris metus. Donec iaculis gravida nulla.
-            
 
         groups: #main menu
             skoly:
@@ -55,6 +54,7 @@ sonata_admin:
                     - admin.kraj
                     - admin.typ_zarizeni
                     - admin.jazyk_vyuky
+                    - admin.trida_vlastnosti
 
 #    options:
 #        legacy_twig_text_extension: false

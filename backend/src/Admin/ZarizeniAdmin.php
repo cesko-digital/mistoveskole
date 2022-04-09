@@ -41,22 +41,23 @@ class ZarizeniAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id')
             ->add('izo')
             ->add('idReditelstvi.redIzo')
+            ->add('idReditelstvi.redPlnyNazev')
+            ->add('mistoAdresa3')
             ->add('idReditelstvi.idOkres')
             ->add('idReditelstvi.idOkres.idKraj')
             ->add('idSkolaTyp')
             ->add('idJazyk')
             ->add('aktivni')
             ->add('idReditelstvi')
+            ->add('id')
         ;
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('id')
             ->add('izo')
             ->add('idReditelstvi.redIzo')
             ->add('idReditelstvi.idOkres')
@@ -74,7 +75,6 @@ class ZarizeniAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id')
             ->add('izo', 'text')
             ->add('idReditelstvi')
             ->add('idReditelstvi.idOkres')
@@ -82,9 +82,60 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('skolaPlnyNazev')
             ->add('idJazyk')
             ->add('aktivni')
-            ->add('kapacitaUkObsazenoCelkem')
             ->add('kapacitaUkVolnoCelkem')
+            ->add('kapacitaUkObsazenoCelkem')
             ->add('skolaKapacita')
+            ->add('trida2r', null, array(
+                'label' => '2r'
+            ))
+            ->add('trida3r', null, array(
+                'label' => '3r'
+            ))
+            ->add('trida4r', null, array(
+                'label' => '4r'
+            ))
+            ->add('trida5r', null, array(
+                'label' => '5r'
+            ))
+            ->add('trida6r', null, array(
+                'label' => '6r'
+            ))
+            ->add('trida7r', null, array(
+                'label' => '7r'
+            ))
+            ->add('trida8r', null, array(
+                'label' => '8r'
+            ))
+            ->add('trida9r', null, array(
+                'label' => '9r'
+            ))
+            ->add('trida10r', null, array(
+                'label' => '10r'
+            ))
+            ->add('trida11r', null, array(
+                'label' => '11r'
+            ))
+            ->add('trida12r', null, array(
+                'label' => '12r'
+            ))
+            ->add('trida13r', null, array(
+                'label' => '13r'
+            ))
+            ->add('trida14r', null, array(
+                'label' => '14r'
+            ))
+            ->add('trida15r', null, array(
+                'label' => '15r'
+            ))
+            ->add('trida16r', null, array(
+                'label' => '16r'
+            ))
+            ->add('trida17r', null, array(
+                'label' => '17r'
+            ))
+            ->add('trida18r', null, array(
+                'label' => '18r'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -107,10 +158,10 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('idJazyk')
             ->add('aktivni')
             ->add('skolaKapacita')
-            ->add('kapacitaUkObsazenoCelkem', null, array(
+            ->add('kapacitaUkVolnoCelkem', null, array(
                 'disabled' => true,
             ))
-            ->add('kapacitaUkVolnoCelkem', null, array(
+            ->add('kapacitaUkObsazenoCelkem', null, array(
                 'disabled' => true,
             ))
             ->end()

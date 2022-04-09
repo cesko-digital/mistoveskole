@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Object\Metadata;
 use Sonata\AdminBundle\Exception\ModelManagerException;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\StringFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -73,6 +74,10 @@ class TypZarizeniAdmin extends AbstractAdmin
             ->add('jmenocz')
             ->add('jmenouk')
             ->add('aktivni')
+            ->add('tridyVlastnosti', FieldDescriptionInterface::TYPE_CHOICE, array(
+                'multiple' => true,
+                'choices' => array_flip($this->loadVlastnostiChoices()),
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -88,11 +93,12 @@ class TypZarizeniAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('idmsmt', Type\TextType::class, array(
+                'required' => false,
             ))
             ->add('jmenoCz')
             ->add('jmenoUk')
             ->add('aktivni')
-            ->add('tridy_vlastnosti', Type\ChoiceType::class, array(
+            ->add('tridyVlastnosti', Type\ChoiceType::class, array(
                 'multiple' => true,
                 'required' => false,
                 'choices' => $this->loadVlastnostiChoices(),
@@ -105,7 +111,7 @@ class TypZarizeniAdmin extends AbstractAdmin
         $result = array();
         $em = $this->getModelManager()->getEntityManager(\App\Entity\TridaVlastnosti::class);
 
-        $list = $em->getRepository(\App\Entity\TridaVlastnosti::class)->findBy(array('aktivni' => true), array(/* TODO sort 'sortidx' => 'ASC'*/));
+        $list = $em->getRepository(\App\Entity\TridaVlastnosti::class)->findBy(array('aktivni' => true), array('id' => 'ASC'));
 
         $choices = array();
 
