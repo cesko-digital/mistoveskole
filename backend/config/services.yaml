@@ -73,6 +73,11 @@ services:
         arguments: [~, App\Entity\Trida, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Třídy"  }
+    admin.trida_vlastnosti:
+        class: App\Admin\TridaVlastnostiAdmin
+        arguments: [~, App\Entity\TridaVlastnosti, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Vlastnosti tříd"  }
 
 
     App\EntityListener\TridaListener:
@@ -83,3 +88,7 @@ services:
         arguments:
             $file: '../skoly.json'
 
+# TODO
+#    App\AdminFilter\JsonListFilter:
+#        tags:
+#            - { name: sonata.admin.filter.type }
