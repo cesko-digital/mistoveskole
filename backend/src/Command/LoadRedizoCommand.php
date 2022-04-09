@@ -24,6 +24,8 @@ class LoadRedizoCommand extends Command
     /** @var EntityManagerInterface */
     protected $em;
 
+    protected $io;
+
     /** {@inheritdoc} */
     public function __construct(RedIzoService $redIzo, ManagerRegistry $managerRegistry)
     {
@@ -42,27 +44,32 @@ class LoadRedizoCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $this->io = $io;
 
         //$io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
         $list = $this->redIzoService->getRedIzoList();
-        $counter = 0; 
+        $counterNew = $counterUpdated = 0; 
         foreach ($list as $redIzo) {
             $detail = $this->redIzoService->getRedIzoDetail($redIzo);
             $entity = $this->em->getRepository(Entity\Reditelstvi::class)->findOneBy(array('redIzo' => $redIzo));
             if ($entity) {
-                $io->write('existing');
+                $this->formatReditelstvi($entity, $detail);
+                $this->em->persist($entity);
+                $this->em->flush();
+                $io->info('updated existing '.$redIzo);
+                $counterUpdated++;
             } else {
-                $io->write('new');
                 $entity = new Entity\Reditelstvi();
                 $this->formatReditelstvi($entity, $detail);
                 $this->em->persist($entity);
                 $this->em->flush();
                 $io->success('created: '.$detail['name']);
-                $counter++;
-                if ($counter > 50) break;
+                $counterNew++;
+//                if ($counter > 1000) break;
             }
         }
+        $io->success('new: '.$counterNew.', updated: '.$counterUpdated);
         return Command::SUCCESS;
     }
 
@@ -82,50 +89,60 @@ class LoadRedizoCommand extends Command
     protected function formatReditelstvi(Entity\Reditelstvi $entity, array $detail):void
     {
         $okresRepository = $this->em->getRepository(Entity\Okres::class);
+        $zarizeniRepository = $this->em->getRepository(Entity\Zarizeni::class);
         $types = $this->loadSupportedTypes();
 
         $entity->setRedIzo($detail['redIzo'])
             ->setRedPlnyNazev($detail['name'])
-            ->setRedRuianKod($detail['address']['ruainCode'])
+            ->setRedRuianKod($detail['address']['ruainCode'] ?? null)
             ->setIdOrp(str_replace('CZ0', '', $detail['orp']))
             ->setIdOkres($okresRepository->findOneBy(array('idNuts2' => $detail['okres'])))
             ->setRedAdresa1($detail['address']['line1'])
             ->setRedAdresa2($detail['address']['line2'])
             ->setRedAdresa3($detail['address']['line3'])
-                ;
+        ;
         foreach ($detail['schools'] as $subDetail) {
             if (!array_key_exists($subDetail['type'], $types)) { // only whitelisted types
-                echo "skiping ".$subDetail['type'].$subDetail['name']."\n";
+                $this->io->info("skiping ".$subDetail['type']." ".$subDetail['name']."\n");
                 continue;
             }
-            $zarizeni = new Entity\Zarizeni();
+            $zarizeni = $zarizeniRepository->findOneBy(array('izo' => $subDetail['izo']));
+            if (!$zarizeni) {
+                $zarizeni = new Entity\Zarizeni();
+            }
             $this->formatZarizeni($zarizeni, $subDetail, $types);
-            $entity->addZarizeni($zarizeni);
-            $this->em->persist($zarizeni);
+            if (!empty($zarizeni->getSkolaPlnyNazev())) {
+                $entity->addZarizeni($zarizeni);
+                $this->em->persist($zarizeni);
+            }
         }
     }
 
     protected function formatZarizeni(Entity\Zarizeni $izo, array $data, array &$types): void
     {
         $jazykRepository = $this->em->getRepository(Entity\JazykVyuky::class);
-            $izo->setIzo($data['izo'])
-                ->setSkolaPlnyNazev($data['name'])
-                ->setSkolaKapacita($data['capacity'])
-                ->setAktivni(true)
-                ->setIdJazyk($jazykRepository->findOneBy(array('jmeno' => $data['language'])))
-                ->setIdSkolaTyp($types[$data['type']])
-                ->setMistoAdresa1($data['address']['line1'])
-                ->setMistoRuianKod($data['address']['ruainCode'])
+        $jazyk = $jazykRepository->findOneBy(array('jmeno' => $data['language']));
+        if (!$jazyk) {
+            $this->io->warning("skipping ".$data['name'].", izo ".$data['izo'].", missing language ".$data['language']);
+            return;
+        }
+        $izo->setIzo($data['izo'])
+            ->setSkolaPlnyNazev($data['name'])
+            ->setSkolaKapacita($data['capacity'])
+            ->setAktivni(true)
+            ->setIdJazyk($jazykRepository->findOneBy(array('jmeno' => $data['language'])))
+            ->setIdSkolaTyp($types[$data['type']])
+            ->setMistoAdresa1($data['address']['line1'])
+            ->setMistoRuianKod($data['address']['ruainCode'] ?? null)
+        ;
+        if (empty($data['address']['line3'])) {
+            // two line address
+            $izo->setMistoAdresa3($data['address']['line2']);
+        } else {
+            $izo
+                ->setMistoAdresa2($data['address']['line2'])
+                ->setMistoAdresa3($data['address']['line3'])
             ;
-            if (empty($data['address']['line3'])) {
-                // two line address
-                $izo->setMistoAdresa3($data['address']['line2']);
-            } else {
-                $izo
-                    ->setMistoAdresa2($data['address']['line2'])
-                    ->setMistoAdresa3($data['address']['line3'])
-                ;
-            }
+        }
     }
-
 }
