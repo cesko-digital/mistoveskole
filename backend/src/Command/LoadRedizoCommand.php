@@ -66,7 +66,7 @@ class LoadRedizoCommand extends Command
                 $this->em->flush();
                 $io->success('created: '.$detail['name']);
                 $counterNew++;
-//                if ($counter > 1000) break;
+//                if ($counterNew > 100) break;
             }
         }
         $io->success('new: '.$counterNew.', updated: '.$counterUpdated);
@@ -121,7 +121,7 @@ class LoadRedizoCommand extends Command
     protected function formatZarizeni(Entity\Zarizeni $izo, array $data, array &$types): void
     {
         $jazykRepository = $this->em->getRepository(Entity\JazykVyuky::class);
-        $jazyk = $jazykRepository->findOneBy(array('jmeno' => $data['language']));
+        $jazyk = $jazykRepository->findOneBy(array('jmenoCz' => $data['language'])); // note: matching by full string
         if (!$jazyk) {
             $this->io->warning("skipping ".$data['name'].", izo ".$data['izo'].", missing language ".$data['language']);
             return;
@@ -130,7 +130,7 @@ class LoadRedizoCommand extends Command
             ->setSkolaPlnyNazev($data['name'])
             ->setSkolaKapacita($data['capacity'])
             ->setAktivni(true)
-            ->setIdJazyk($jazykRepository->findOneBy(array('jmeno' => $data['language'])))
+            ->setIdJazyk($jazyk)
             ->setIdSkolaTyp($types[$data['type']])
             ->setMistoAdresa1($data['address']['line1'])
             ->setMistoRuianKod($data['address']['ruainCode'] ?? null)
