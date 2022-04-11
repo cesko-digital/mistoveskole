@@ -24,7 +24,7 @@ final class Version202204054Okres extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\PostgreSQL100Platform'."
         );
 
-        $this->addSql('CREATE TABLE okres (id SMALLSERIAL NOT NULL, id_kraj SMALLINT NOT NULL, id_nuts VARCHAR(6) NOT NULL, jmeno_cz VARCHAR(100) NOT NULL, jmeno_uk VARCHAR(100) NOT NULL, id_nuts2 VARCHAR(6) DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE okres (id SMALLSERIAL NOT NULL, id_kraj SMALLINT NOT NULL, id_nuts VARCHAR(6) NOT NULL, jmeno_cz VARCHAR(100) NOT NULL, jmeno_uk VARCHAR(100) NOT NULL, id_nuts2 VARCHAR(6), PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX okres_id_nuts2 ON okres (id_nuts2)');
         $this->addSql('CREATE INDEX okres_id_kraj ON okres (id_kraj)');
         $this->addSql('CREATE INDEX okres_id_nuts ON okres (id_nuts)');

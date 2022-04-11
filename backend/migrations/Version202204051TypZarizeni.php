@@ -21,7 +21,7 @@ final class Version202204051TypZarizeni extends AbstractMigration
     {
         $this->addSql('CREATE TABLE typ_zarizeni (id SMALLSERIAL NOT NULL, id_msmt VARCHAR(3) DEFAULT NULL, jmeno_cz VARCHAR(50) NOT NULL, jmeno_uk VARCHAR(50) NOT NULL, aktivni BOOLEAN DEFAULT NULL, tridy_vlastnosti JSONB DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX typ_zarizeni_aktivni ON typ_zarizeni (aktivni)');
-        $this->addSql('CREATE INDEX typ_zarizeni_tridy_vlastnosti ON typ_zarizeni (tridy_vlastnosti)');
+        $this->addSql('CREATE INDEX typ_zarizeni_tridy_vlastnosti ON typ_zarizeni USING GIN (tridy_vlastnosti)');
 
         // Manupulate data as necessary
         $this->addSql('INSERT INTO "typ_zarizeni" ("id", "id_msmt", "jmeno_cz", "jmeno_uk", "aktivni", "tridy_vlastnosti") VALUES'.

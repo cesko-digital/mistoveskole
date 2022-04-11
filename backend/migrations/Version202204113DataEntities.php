@@ -51,7 +51,7 @@ final class Version202204113DataEntities extends AbstractMigration
 
         $this->addSql('CREATE TABLE trida (id SERIAL NOT NULL, id_zarizeni INT NOT NULL, vlastnosti JSONB DEFAULT NULL, poznamka_cz TEXT DEFAULT NULL, poznamka_uk TEXT DEFAULT NULL, aktualni_kapacita_uk_obsazeno INT DEFAULT NULL, aktualni_kapacita_uk_volno INT DEFAULT NULL, datum_cas_aktualizace TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX trida_aktualni_kapacita_uk_volno ON trida (aktualni_kapacita_uk_volno)');
-        $this->addSql('CREATE INDEX idx_trida_vlastnosti ON trida (vlastnosti)');
+        $this->addSql('CREATE INDEX idx_trida_vlastnosti ON trida USING GIN (vlastnosti)');
         $this->addSql('CREATE INDEX trida_aktualni_kapacita_uk_obsazeno ON trida (aktualni_kapacita_uk_obsazeno)');
         $this->addSql('CREATE INDEX trida_datum_cas_aktualizace ON trida (datum_cas_aktualizace)');
         $this->addSql('CREATE INDEX trida_id_zarizeni ON trida (id_zarizeni)');
