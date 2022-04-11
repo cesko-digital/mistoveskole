@@ -51,6 +51,13 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.0"
 
+"@babel/eslint-plugin@7.17.7":
+  version "7.17.7"
+  resolved "https://registry.yarnpkg.com/@babel/eslint-plugin/-/eslint-plugin-7.17.7.tgz#4ee1d5b29b79130f3bb5a933358376bcbee172b8"
+  integrity sha512-JATUoJJXSgwI0T8juxWYtK1JSgoLpIGUsCHIv+NMXcUDA2vIe6nvAHR9vnuJgs/P1hOFw7vPwibixzfqBBLIVw==
+  dependencies:
+    eslint-rule-composer "^0.3.0"
+
 "@babel/generator@^7.17.3", "@babel/generator@^7.17.7":
   version "7.17.7"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.17.7.tgz#8da2599beb4a86194a3b24df6c085931d9ee45ad"
@@ -485,7 +492,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.0"
 
-"@babel/plugin-syntax-jsx@^7.2.0":
+"@babel/plugin-syntax-jsx@7.16.7", "@babel/plugin-syntax-jsx@^7.2.0":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.16.7.tgz#50b6571d13f764266a113d77c82b4a6508bbe665"
   integrity sha512-Esxmk7YjA8QysKeT3VhTXvF6y77f/a91SIs4pWb4H2eWGQkCKFgQaG6hdoEVZtGsrAcb2K5BW66XsOErD4WU3Q==
@@ -1446,13 +1453,14 @@
     eslint-plugin-unicorn "^41.0.0"
     eslint-plugin-vue "^8.5.0"
 
-"@nuxtjs/eslint-module@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-3.0.2.tgz#45208e6e1b486beb6d0854777faf124751971bc6"
-  integrity sha512-9q6/bMSvUU2L7Vhy5LUmghW3BQZMReQAvywBwZtX7s62W6dIL7IdD1T3u2zc8JW90grtJK84Ocx3dyYTj/Oavw==
+"@nuxtjs/eslint-module@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-module/-/eslint-module-3.1.0.tgz#3e7d241f4b53fbc6ab59932054d11dd22a828a40"
+  integrity sha512-9bK8AOJBflWmbQeL77SHIsgyGzhiW2b1BdwOtZ53Yyfa7Km3XMMVd8CtLA7z4+03eS+4TVQMxw62yRpJH5icZA==
   dependencies:
-    consola "^2.15.0"
-    eslint-webpack-plugin "^2.4.1"
+    consola "^2.15.3"
+    defu "^6.0.0"
+    eslint-webpack-plugin "^2.6.0"
 
 "@nuxtjs/proxy@^2.1.0":
   version "2.1.0"
@@ -3914,7 +3922,7 @@ eslint-plugin-unicorn@^41.0.0:
     semver "^7.3.5"
     strip-indent "^3.0.0"
 
-eslint-plugin-vue@^8.2.0, eslint-plugin-vue@^8.5.0:
+eslint-plugin-vue@^8.5.0:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-8.5.0.tgz#65832bba43ca713fa5da16bdfcf55d0095677f6f"
   integrity sha512-i1uHCTAKOoEj12RDvdtONWrGzjFm/djkzqfhmQ0d6M/W8KM81mhswd/z+iTZ0jCpdUedW3YRgcVfQ37/J4zoYQ==
@@ -3923,6 +3931,21 @@ eslint-plugin-vue@^8.2.0, eslint-plugin-vue@^8.5.0:
     natural-compare "^1.4.0"
     semver "^7.3.5"
     vue-eslint-parser "^8.0.1"
+
+eslint-plugin-vue@^8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-8.6.0.tgz#fbdf0f13f8d208a4cba752bf54042661a1aec5c3"
+  integrity sha512-abXiF2J18n/7ZPy9foSlJyouKf54IqpKlNvNmzhM93N0zs3QUxZG/oBd3tVPOJTKg7SlhBUtPxugpqzNbgGpQQ==
+  dependencies:
+    eslint-utils "^3.0.0"
+    natural-compare "^1.4.0"
+    semver "^7.3.5"
+    vue-eslint-parser "^8.0.1"
+
+eslint-rule-composer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
+  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@^4.0.3:
   version "4.0.3"
@@ -3977,7 +4000,7 @@ eslint-visitor-keys@^3.0.0, eslint-visitor-keys@^3.1.0, eslint-visitor-keys@^3.3
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz#f6480fa6b1f30efe2d1968aa8ac745b862469826"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
 
-eslint-webpack-plugin@^2.4.1:
+eslint-webpack-plugin@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/eslint-webpack-plugin/-/eslint-webpack-plugin-2.6.0.tgz#3bd4ada4e539cb1f6687d2f619073dbb509361cd"
   integrity sha512-V+LPY/T3kur5QO3u+1s34VDTcRxjXWPUGM4hlmTb5DwVD0OQz631yGTxJZf4SpAqAjdbBVe978S8BJeHpAdOhQ==
@@ -3989,10 +4012,10 @@ eslint-webpack-plugin@^2.4.1:
     normalize-path "^3.0.0"
     schema-utils "^3.1.1"
 
-eslint@^8.4.1:
-  version "8.12.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.12.0.tgz#c7a5bd1cfa09079aae64c9076c07eada66a46e8e"
-  integrity sha512-it1oBL9alZg1S8UycLm5YDMAkIhtH6FtAzuZs6YvoGVldWjbS08BkAdb/ymP9LlAyq8koANu32U7Ib/w+UNh8Q==
+eslint@^8.13.0:
+  version "8.13.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.13.0.tgz#6fcea43b6811e655410f5626cfcf328016badcd7"
+  integrity sha512-D+Xei61eInqauAyTJ6C0q6x9mx7kTUC1KZ0m0LSEexR0V+e94K12LmWX076ZIsldwfQ2RONdaJe0re0TRGQbRQ==
   dependencies:
     "@eslint/eslintrc" "^1.2.1"
     "@humanwhocodes/config-array" "^0.9.2"
@@ -9375,10 +9398,10 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
 
-vue-easytable@2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/vue-easytable/-/vue-easytable-2.16.0.tgz#4d80e809d3dcdac621c9d212eb34e29e403de0c2"
-  integrity sha512-3KHEYTfMNPtIqBulQvQLgdEjI7xs+PChG+mwAGwJ//Mee0vzjhLHvxCktnHU63webRRwfH024ofR7UHf7hKdrg==
+vue-easytable@2.16.1:
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/vue-easytable/-/vue-easytable-2.16.1.tgz#2c652bd39c252364f14bbbb8582c15fef354df94"
+  integrity sha512-mDECWQvCNgDvjwn/t2h97dAZ4tn8DiWNbk2PnOTLxL5LncjzBDbE5IUZcdqhNEyv2o1joF6pJLaUQkWVHhXD7w==
   dependencies:
     lodash "^4.17.20"
     resize-observer-polyfill "^1.5.1"
