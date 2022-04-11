@@ -85,6 +85,7 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('kapacitaUkVolnoCelkem')
             ->add('kapacitaUkObsazenoCelkem')
             ->add('skolaKapacita')
+            ->add('kapacitaUk2223')
             ->add('trida2r', null, array(
                 'label' => '2r'
             ))
@@ -164,6 +165,7 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('kapacitaUkObsazenoCelkem', null, array(
                 'disabled' => true,
             ))
+            ->add('kapacitaUk2223')
             ->end()
             ->with('Kontakt pro rodiče', array('class' => 'col-md-6'))
             ->add('kontaktJmeno')

@@ -11,6 +11,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Object\Metadata;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
+use Sonata\Form\Type\DateRangePickerType;
+use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\StringFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -59,6 +61,11 @@ class TridaAdmin extends AbstractAdmin
             ->add('idZarizeni.idSkolaTyp')
             ->add('idZarizeni.idJazyk')
             ->add('idZarizeni.aktivni')
+            ->add('datumCasAktualizace', DateRangeFilter::class, array(
+                'global_search'=>false,
+                'field_type'=>DateRangePickerType::class,
+            ))
+
             ->add('id')
         ;
     }
@@ -73,6 +80,12 @@ class TridaAdmin extends AbstractAdmin
             ->add('idZarizeni.idSkolaTyp')
             ->add('idZarizeni.idJazyk')
             ->add('idZarizeni.aktivni')
+            ->add('vlastnosti')
+            ->add('aktualniKapacitaUkVolno')
+            ->add('aktualniKapacitaUkObsazeno')
+            ->add('poznamkaCz')
+            ->add('poznamkaUk')
+            ->add('datumCasAktualizace')
         ;
     }
 
@@ -97,6 +110,10 @@ class TridaAdmin extends AbstractAdmin
             ->add('poznamkaCz', null, array(
                 'editable' => true,
             ))
+            ->add('poznamkaUk', null, array(
+                'editable' => true,
+            ))
+            ->add('datumCasAktualizace')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

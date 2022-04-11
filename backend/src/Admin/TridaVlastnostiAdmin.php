@@ -44,6 +44,7 @@ class TridaVlastnostiAdmin extends AbstractAdmin
             ->add('jmenoCz')
             ->add('jmenoUk')
             ->add('aktivni')
+            ->add('vekZaka')
         ;
     }
 
@@ -53,6 +54,9 @@ class TridaVlastnostiAdmin extends AbstractAdmin
             ->add('id')
             ->add('jmenoCz')
             ->add('jmenoUk')
+            ->add('aktivni')
+            ->add('vekZaka')
+            ->add('poradi')
         ;
     }
 
@@ -66,6 +70,10 @@ class TridaVlastnostiAdmin extends AbstractAdmin
             ->add('jmenoCz')
             ->add('jmenoUk')
             ->add('aktivni', null, array(
+                'editable' => true
+            ))
+            ->add('vekZaka')
+            ->add('poradi', null, array(
                 'editable' => true
             ))
             ->add('_action', 'actions', array(
@@ -84,6 +92,8 @@ class TridaVlastnostiAdmin extends AbstractAdmin
             ->add('jmenocz')
             ->add('jmenouk')
             ->add('aktivni')
+            ->add('vekZaka')
+            ->add('poradi')
         ;
     }
 }

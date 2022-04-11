@@ -42,7 +42,8 @@ class JazykVyukyAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('jmeno')
+            ->add('jmenoCz')
+            ->add('jmenoUk')
         ;
     }
 
@@ -50,7 +51,8 @@ class JazykVyukyAdmin extends AbstractAdmin
     {
         $show
             ->add('id')
-            ->add('jmeno')
+            ->add('jmenoCz')
+            ->add('jmenoUk')
         ;
     }
 
@@ -61,7 +63,8 @@ class JazykVyukyAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-            ->add('jmeno')
+            ->add('jmenoCz')
+            ->add('jmenoUk')
 /*            ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -77,4 +80,3 @@ class JazykVyukyAdmin extends AbstractAdmin
     {
     }
 }
-

@@ -68,3 +68,8 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+twig:
+    form_themes:
+        # js datepicker in admin
+        - '@SonataForm/Form/datepicker.html.twig'
