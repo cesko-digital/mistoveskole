@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * Auto-generated Migration
  */
 final class Version202204054Okres extends AbstractMigration
 {
@@ -19,8 +19,18 @@ final class Version202204054Okres extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        // Manupulate data as necessary
-        $this->addSql('INSERT INTO "okres" ("id", "id_nuts", "id_kraj", "jmeno_cz", "jmeno_uk", "id_nuts2") VALUES'.
+        $this->abortIf(
+            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\PostgreSQL100Platform,
+            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\PostgreSQL100Platform'."
+        );
+
+        $this->addSql('CREATE TABLE okres (id SMALLSERIAL NOT NULL, id_kraj SMALLINT NOT NULL, id_nuts VARCHAR(6) NOT NULL, jmeno_cz VARCHAR(100) NOT NULL, jmeno_uk VARCHAR(100) NOT NULL, id_nuts2 VARCHAR(6) DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX okres_id_nuts2 ON okres (id_nuts2)');
+        $this->addSql('CREATE INDEX okres_id_kraj ON okres (id_kraj)');
+        $this->addSql('CREATE INDEX okres_id_nuts ON okres (id_nuts)');
+        $this->addSql('ALTER TABLE okres ADD CONSTRAINT FK_B79464D9C0B7DD82 FOREIGN KEY (id_kraj) REFERENCES kraj (id) NOT DEFERRABLE INITIALLY IMMEDIATE;');
+
+        $this->addSql('INSERT INTO "okres" ("id", "id_nuts", "id_kraj", "jmeno_cz", "jmeno_uk", "id_nuts2") VALUES '.
 "(203,   'CZ0203',       20,     'Kladno',       'Kladno',       'CZ0213'),
 (204,   'CZ0204',       20,     'Kolín',        'Kolín',        'CZ0214'),
 (803,   'CZ0803',       80,     'Karviná',      'Karviná',      'CZ0813'),
@@ -92,7 +102,6 @@ final class Version202204054Okres extends AbstractMigration
 (712,   'CZ0712',       71,     'Olomouc',      'Olomouc',      'CZ0712'),
 (713,   'CZ0713',       71,     'Prostějov',    'Prostějov',    'CZ0713'),
 (715,   'CZ0715',       71,     'Šumperk',      'Šumperk',      'CZ0715'),
-(72,    'CZ072',        72,     'Zlínský kraj', 'Zlínský kraj', 'CZ072'),
 (721,   'CZ0721',       72,     'Kroměříž',     'Kroměříž',     'CZ0721'),
 (722,   'CZ0722',       72,     'Uherské Hradiště',     'Uherské Hradiště',     'CZ0722'),
 (723,   'CZ0723',       72,     'Vsetín',       'Vsetín',       'CZ0723'),
@@ -108,7 +117,8 @@ final class Version202204054Okres extends AbstractMigration
 (645,   'CZ0645',       64,     'Hodonín',      'Hodonín',      'CZ0625'),
 (646,   'CZ0646',       64,     'Vyškov',       'Vyškov',       'CZ0626'),
 (647,   'CZ0647',       64,     'Znojmo',       'Znojmo',       'CZ0627'),
-(642,   'CZ0642',       64,     'Brno-město',   'Brno-město',   'CZ0622');"
+(642,   'CZ0642',       64,     'Brno-město',   'Brno-město',   'CZ0622');
+"
         );
     }
 
@@ -116,5 +126,7 @@ final class Version202204054Okres extends AbstractMigration
     {
         // Manupulate data as necessary
         $this->addSql('DELETE FROM "okres";');
+        $this->addSql('DROP TABLE okres');
+
     }
 }
