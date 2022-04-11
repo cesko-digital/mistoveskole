@@ -5,6 +5,7 @@
       ref="Table"
       :columns="columns"
       :table-data="tableData"
+      :expand-option="expandOption"
       row-key-field-name="Id"
       :max-height="600"
       :virtual-scroll-option="{
@@ -26,12 +27,19 @@ export default {
           this.sortChange(params);
         },
       },
+      expandOption: {
+        render: ({ row, column, rowIndex }, h) => {
+          return (<RowDetail row={row} />);
+        },
+      },
       columns: [
         {
-          field: 'Id',
-          key: 'Id',
-          title: 'Id',
-          sortBy: '',
+          field: '',
+          key: 'expand',
+          type: 'expand',
+          title: '',
+          width: 50,
+          align: 'center',
         },
         {
           field: 'Id Jazyk',
@@ -62,6 +70,7 @@ export default {
           key: 'Id Reditelstvi Red Plny Nazev',
           title: 'Nazev',
           sortBy: '',
+          align: 'left',
         },
         {
           field: 'Id Skola Typ',
@@ -78,49 +87,7 @@ export default {
         {
           field: 'Kapacita Uk Volno Celkem',
           key: 'Kapacita Uk Volno Celkem',
-          title: 'Kapacita Uk Volno Celkem',
-          sortBy: '',
-        },
-        {
-          field: 'Kontakt Email',
-          key: 'Kontakt Email',
-          title: 'Email',
-          sortBy: '',
-        },
-        {
-          field: 'Kontakt Jmeno',
-          key: 'Kontakt Jmeno',
-          title: 'Jmeno',
-          sortBy: '',
-        },
-        {
-          field: 'Kontakt Telefon',
-          key: 'Kontakt Telefon',
-          title: 'Telefon',
-          sortBy: '',
-        },
-        {
-          field: 'Kontakt Www',
-          key: 'Kontakt Www',
-          title: 'Www',
-          sortBy: '',
-        },
-        {
-          field: 'Misto Adresa1',
-          key: 'Misto Adresa1',
-          title: 'Adresa1',
-          sortBy: '',
-        },
-        {
-          field: 'Misto Adresa2',
-          key: 'Misto Adresa2',
-          title: 'Adresa2',
-          sortBy: '',
-        },
-        {
-          field: 'Misto Adresa3',
-          key: 'Misto Adresa3',
-          title: 'Adresa3',
+          title: 'Kapacita',
           sortBy: '',
         },
         {
@@ -129,48 +96,6 @@ export default {
           title: 'Ruian',
           sortBy: '',
         },
-        {
-          field: 'Poznamka Cz',
-          key: 'Poznamka Cz',
-          title: 'Poznamka Cz',
-          sortBy: '',
-        },
-        {
-          field: 'Poznamka Uk',
-          key: 'Poznamka Uk',
-          title: 'Poznamka Uk',
-          sortBy: '',
-        },
-        {
-          field: 'Skola Plny Nazev',
-          key: 'Skola Plny Nazev',
-          title: 'Skola Plny Nazev',
-          sortBy: '',
-        },
-        // {
-        //   field: 'name',
-        //   key: 'name',
-        //   title: 'Name',
-        //   sortBy: '',
-        //   align: 'left',
-        //   width: '40%',
-        // },
-        // {
-        //   field: 'okres',
-        //   key: 'okres',
-        //   title: 'Okres',
-        //   sortBy: '',
-        //   align: 'left',
-        //   width: '15%',
-        // },
-        // {
-        //   field: 'ico',
-        //   key: 'ico',
-        //   title: 'ICO',
-        //   align: 'left',
-        //   sortBy: '',
-        //   width: '15%',
-        // },
         // {
         //   field: 'schools',
         //   key: 'schools',
