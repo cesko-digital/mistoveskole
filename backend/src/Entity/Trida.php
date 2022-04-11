@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 /**
  * Trida
@@ -66,14 +69,28 @@ class Trida
     private $datumCasAktualizace;
 
     /**
-     * @var \Zarizeni
+     * @var Zarizeni
      *
      * @ORM\ManyToOne(targetEntity="Zarizeni", inversedBy="tridy")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_zarizeni", referencedColumnName="id", nullable=false)
+     *   @ORM\JoinColumn(name="id_zarizeni", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * })
      */
     private $idZarizeni;
+
+    /**
+     * @var TridaHistorieKapacity[]
+     *
+     * @ORM\OneToMany(targetEntity="TridaHistorieKapacity", mappedBy="idTrida", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"datum" = "DESC"})
+     */
+    private $historieKapacity;
+
+    public function __construct()
+    {
+        $this->historieKapacity = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -175,8 +192,40 @@ class Trida
     /**
      * @ORM\PreUpdate
      */
-    public function preUpdate(): void
+    public function preUpdate(PreUpdateEventArgs $args): void
     {
-        $this->setDatumCasAktualizace(new \DateTime());
+        if (!$args->hasChangedField('datumCasAktualizace')) {
+            $this->setDatumCasAktualizace(new \DateTime());
+        }
+    }
+
+    /**
+     * @return Collection<int, TridaHistorieKapacity>
+     */
+    public function getHistorieKapacity(): Collection
+    {
+        return $this->historieKapacity;
+    }
+
+    public function addHistorieKapacity(TridaHistorieKapacity $historieKapacity): self
+    {
+        if (!$this->historieKapacity->contains($historieKapacity)) {
+            $this->historieKapacity[] = $historieKapacity;
+            $historieKapacity->setIdTrida($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistorieKapacity(TridaHistorieKapacity $historieKapacity): self
+    {
+        if ($this->historieKapacity->removeElement($historieKapacity)) {
+            // set the owning side to null (unless already changed)
+            if ($historieKapacity->getIdTrida() === $this) {
+                $historieKapacity->setIdTrida(null);
+            }
+        }
+
+        return $this;
     }
 }

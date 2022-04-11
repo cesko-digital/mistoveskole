@@ -6,11 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 /**
  * Zarizeni
  *
- * @ORM\Table(name="zarizeni", indexes={@ORM\Index(name="zarizeni_kapacita_ua_volno_celkem", columns={"kapacita_uk_volno_celkem"}), @ORM\Index(name="zarizeni_kapacita_ua_obsazeno_celkem", columns={"kapacita_uk_obsazeno_celkem"}), @ORM\Index(name="zarizeni_skola_plny_nazev", columns={"skola_plny_nazev"}), @ORM\Index(name="zarizeni_id_jazyk", columns={"id_jazyk"}), @ORM\Index(name="zarizeni_misto_adresa_3", columns={"misto_adresa_3"}), @ORM\Index(name="zarizeni_id_skola_typ", columns={"id_skola_typ"}), @ORM\Index(name="zarizeni_izo", columns={"izo"}), @ORM\Index(name="zarizeni_aktivni", columns={"aktivni"}), @ORM\Index(name="IDX_22357A70579B0BCA", columns={"id_reditelstvi"})})
+ * @ORM\Table(name="zarizeni", indexes={@ORM\Index(name="zarizeni_kapacita_ua_volno_celkem", columns={"kapacita_uk_volno_celkem"}), @ORM\Index(name="zarizeni_kapacita_ua_obsazeno_celkem", columns={"kapacita_uk_obsazeno_celkem"}), @ORM\Index(name="zarizeni_skola_plny_nazev", columns={"skola_plny_nazev"}), @ORM\Index(name="zarizeni_id_jazyk", columns={"id_jazyk"}), @ORM\Index(name="zarizeni_misto_adresa_3", columns={"misto_adresa_3"}), @ORM\Index(name="zarizeni_id_skola_typ", columns={"id_skola_typ"}), @ORM\Index(name="zarizeni_izo", columns={"izo"}), @ORM\Index(name="zarizeni_aktivni", columns={"aktivni"}), @ORM\Index(name="IDX_22357A70579B0BCA", columns={"id_reditelstvi"}), @ORM\Index(name="zarizeni_kapacita_uk_22_23", columns={"kapacita_uk_22_23"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -90,6 +91,13 @@ class Zarizeni
     private $kapacitaUkVolnoCelkem;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="kapacita_uk_22_23", type="smallint", nullable=true)
+     */
+    private $kapacitaUk2223;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="kontakt_www", type="string", length=255, nullable=true)
@@ -134,12 +142,12 @@ class Zarizeni
     /**
      * @var int|null
      *
-     * @ORM\Column(name="misto_ruian_kod", type="smallint", nullable=true)
+     * @ORM\Column(name="misto_ruian_kod", type="integer", nullable=true)
      */
     private $mistoRuianKod;
 
     /**
-     * @var \TypZarizeni
+     * @var TypZarizeni
      *
      * @ORM\ManyToOne(targetEntity="TypZarizeni")
      * @ORM\JoinColumns({
@@ -149,7 +157,7 @@ class Zarizeni
     private $idSkolaTyp;
 
     /**
-     * @var \JazykVyuky
+     * @var JazykVyuky
      *
      * @ORM\ManyToOne(targetEntity="JazykVyuky")
      * @ORM\JoinColumns({
@@ -159,21 +167,26 @@ class Zarizeni
     private $idJazyk;
 
     /**
-     * @var \Reditelstvi
+     * @var Reditelstvi
      *
      * @ORM\ManyToOne(targetEntity="Reditelstvi", inversedBy="zarizeni")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_reditelstvi", referencedColumnName="id", nullable=false)
+     *   @ORM\JoinColumn(name="id_reditelstvi", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * })
      */
     private $idReditelstvi;
 
     /**
-     * @var \Trida[]
+     * @var Trida[]
      *
      * @ORM\OneToMany(targetEntity="Trida", mappedBy="idZarizeni", cascade={"persist"}, orphanRemoval=true)
      */
     private $tridy;
+
+    /**
+     * @var int[] list of TridaVlastnosti.id, loaded with postLoad() event, no relation in db
+     */
+    private $tridaVlastnostiId;
 
     public function __construct()
     {
@@ -292,6 +305,19 @@ class Zarizeni
 
         return $this;
     }
+
+    public function getKapacitaUk2223(): ?int
+    {
+        return $this->kapacitaUk2223;
+    }
+
+    public function setKapacitaUk2223(?int $kapacita): self
+    {
+        $this->kapacitaUk2223 = $kapacita;
+
+        return $this;
+    }
+
 
     public function getKontaktWww(): ?string
     {
@@ -464,6 +490,27 @@ class Zarizeni
         $this->sumCapacity();
     }
 
+    /**
+     * @ORM\PostLoad
+     */
+    public function postLoad(LifecycleEventArgs $eventArgs): void
+    {
+        // TODO load in listener and calculate just once for all rows?
+        $em = $eventArgs->getObjectManager();
+        $vlastnosti = $em->getRepository(TridaVlastnosti::class)->findBy(array('aktivni' => true));
+        $result = array();
+        foreach ($vlastnosti as $vlastnost) {
+            if (($vek = $vlastnost->getVekZaka()) !== null) {
+                // use only features with age
+                $result[$vek][] = $vlastnost->getId();
+            }
+        }
+        $this->tridaVlastnostiId = $result;
+    }
+
+    /*
+     * calculate sum of capacity for all Trida
+     */
     public function sumCapacity(): void
     {
         $tridy = $this->getTridy();
@@ -480,84 +527,108 @@ class Zarizeni
         $this->setKapacitaUkObsazenoCelkem($full);
     }
 
-    protected function getCountByTrida(int $vlastnost): ?int
+    /*
+     * generic method to calculate capacity by age
+     */
+    protected function getCountByTrida(int $vekZaka): ?int
     {
+        if (!isset($this->tridaVlastnostiId[$vekZaka]) || !is_array($this->tridaVlastnostiId[$vekZaka])) {
+            return null; // should not happen
+        }
+        $sum = null;
         foreach($this->getTridy() as $trida) {
             $vlastnosti = $trida->getVlastnosti();
-            if (is_array($vlastnosti) && in_array($vlastnost, $vlastnosti)) {
-                return $trida->getAktualniKapacitaUkVolno();
+            if (is_array($vlastnosti) && count(array_intersect($vlastnosti, $this->tridaVlastnostiId[$vekZaka])) > 0) {
+                // at least one id is matching the list by age
+                $sum = $sum + $trida->getAktualniKapacitaUkVolno();
             }
         }
-        return null;
+        return $sum;
     }
 
     public function getTrida2r(): ?int
     {
-        return $this->getCountByTrida(20);
+        return $this->getCountByTrida(2);
     }
+
     public function getTrida3r(): ?int
     {
-        return $this->getCountByTrida(30);
+        return $this->getCountByTrida(3);
     }
+
     public function getTrida4r(): ?int
     {
-        return $this->getCountByTrida(40);
+        return $this->getCountByTrida(4);
     }
+
     public function getTrida5r(): ?int
     {
-        return $this->getCountByTrida(50);
+        return $this->getCountByTrida(5);
     }
+
     public function getTrida6r(): ?int
     {
-        return $this->getCountByTrida(60);
+        return $this->getCountByTrida(6);
     }
+
     public function getTrida7r(): ?int
     {
-        return $this->getCountByTrida(70);
+        return $this->getCountByTrida(7);
     }
+
     public function getTrida8r(): ?int
     {
-        return $this->getCountByTrida(80);
+        return $this->getCountByTrida(8);
     }
+
     public function getTrida9r(): ?int
     {
-        return $this->getCountByTrida(90);
+        return $this->getCountByTrida(9);
     }
+
     public function getTrida10r(): ?int
     {
-        return $this->getCountByTrida(100);
+        return $this->getCountByTrida(10);
     }
+
     public function getTrida11r(): ?int
     {
-        return $this->getCountByTrida(110);
+        return $this->getCountByTrida(11);
     }
+
     public function getTrida12r(): ?int
     {
-        return $this->getCountByTrida(120);
+        return $this->getCountByTrida(12);
     }
+
     public function getTrida13r(): ?int
     {
-        return $this->getCountByTrida(130);
+        return $this->getCountByTrida(13);
     }
+
     public function getTrida14r(): ?int
     {
-        return $this->getCountByTrida(140);
+        return $this->getCountByTrida(14);
     }
+
     public function getTrida15r(): ?int
     {
-        return $this->getCountByTrida(150);
+        return $this->getCountByTrida(15);
     }
+
     public function getTrida16r(): ?int
     {
-        return $this->getCountByTrida(160);
+        return $this->getCountByTrida(16);
     }
+
     public function getTrida17r(): ?int
     {
-        return $this->getCountByTrida(170);
+        return $this->getCountByTrida(17);
     }
+
     public function getTrida18r(): ?int
     {
-        return $this->getCountByTrida(180);
+        return $this->getCountByTrida(18);
     }
 }
 

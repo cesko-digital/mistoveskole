@@ -43,6 +43,20 @@ class TridaVlastnosti
      */
     private $aktivni;
 
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="vek_zaka", type="smallint", nullable=true)
+     */
+    private $vekZaka;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="poradi", type="smallint", nullable=false)
+     */
+    private $poradi;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,6 +94,30 @@ class TridaVlastnosti
     public function setAktivni(bool $aktivni): self
     {
         $this->aktivni = $aktivni;
+
+        return $this;
+    }
+
+    public function getVekZaka(): ?int
+    {
+        return $this->vekZaka;
+    }
+
+    public function setVekZaka(?int $vekZaka): self
+    {
+        $this->vekZaka = $vekZaka;
+
+        return $this;
+    }
+
+    public function getPoradi(): ?int
+    {
+        return $this->poradi;
+    }
+
+    public function setPoradi(int $poradi): self
+    {
+        $this->poradi = $poradi;
 
         return $this;
     }

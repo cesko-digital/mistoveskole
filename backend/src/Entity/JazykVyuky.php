@@ -25,29 +25,48 @@ class JazykVyuky
     /**
      * @var string
      *
-     * @ORM\Column(name="jmeno", type="string", length=100, nullable=false)
+     * @ORM\Column(name="jmeno_cz", type="string", length=100, nullable=false)
      */
-    private $jmeno;
+    private $jmenoCz;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="jmeno_uk", type="string", length=100, nullable=false)
+     */
+    private $jmenoUk;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getJmeno(): ?string
+    public function getJmenoCz(): ?string
     {
-        return $this->jmeno;
+        return $this->jmenoCz;
     }
 
-    public function setJmeno(string $jmeno): self
+    public function setJmenoCz(string $jmeno): self
     {
-        $this->jmeno = $jmeno;
+        $this->jmenoCz = $jmeno;
+
+        return $this;
+    }
+
+    public function getJmenoUk(): ?string
+    {
+        return $this->jmenoUk;
+    }
+
+    public function setJmenoUk(string $jmeno): self
+    {
+        $this->jmenoUk = $jmeno;
 
         return $this;
     }
 
     public function __toString(): string
     {
-        return $this->getJmeno();
+        return $this->getJmenoCz();
     }
 }

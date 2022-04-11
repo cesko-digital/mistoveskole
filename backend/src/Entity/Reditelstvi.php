@@ -74,7 +74,7 @@ class Reditelstvi
     private $idOrp;
 
     /**
-     * @var \Okres
+     * @var Okres
      *
      * @ORM\ManyToOne(targetEntity="Okres")
      * @ORM\JoinColumns({

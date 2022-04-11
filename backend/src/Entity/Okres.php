@@ -51,7 +51,7 @@ class Okres
     private $jmenoUk;
 
     /**
-     * @var \Kraj
+     * @var Kraj
      *
      * @ORM\ManyToOne(targetEntity="Kraj")
      * @ORM\JoinColumns({
