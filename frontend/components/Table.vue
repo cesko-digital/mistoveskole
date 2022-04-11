@@ -18,6 +18,7 @@
 
 <script>
 import _orderBy from 'lodash/orderBy';
+import _cloneDeep from 'lodash/cloneDeep';
 
 export default {
   data() {
@@ -32,7 +33,14 @@ export default {
           return (<RowDetail row={row} />);
         },
       },
-      columns: [
+      sourceData: [],
+      tableData: [],
+    };
+  },
+
+  computed: {
+    columns() {
+      return [
         {
           field: '',
           key: 'expand',
@@ -46,18 +54,36 @@ export default {
           key: 'Id Jazyk',
           title: 'Jazyk',
           sortBy: '',
+          filter: {
+            isMultiple: true,
+            filterList: this.getFilterValues('Id Jazyk'),
+            filterConfirm: (filterList) => this.filterByField('Id Jazyk', filterList),
+            filterReset: () => this.filterByField('Id Jazyk', []),
+          },
         },
         {
           field: 'Id Reditelstvi Id Okres Id Kraj Jmeno Cz',
           key: 'Id Reditelstvi Id Okres Id Kraj Jmeno Cz',
           title: 'Kraj',
           sortBy: '',
+          filter: {
+            isMultiple: true,
+            filterList: this.getFilterValues('Id Reditelstvi Id Okres Id Kraj Jmeno Cz'),
+            filterConfirm: (filterList) => this.filterByField('Id Reditelstvi Id Okres Id Kraj Jmeno Cz', filterList),
+            filterReset: () => this.filterByField('Id Reditelstvi Id Okres Id Kraj Jmeno Cz', []),
+          },
         },
         {
           field: 'Id Reditelstvi Id Okres Jmeno Cz',
           key: 'Id Reditelstvi Id Okres Jmeno Cz',
           title: 'Město',
           sortBy: '',
+          filter: {
+            isMultiple: true,
+            filterList: this.getFilterValues('Id Reditelstvi Id Okres Jmeno Cz'),
+            filterConfirm: (filterList) => this.filterByField('Id Reditelstvi Id Okres Jmeno Cz', filterList),
+            filterReset: () => this.filterByField('Id Reditelstvi Id Okres Jmeno Cz', []),
+          },
         },
         {
           field: 'Id Reditelstvi Red Izo',
@@ -77,6 +103,12 @@ export default {
           key: 'Id Skola Typ',
           title: 'Typ',
           sortBy: '',
+          filter: {
+            isMultiple: true,
+            filterList: this.getFilterValues('Id Skola Typ'),
+            filterConfirm: (filterList) => this.filterByField('Id Skola Typ', filterList),
+            filterReset: () => this.filterByField('Id Skola Typ', []),
+          },
         },
         {
           field: 'Izo',
@@ -106,13 +138,13 @@ export default {
         //       return (<RowSchools row={row} />);
         //   },
         // },
-      ],
-      tableData: [],
-    };
+      ];
+    },
   },
 
   async mounted() {
-    this.tableData = await this.$axios.$get('https://s3.eu-central-1.wasabisys.com/treevio/demo/export_zarizeni_2022_04_08_11_11_11.json');
+    this.sourceData = await this.$axios.$get('https://s3.eu-central-1.wasabisys.com/treevio/demo/export_zarizeni_2022_04_08_11_11_11.json');
+    this.tableData = _cloneDeep(this.sourceData);
   },
 
   methods: {
@@ -131,6 +163,18 @@ export default {
 
       this.$refs.Table.scrollTo({ top: 0 });
     },
+    getFilterValues(key) {
+      const data = [...new Set(this.sourceData.map((item) => item[key]))];
+      return data.map((item) => ({
+        value: item,
+        label: item,
+        selected: false,
+      }));
+    },
+    filterByField(field, filterList) {
+      const filterValues = [...filterList].filter((item) => item.selected).map((item) => item.label);
+      this.tableData = _cloneDeep(this.sourceData).filter((item) => filterValues.length === 0 || filterValues.includes(item[field]));
+    },
   },
 };
 </script>
@@ -138,5 +182,6 @@ export default {
 <style>
 .ve-table .ve-table-container table.ve-table-content thead.ve-table-header tr.ve-table-header-tr th.ve-table-header-th {
   white-space: nowrap;
+  padding-right: 20px;
 }
 </style>
