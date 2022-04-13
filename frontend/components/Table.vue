@@ -1,19 +1,21 @@
 <template>
-  <client-only>
-    <ve-table
-      v-if="tableData.length"
-      ref="Table"
-      :columns="columns"
-      :table-data="tableData"
-      :expand-option="expandOption"
-      row-key-field-name="Id"
-      :max-height="600"
-      :virtual-scroll-option="{
-        enable: true,
-      }"
-      :sort-option="sortOption"
-    />
-  </client-only>
+  <div>
+    <client-only>
+      <ve-table
+        v-if="tableData.length"
+        ref="Table"
+        :columns="columns"
+        :table-data="tableData"
+        :expand-option="expandOption"
+        row-key-field-name="Id"
+        :max-height="600"
+        :virtual-scroll-option="{
+          enable: true,
+        }"
+        :sort-option="sortOption"
+      />
+    </client-only>
+  </div>
 </template>
 
 <script>
@@ -90,6 +92,14 @@ export default {
           key: 'Id Reditelstvi Red Izo',
           title: 'Id Reditelstvi Red Izo',
           sortBy: '',
+          filterCustom: {
+            defaultVisible: true,
+            render: ({ showFn, closeFn }, h) => {
+              return (<FilterSearch
+                on-search={(payload) => this.filterSearch('Id Reditelstvi Red Izo', payload)}
+              />);
+            },
+          },
         },
         {
           field: 'Id Reditelstvi Red Plny Nazev',
@@ -97,6 +107,14 @@ export default {
           title: 'Nazev',
           sortBy: '',
           align: 'left',
+          filterCustom: {
+            defaultVisible: true,
+            render: ({ showFn, closeFn }, h) => {
+              return (<FilterSearch
+                on-search={(payload) => this.filterSearch('Id Reditelstvi Red Plny Nazev', payload)}
+              />);
+            },
+          },
         },
         {
           field: 'Id Skola Typ',
@@ -115,6 +133,14 @@ export default {
           key: 'Izo',
           title: 'Izo',
           sortBy: '',
+          filterCustom: {
+            defaultVisible: true,
+            render: ({ showFn, closeFn }, h) => {
+              return (<FilterSearch
+                on-search={(payload) => this.filterSearch('Izo', payload)}
+              />);
+            },
+          },
         },
         {
           field: 'Kapacita Uk Volno Celkem',
@@ -127,6 +153,14 @@ export default {
           key: 'Misto Ruian Kod',
           title: 'Ruian',
           sortBy: '',
+          filterCustom: {
+            defaultVisible: true,
+            render: ({ showFn, closeFn }, h) => {
+              return (<FilterSearch
+                on-search={(payload) => this.filterSearch('Misto Ruian Kod', payload)}
+              />);
+            },
+          },
         },
         // {
         //   field: 'schools',
@@ -175,6 +209,9 @@ export default {
       const filterValues = [...filterList].filter((item) => item.selected).map((item) => item.label);
       this.tableData = _cloneDeep(this.sourceData).filter((item) => filterValues.length === 0 || filterValues.includes(item[field]));
     },
+    filterSearch(field, value) {
+      this.tableData = _cloneDeep(this.sourceData).filter((item) => value.length === 0 || String(item[field]).toLowerCase().includes(value.toLowerCase()));
+    },
   },
 };
 </script>
@@ -183,5 +220,11 @@ export default {
 .ve-table .ve-table-container table.ve-table-content thead.ve-table-header tr.ve-table-header-tr th.ve-table-header-th {
   white-space: nowrap;
   padding-right: 20px;
+}
+.ve-dropdown-popper .ve-dropdown-dd {
+  display: none;
+}
+.ve-dropdown-popper .ve-dropdown-dd.ve-dropdown-dd-show {
+  display: block;
 }
 </style>
