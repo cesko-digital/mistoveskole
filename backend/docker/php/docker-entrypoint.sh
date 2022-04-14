@@ -1,38 +1,34 @@
 #!/bin/sh
 set -e
 
-# first arg is `-f` or `--some-option`
-if [ "${1#-}" != "$1" ]; then
-	set -- php-fpm "$@"
-fi
 
-if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
-	PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-production"
-	if [ "$APP_ENV" != 'prod' ]; then
-		PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-development"
-	fi
-	ln -sf "$PHP_INI_RECOMMENDED" "$PHP_INI_DIR/php.ini"
+if [ "$1" = 'supervisord' ]; then
+#	PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-production"
+#	if [ "$APP_ENV" != 'prod' ]; then
+#		PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-development"
+#	fi
+#	ln -sf "$PHP_INI_RECOMMENDED" "$PHP_INI_DIR/php.ini"
 
 	mkdir -p var/cache var/log
 
-	# The first time volumes are mounted, the project needs to be recreated
-	if [ ! -f composer.json ]; then
-		CREATION=1
-		composer create-project "$SKELETON $SYMFONY_VERSION" tmp --stability="$STABILITY" --prefer-dist --no-progress --no-interaction --no-install
+#	# The first time volumes are mounted, the project needs to be recreated
+#	if [ ! -f composer.json ]; then
+#		CREATION=1
+#		composer create-project "$SKELETON $SYMFONY_VERSION" tmp --stability="$STABILITY" --prefer-dist --no-progress --no-interaction --no-install
+#
+#		cd tmp
+#		composer require "php:>=$PHP_VERSION"
+#		composer config --json extra.symfony.docker 'true'
+#		cp -Rp . ..
+#		cd -
+#
+#		rm -Rf tmp/
+#	fi
 
-		cd tmp
-		composer require "php:>=$PHP_VERSION"
-		composer config --json extra.symfony.docker 'true'
-		cp -Rp . ..
-		cd -
-
-		rm -Rf tmp/
-	fi
-
-	if [ "$APP_ENV" != 'prod' ]; then
-		rm -f .env.local.php
-		composer install --prefer-dist --no-progress --no-interaction
-	fi
+#	if [ "$APP_ENV" != 'prod' ]; then
+#		rm -f .env.local.php
+#		composer install --prefer-dist --no-progress --no-interaction
+#	fi
 
 	if grep -q ^DATABASE_URL= .env; then
 		if [ "$CREATION" = "1" ]; then
@@ -68,8 +64,9 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		#fi
 	fi
 
-	setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX var
-	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX var
+	chown -R www-data:www-data /var/www/html/var
+
+	bin/console assets:install
 fi
 
-exec docker-php-entrypoint "$@"
+exec "$@"
