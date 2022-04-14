@@ -25,4 +25,5 @@ RUN set -eux; \
 
 #HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
 ENTRYPOINT ["docker-entrypoint"]
+EXPOSE 8080/tcp
 CMD ["supervisord", "--nodaemon"]
