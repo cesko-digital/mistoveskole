@@ -13,7 +13,7 @@ doctrine:
         auto_mapping: true
         dql:
             string_functions:
-                contains: 'App\Doctrine\Functions\Contains'
+                JSON_CONTAINS: 'App\Doctrine\Functions\Contains'
         mappings:
             App:
                 is_bundle: false

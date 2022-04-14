@@ -141,10 +141,10 @@ class TridaAdmin extends AbstractAdmin
                 'choices' => $this->loadVlastnostiChoices($subject),
             ))
             ->add('aktualniKapacitaUkVolno', null, array(
-                'required' => true,
+                'required' => false,
             ))
             ->add('aktualniKapacitaUkObsazeno', null, array(
-                'required' => true,
+                'required' => false,
             ))
             ->add('poznamkaCz')
             ->add('poznamkaUk')

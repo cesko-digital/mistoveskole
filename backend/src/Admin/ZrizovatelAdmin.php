@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
 
-class ReditelstviAdmin extends AbstractAdmin
+class ZrizovatelAdmin extends AbstractAdmin
 {
     /** $var LoggerInterface $logger */
     public $logger;
@@ -30,8 +30,8 @@ class ReditelstviAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
             $collection->remove('delete');
-//            $collection->remove('batch');
-//            $collection->remove('create');
+            $collection->remove('batch');
+            $collection->remove('create');
     }
 
     /**
@@ -39,24 +39,13 @@ class ReditelstviAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-        $datagridMapper
-            ->add('redIzo')
-            ->add('obec')
-            ->add('idOkres')
-            ->add('idOkres.idKraj')
-            ->add('idZrizovatel')
-            ->add('id')
-        ;
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('redIzo')
-            ->add('obec')
-            ->add('idOkres')
-            ->add('idOkres.idKraj')
-            ->add('zarizeni')
+            ->add('id')
+            ->add('jmenocz')
         ;
     }
 
@@ -66,17 +55,8 @@ class ReditelstviAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('redIzo', 'text')
-            ->add('redZkracenyNazev')
-            ->add('obec')
-            ->add('idOkres')
-            ->add('idOkres.idKraj')
-            ->add('zarizeni')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-            //      'delete' => array()
-            )))
+            ->add('id')
+            ->add('jmenocz')
     ;
     }
 
@@ -85,19 +65,6 @@ class ReditelstviAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper): void
     {
-        $formMapper
-            ->add('redIzo')
-            ->add('redPlnyNazev')
-            ->add('redAdresa1')
-            ->add('redAdresa2')
-            ->add('redAdresa3')
-            ->add('redRuianKod')
-            ->add('idOkres')
-            ->add('idOrp')
-            ->add('obec')
-            ->add('datovaSchranka')
-            ->add('idZrizovatel')
-        ;
     }
 }
 

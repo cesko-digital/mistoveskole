@@ -56,6 +56,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Jazyky výuky"  }
 
+    admin.zrizovatel:
+        class: App\Admin\ZrizovatelAdmin
+        arguments: [~, App\Entity\Zrizovatel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Zřizovatelé zařízení"  }
+
     admin.reditelstvi:
         class: App\Admin\ReditelstviAdmin
         arguments: [~, App\Entity\Reditelstvi, ~]
@@ -73,6 +79,7 @@ services:
         arguments: [~, App\Entity\Trida, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: "Třídy"  }
+
     admin.trida_vlastnosti:
         class: App\Admin\TridaVlastnostiAdmin
         arguments: [~, App\Entity\TridaVlastnosti, ~]

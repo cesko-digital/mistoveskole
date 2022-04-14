@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reditelstvi
  *
- * @ORM\Table(name="reditelstvi", indexes={@ORM\Index(name="reditelstvi_red_adresa_3", columns={"red_adresa_3"}), @ORM\Index(name="reditelstvi_id_orp", columns={"id_orp"}), @ORM\Index(name="reditelstvi_id_okres", columns={"id_okres"}), @ORM\Index(name="reditelstvi_red_plny_nazev", columns={"red_plny_nazev"}), @ORM\Index(name="reditelstvi_red_izo", columns={"red_izo"})})
+ * @ORM\Table(name="reditelstvi", indexes={@ORM\Index(name="reditelstvi_red_zkraceny_zazev", columns={"red_zkraceny_zazev"}), @ORM\Index(name="reditelstvi_id_okres", columns={"id_okres"}), @ORM\Index(name="reditelstvi_red_izo", columns={"red_izo"}), @ORM\Index(name="reditelstvi_datova_schranka", columns={"datova_schranka"}), @ORM\Index(name="reditelstvi_red_adresa_3", columns={"red_adresa_3"}), @ORM\Index(name="reditelstvi_red_plny_nazev", columns={"red_plny_nazev"}), @ORM\Index(name="reditelstvi_id_orp", columns={"id_orp"}), @ORM\Index(name="reditelstvi_id_zrizovatel", columns={"id_zrizovatel"})})
  * @ORM\Entity
  */
 class Reditelstvi
@@ -89,6 +89,37 @@ class Reditelstvi
      * @ORM\OneToMany(targetEntity="Zarizeni", mappedBy="idReditelstvi", cascade={"persist"}, orphanRemoval=true)
      */
     private $zarizeni;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="red_zkraceny_nazev", type="string", length=255, nullable=false)
+     */
+    private $redZkracenyNazev;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="datova_schranka", type="string", length=10, nullable=true)
+     */
+    private $datovaSchranka;
+
+    /**
+     * @var \Zrizovatel
+     *
+     * @ORM\ManyToOne(targetEntity="Zrizovatel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_zrizovatel", referencedColumnName="id")
+     * })
+     */
+    private $idZrizovatel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obec", type="string", length=100, nullable=false)
+     */
+    private $obec;
 
     public function __construct()
     {
@@ -198,7 +229,7 @@ class Reditelstvi
 
     public function __toString(): string
     {
-        return $this->getRedPlnyNazev().' ('.$this->getRedIzo().')';
+        return $this->getRedZkracenyNazev().' ('.$this->getRedIzo().')';
     }
 
     /**
@@ -227,6 +258,54 @@ class Reditelstvi
                 $zarizeni->setIdReditelstvi(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRedZkracenyNazev(): ?string
+    {
+        return $this->redZkracenyNazev;
+    }
+
+    public function setRedZkracenyNazev(string $redZkracenyNazev): self
+    {
+        $this->redZkracenyNazev = $redZkracenyNazev;
+
+        return $this;
+    }
+
+    public function getDatovaSchranka(): ?string
+    {
+        return $this->datovaSchranka;
+    }
+
+    public function setDatovaSchranka(?string $datovaSchranka): self
+    {
+        $this->datovaSchranka = $datovaSchranka;
+
+        return $this;
+    }
+
+    public function getIdZrizovatel(): ?Zrizovatel
+    {
+        return $this->idZrizovatel;
+    }
+
+    public function setIdZrizovatel(?Zrizovatel $idZrizovatel): self
+    {
+        $this->idZrizovatel = $idZrizovatel;
+
+        return $this;
+    }
+
+    public function getObec(): ?string
+    {
+        return $this->obec;
+    }
+
+    public function setObec(string $obec): self
+    {
+        $this->obec = $obec;
 
         return $this;
     }

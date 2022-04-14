@@ -53,6 +53,7 @@ sonata_admin:
                     - admin.okres
                     - admin.kraj
                     - admin.typ_zarizeni
+                    - admin.zrizovatel
                     - admin.jazyk_vyuky
                     - admin.trida_vlastnosti
 
