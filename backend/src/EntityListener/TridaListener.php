@@ -5,6 +5,7 @@ use Psr\Log\LoggerInterface;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\Common\Collections\Criteria;
 use App\Entity\Trida;
 use App\Entity\TridaHistorieKapacity;
 use App\Entity\Zarizeni;
@@ -40,7 +41,13 @@ class TridaListener
             // store daily history
 // FIXME works only for today, lookup $entity->getDatumCasAktualizace() in history first!
             $historie = $entity->getHistorieKapacity();
-            if ($historie->count() == 0 || $historie->first()->getDatum() != (new \DateTime('midnight'))) {
+            $criteria = Criteria::create()
+                ->where(Criteria::expr()->eq('datum', $entity->getDatumCasAktualizace()))
+                ->setMaxResults(1)
+            ;
+            $tridaHistorie = $historie->matching($criteria)->first();
+
+            if (!$tridaHistorie) {
                 // new row for today
                 $tridaHistorie = new TridaHistorieKapacity();
                 $tridaHistorie->setKapacitaUkVolno($entity->getAktualniKapacitaUkVolno())
@@ -52,8 +59,7 @@ class TridaListener
                 $tridaHistorieMetadata = $em->getClassMetadata(get_class($tridaHistorie));
                 $uow->computeChangeSet($tridaHistorieMetadata, $tridaHistorie);
             } else {
-                // update for today
-                $tridaHistorie = $historie->first(); // collection must be sorted 
+                // update for selected day
                 $tridaHistorie->setKapacitaUkVolno($entity->getAktualniKapacitaUkVolno())
                     ->setKapacitaUkObsazeno($entity->getAktualniKapacitaUkObsazeno())
                     ->setDatum($entity->getDatumCasAktualizace())
