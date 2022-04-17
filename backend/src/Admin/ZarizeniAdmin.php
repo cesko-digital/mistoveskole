@@ -48,9 +48,14 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('idReditelstvi.idOkres')
             ->add('idReditelstvi.idOkres.idKraj')
             ->add('idSkolaTyp')
+            ->add('idZrizovatel')
             ->add('idJazyk')
             ->add('aktivni')
             ->add('idReditelstvi')
+            ->add('kapacitaUkVolnoCelkem')
+            ->add('kapacitaUkObsazenoCelkem')
+            ->add('skolaKapacita')
+            ->add('kapacitaUk2223')
             ->add('id')
         ;
     }
@@ -197,7 +202,7 @@ class ZarizeniAdmin extends AbstractAdmin
                    'cascade_validation' => true,
                    'edit' => 'inline',
                    'inline' => 'table',
-                   'order' => 'ASC'
+                   'order' => 'vlastnosti'
              ))
             ->end()
         ;

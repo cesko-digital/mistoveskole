@@ -186,7 +186,9 @@ class Trida
      */
     public function prePersist(): void
     {
-        $this->setDatumCasAktualizace(new \DateTime());
+        if (!$this->getDatumCasAktualizace()) {
+            $this->setDatumCasAktualizace(new \DateTime());
+        }
     }
 
     /**

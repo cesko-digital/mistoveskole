@@ -180,6 +180,7 @@ class Zarizeni
      * @var Trida[]
      *
      * @ORM\OneToMany(targetEntity="Trida", mappedBy="idZarizeni", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"vlastnosti" = "ASC"})
      */
     private $tridy;
 
@@ -514,12 +515,12 @@ class Zarizeni
     public function sumCapacity(): void
     {
         $tridy = $this->getTridy();
-        $free = $full = 0;
+        $free = $full = null;
         foreach ($tridy as $trida) {
-            if ($trida->getAktualniKapacitaUkVolno() > 0) {
+            if ($trida->getAktualniKapacitaUkVolno() >= 0) {
                 $free += $trida->getAktualniKapacitaUkVolno();
             }
-            if ($trida->getAktualniKapacitaUkObsazeno() > 0) {
+            if ($trida->getAktualniKapacitaUkObsazeno() >= 0) {
                 $full += $trida->getAktualniKapacitaUkObsazeno();
             }
         }
