@@ -30,6 +30,28 @@ sonata_admin:
 
             -
                 position: top
+                class: col-xs-6 col-sm-3
+                type: App\AdminBlock\StatsBlockService
+                settings:
+                    icon: fas fa-chair
+                    title: Volná kapacita
+                    color: bg-green
+                    template: 'block/stats.html.twig'
+                    type: sumFree
+
+            -
+                position: top
+                class: col-xs-6 col-sm-3
+                type: App\AdminBlock\StatsBlockService
+                settings:
+                    icon: fas fa-child
+                    title: Obsazená kapacita
+                    color: bg-red
+                    template: 'block/stats.html.twig'
+                    type: sumOccupied
+
+            -
+                position: top
                 class: col-sm-12 col-md-12 col-12
                 type: sonata.block.service.text
                 settings:
