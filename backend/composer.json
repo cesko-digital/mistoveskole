@@ -31,9 +31,16 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        }
+            "cache:clear --env=prod --no-debug": "symfony-cmd",
+            "assets:install --env=prod --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "doctrine:migrations:migrate --no-interaction --env=prod": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
     },
     "autoload": {
         "psr-4": {
