@@ -17,7 +17,7 @@ WORKDIR /var/www/html
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
-	composer install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction; \
+	composer install --prefer-dist --no-dev --no-progress --no-interaction; \
 	composer dump-autoload --optimize --no-dev; \
 	composer symfony:dump-env prod; \
 	chmod +x bin/console; \
