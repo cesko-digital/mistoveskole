@@ -4,7 +4,12 @@ services:
       context: .
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER:-symfony}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      DB_DBNAME: ${POSTGRES_DB:-app}
+      DB_VERSION: ${POSTGRES_VERSION:-13}
     restart: unless-stopped
     ports:
       # HTTP
