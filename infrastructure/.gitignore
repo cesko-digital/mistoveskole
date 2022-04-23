@@ -1,0 +1,4 @@
+.terraform/
+tmp/
+
+gcp/.terraform*
