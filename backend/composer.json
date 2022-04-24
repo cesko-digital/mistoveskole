@@ -32,8 +32,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear --env=prod --no-debug": "symfony-cmd",
-            "assets:install --env=prod --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "doctrine:migrations:migrate --no-interaction --env=prod": "symfony-cmd"
+            "assets:install --env=prod --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
