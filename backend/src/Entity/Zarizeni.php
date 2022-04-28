@@ -631,5 +631,24 @@ class Zarizeni
     {
         return $this->getCountByTrida(18);
     }
+
+    public function getVolneTridy(): array
+    {
+        $result = array();
+        foreach ($this->getTridy() as $trida) {
+            if ($trida->getAktualniKapacitaUkVolno() > 0) {
+                $result = array_merge($result, $trida->getVlastnosti());
+            }
+        }
+        sort($result);
+        return $result;
+    }
+
+    public function getDatumCasAktualizaceString(): ?string
+    {
+        // FIXME store in sql?
+        $dt = $this->getTridy()->first()->getDatumCasAktualizace();
+        return $dt ? $dt->format('c') : null;
+    }
 }
 
