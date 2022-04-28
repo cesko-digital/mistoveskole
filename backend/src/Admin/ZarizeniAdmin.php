@@ -10,11 +10,13 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Object\Metadata;
 use Sonata\AdminBundle\Exception\ModelManagerException;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
+use App\Entity;
 
 class ZarizeniAdmin extends AbstractAdmin
 {
@@ -142,6 +144,12 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('trida18r', null, array(
                 'label' => '18r'
             ))
+/* unused now
+            ->add('volneTridy', FieldDescriptionInterface::TYPE_CHOICE, array(
+                'multiple' => true,
+                'choices' => array_flip($this->loadVlastnostiChoices()),
+            ))
+*/
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -210,33 +218,52 @@ class ZarizeniAdmin extends AbstractAdmin
 
     protected function configureExportFields(): array
     {
+        // undocumented way of customize export headers, see e.g. https://stackoverflow.com/questions/34342811/can-header-labels-be-translated-in-sonata-admin-bundle-export-feature
+        // new idea, but not implemented https://github.com/sonata-project/SonataAdminBundle/issues/5854
         $fieldsArray = array(
-            'Id',
-            'idReditelstvi.redPlnyNazev',
-            'idReditelstvi.idOkres.jmenoCz',
-            'idReditelstvi.idOkres.idKraj.jmenoCz',
-            'idReditelstvi.redIzo',
-            'Izo',
-            'SkolaPlnyNazev',
-            'idSkolaTyp',
-            'idJazyk',
+            'id'                       => 'Id',
+            'reditelstvi.redPlnyNazev' => 'idReditelstvi.redPlnyNazev',
+            'reditelstvi.redZkracenyNazev' => 'idReditelstvi.redZkracenyNazev',
+            'reditelstvi.okres'        => 'idReditelstvi.idOkres.jmenoCz',
+            'reditelstvi.kraj'         => 'idReditelstvi.idOkres.idKraj.jmenoCz',
+            'reditelstvi.obec'         => 'idReditelstvi.obec',
+            'reditelstvi.redIzo'       => 'idReditelstvi.redIzo',
+            'izo'                      =>  'Izo',
+            'skolaPlnyNazev'           => 'SkolaPlnyNazev',
+            'typSkoly'                 => 'idSkolaTyp',
+            'jazykSkoly'               => 'idJazyk',
 //            'SkolaKapacita',
 //            'Aktivni',
-            'MistoAdresa1',
-            'MistoAdresa2',
-            'MistoAdresa3',
-            'MistoRuianKod',
-            'KontaktEmail',
-            'KontaktTelefon',
-            'KontaktJmeno',
-            'KontaktWww',
+            'mistoAdresa1'             => 'MistoAdresa1',
+            'mistoAdresa2'             => 'MistoAdresa2',
+            'mistoAdresa3'             => 'MistoAdresa3',
+            'mistoRuianKod'            => 'MistoRuianKod',
+            'kontaktEmail'             => 'KontaktEmail',
+            'kontaktTelefon'           => 'KontaktTelefon',
+            'kontaktJmeno'             => 'KontaktJmeno',
+            'kontaktWww'               => 'KontaktWww',
 //            'KapacitaUkObsazenoCelkem',
-            'KapacitaUkVolnoCelkem',
-            'PoznamkaCz',
-            'PoznamkaUk',
+            'kapacitaVolno'            => 'KapacitaUkVolnoCelkem',
+            'poznamkaCz'               => 'PoznamkaCz',
+            'poznamkaUk'               => 'PoznamkaUk',
+            'volneTridy'               => 'VolneTridy',
+            'datumCasAktualizace'      => 'DatumCasAktualizaceString',
         );
 
         return $fieldsArray;
+    }
+
+    protected function loadVlastnostiChoices(): array
+    {
+        $result = array();
+        $em = $this->getModelManager()->getEntityManager(Entity\TridaVlastnosti::class);
+        $list = $em->getRepository(Entity\TridaVlastnosti::class)->findBy(array('aktivni' => true), array('id' => 'ASC'));
+
+        foreach ($list as $item) {
+                // include always
+                $result[$item->getJmenoCz()] = $item->getId();
+        }
+        return $result;
     }
 
 }
