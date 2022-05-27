@@ -62,4 +62,9 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+
+  publicRuntimeConfig: {
+    umapaUrl: 'https://www.umapa.eu/embed-pro',
+    mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search'
+  },
 };

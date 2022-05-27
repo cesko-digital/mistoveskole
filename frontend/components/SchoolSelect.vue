@@ -1,5 +1,11 @@
 <template>
   <div data-app>
+    <div v-if="overflowWarning">
+      <v-icon color="orange">
+        mdi-alert-circle-outline
+      </v-icon>
+      Nalezeno více než 20 výsledků vyhledávání, uveďte prosím konkrétnější hledaný výraz.
+    </div>
     <v-autocomplete
       v-model="model"
       :items="entries"
@@ -11,11 +17,12 @@
       :solo="true"
       :single-line="true"
       :dense="true"
+      :filter="schoolFilter"
       hide-no-data
       hide-selected
       item-text="name"
       item-value="link"
-      placeholder="Start typing to Search"
+      placeholder="Hledat školu"
       prepend-inner-icon="mdi-magnify"
       return-object
       @change="onModelChanged"
@@ -32,6 +39,7 @@ export default {
       isLoading: false,
       model: null,
       search: null,
+      overflowWarning: false,
     };
   },
   watch: {
@@ -40,13 +48,14 @@ export default {
       if (this.model && val === this.model.name) {
         return;
       }
-      fetch(`https://www.mapotic.com/api/v1/maps/10392/search/?q=${val}&categories_ids=25972`)
+      fetch(`${this.$config.mapoticUrl}/?q=${val}&categories_ids=25972`)
         .then((res) => res.json())
         .then((res) => {
+          this.overflowWarning = res.results.pois.length > 20;
           this.entries = res.results.pois.slice(0, 20).map((p) => {
             return {
               name: p.name,
-              link: `/${p.id}-${p.slug}`,
+              link: `${p.id}-${p.slug}`,
             };
           });
         })
@@ -58,8 +67,13 @@ export default {
   },
   methods: {
     onModelChanged(val) {
+      this.overflowWarning = false;
       const link = val != null ? val.link : null;
       this.$emit('selectionChanged', link);
+    },
+    schoolFilter(item, queryText, itemText) {
+      // filter is a part of query to backend, so ne need to filter on top of it
+      return true;
     },
   },
 };
@@ -78,5 +92,9 @@ export default {
 
 .v-list--dense .v-list-item .v-list-item__content {
   padding: 4px ;
+}
+
+.v-text-field--rounded > .v-input__control > .v-input__slot {
+    padding: 0 4px;
 }
 </style>
