@@ -8,7 +8,7 @@ module.exports = {
   info: primary[10],
   warning: secondary[10],
   danger: danger[10],
-  succes: success[10],
+  success: success[10],
 
   icon: {
     DEFAULT: neutral[10],
