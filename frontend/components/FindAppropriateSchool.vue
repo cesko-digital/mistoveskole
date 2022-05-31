@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-col space-y-4 box">
-    <div class="flex title">
+  <div class="box">
+    <div class="title">
       Najít vhodnou školu
     </div>
 
-    <div class="flex subtitle">
+    <div class="subtitle">
       Zadejte měsíc a rok narození dítěte
     </div>
 
-    <div class="flex flex-row selectors">
+    <div class="selectors">
       <select v-model="selectedMonth" name="month">
         <option selected disabled value="">
           Měsíc
@@ -38,7 +38,7 @@
       </select>
     </div>
 
-    <div class="flex faq">
+    <div class="link-faq">
       <svg
         width="22"
         height="22"
@@ -58,8 +58,8 @@
       Proč to chceme vědět?
     </div>
 
-    <div class="relative !mt-0 faq__tooltip__wrapper">
-      <div class="absolute hidden faq__tooltip">
+    <div class="relative !mt-0 link-faq__tooltip__wrapper">
+      <div class="absolute hidden link-faq__tooltip">
         Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.
       </div>
     </div>
@@ -78,7 +78,7 @@
       </button>
     </div>
 
-    <button class="show">
+    <button class="btn-show">
       Zobrazit školy s volnými kapacitami
     </button>
   </div>
@@ -128,41 +128,40 @@ export default {
 
 <style>
 .box {
+  @apply flex flex-col space-y-4 bg-muted;
   padding: 32px;
-  background-color: #edf1f2;
 }
 
 .title {
+  @apply text-strong;
+
   /* font-family: "IBM Plex Sans"; */
   font-weight: 700;
   font-size: 25px;
 
   letter-spacing: -0.03em;
-
-  color: #313638;
-
-  flex: none;
 }
 
 .subtitle {
+  @apply text;
+
   /* font-family: "IBM Plex Sans"; */
   font-weight: 400;
   font-size: 16px;
 
   letter-spacing: 0.01em;
-
-  color: #313638;
-
-  flex: none;
 }
 
 .selectors {
+  @apply flex flex-row;
+
   gap: 8px;
 }
 
 select {
+  @apply bg;
+
   flex-grow: 1;
-  background-color: #ffffff;
   border-radius: 16px;
   border-width: 0;
 
@@ -174,16 +173,17 @@ select {
   line-height: 24px;
 }
 
-.faq {
+.link-faq {
+  @apply flex text-link;
+
   gap: 10px;
-  color: #0d99ff;
 
   /* font-family: 'IBM Plex Sans'; */
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
 }
-.faq:hover + .faq__tooltip__wrapper .faq__tooltip {
+.link-faq:hover + .link-faq__tooltip__wrapper .link-faq__tooltip {
   color: black;
   display: block;
   padding: 16px;
@@ -213,23 +213,18 @@ select {
   color: #0D99FF;
 }
 
-.show {
+.btn-show {
+  @apply bg-btn-primary text-on-color;
+
   padding: 16px;
 
-  background-color: #0d99ff;
   border-radius: 16px;
 
-  flex: none;
-  align-self: stretch;
-
-  /* font-family: "IBM Plex Sans"; */
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
 
   text-align: center;
   letter-spacing: 0.01em;
-
-  color: #ffffff;
 }
 </style>
