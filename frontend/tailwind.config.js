@@ -2,6 +2,7 @@ const { default: colors } = require('./tailwind/colors');
 const textColor = require('./tailwind/textColor');
 const borderColor = require('./tailwind/borderColor');
 const backgroundColor = require('./tailwind/backgroundColor');
+const fill = require('./tailwind/fill');
 
 module.exports = {
   content: [
@@ -21,6 +22,7 @@ module.exports = {
       textColor,
       borderColor,
       backgroundColor,
+      fill,
     },
   },
   plugins: [
