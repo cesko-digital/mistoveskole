@@ -1,35 +1,107 @@
 <template>
+  <!--Header-->
   <div class="flex flex-col min-h-screen">
-    <div class="flex p-2">
-      <Logo class="md:w-1/4" />
-      <div class="flex grow justify-end items-center md:w-3/4">
-        <Menu class="hidden md:flex" />
-        <LanguageSwitch class="justify-end" />
-      </div>
+    <!--Header-->
+    <PageHeader />
+
+    <div class="py-2 px-4 border-t border-gray-200 md:hidden">
+      Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě
     </div>
-    <!--Desktop layout-->
-    <div class="grow hidden md:flex">
-      <div class="w-1/4 bg-color-sidebar">
-        side bar
-      </div>
-      <div class="w-3/4 bg-color-map">
-        map
-      </div>
+    <!--Tabs header - for mobile only-->
+    <div class="border-b border-gray-200 md:hidden">
+      <ul
+        v-observe-visibility="tabsVisibilityChanged"
+        class="flex flex-wrap -mb-px text-sm font-medium text-center"
+        role="tablist"
+      >
+        <li
+          class="flex items-center mx-2 border-blue-600"
+          :class="{ 'border-b-4': activeTabIndex === 0 }"
+          role="presentation"
+          @click="selectTab(0)"
+        >
+          <i class="material-icons-outlined text-base">
+            home
+          </i>
+          <button
+            class="inline-block p-2"
+            type="button"
+            role="tab"
+            aria-controls="search"
+            aria-selected="false"
+          >
+            NAJÍT MÍSTO
+          </button>
+        </li>
+        <li
+          class="flex items-center mx-2 border-blue-600"
+          :class="{ 'border-b-4': activeTabIndex === 1 }"
+          role="presentation"
+          @click="selectTab(1)"
+        >
+          <i class="material-icons-outlined text-base">
+            map
+          </i>
+          <button
+            class="inline-block p-2"
+            type="button"
+            role="tab"
+            aria-controls="map"
+            aria-selected="false"
+          >
+            MAPA ŠKOL
+          </button>
+        </li>
+      </ul>
     </div>
-    <!--Mobile layout-->
-    <div class="grow flex flex-col md:hidden">
-      <div>
-        Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě
+    <!--Main content-->
+    <div class="grow md:flex">
+      <div
+        v-if="!tabsLayout || activeTabIndex === 0"
+        class="p-4 md:w-1/4 bg-color-map"
+        :role="{ 'tabpanel': tabsLayout }"
+        aria-labelledby="search-tab"
+      >
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          This is placeholder for search controls.
+        </p>
       </div>
-      <div>
-        Tab component will be here
+      <div
+        v-if="!tabsLayout || activeTabIndex === 1"
+        class="p-4 md:w-3/4 bg-color-sidebar"
+        :role="{ 'tabpanel': tabsLayout }"
+        aria-labelledby="map-tab"
+      >
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          This is placeholder for map.
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueObserveVisibility from 'vue-observe-visibility';
+
+Vue.use(VueObserveVisibility);
+
 export default {
+  data() {
+    return {
+      tabsLayout: true,
+      activeTabIndex: 0,
+    };
+  },
+  methods: {
+    tabsVisibilityChanged(isVisible, entry) {
+      this.tabsLayout = isVisible;
+    },
+    selectTab(i) {
+      console.log(i);
+      this.activeTabIndex = i;
+    },
+  },
 };
 </script>
 

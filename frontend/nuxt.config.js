@@ -13,6 +13,7 @@ export default {
     ],
     link: [
       { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' },
     ],
   },
 
@@ -26,7 +27,10 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components',
+    { path: '~/components/PageHeader/' },
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [

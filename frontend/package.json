@@ -18,7 +18,8 @@
     "core-js": "^3.19.3",
     "lodash": "4.17.21",
     "nuxt": "^2.15.8",
-    "vue-easytable": "2.16.1"
+    "vue-easytable": "2.16.1",
+    "vue-observe-visibility": "^1.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
