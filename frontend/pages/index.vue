@@ -58,23 +58,21 @@
     <div class="grow md:flex">
       <div
         v-if="!tabsLayout || activeTabIndex === 0"
-        class="p-4 md:w-1/4 bg-color-map"
+        class="md:w-1/4"
         :role="{ 'tabpanel': tabsLayout }"
         aria-labelledby="search-tab"
       >
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          This is placeholder for search controls.
-        </p>
+        <FindAppropriateSchool @showSchool="onShowShcool" />
+
+        <pre class="pt-4 font-bold text-red-500">Selected class: {{ classNumber }}</pre>
       </div>
       <div
         v-if="!tabsLayout || activeTabIndex === 1"
-        class="p-4 md:w-3/4 bg-color-sidebar"
+        class="md:w-3/4"
         :role="{ 'tabpanel': tabsLayout }"
         aria-labelledby="map-tab"
       >
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          This is placeholder for map.
-        </p>
+        <Map :class-number="classNumber" />
       </div>
     </div>
   </div>
@@ -91,6 +89,7 @@ export default {
     return {
       tabsLayout: true,
       activeTabIndex: 0,
+      classNumber: 0,
     };
   },
   methods: {
@@ -98,18 +97,12 @@ export default {
       this.tabsLayout = isVisible;
     },
     selectTab(i) {
-      console.log(i);
       this.activeTabIndex = i;
+    },
+    onShowShcool({ classNumber }) {
+      this.classNumber = classNumber;
+      this.activeTabIndex = 1;
     },
   },
 };
 </script>
-
-<style>
-.bg-color-sidebar {
-    background-color: aquamarine;
-  }
-.bg-color-map {
-    background-color: blanchedalmond;
-  }
-</style>

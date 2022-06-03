@@ -78,7 +78,7 @@
       </button>
     </div>
 
-    <button class="show">
+    <button class="show" @click="showSchool()">
       Zobrazit školy s volnými kapacitami
     </button>
   </div>
@@ -93,7 +93,7 @@ const YEARS_TO_STUDY = 20;
 const YEARS = range(PREV_YEAR - YEARS_TO_STUDY, PREV_YEAR);
 
 export default {
-  emits: ['selectionChanged'],
+  emits: ['selectionChanged', 'showSchool'],
   data() {
     return {
       monthLabels: getMonthLabels('cs-CZ'),
@@ -121,6 +121,11 @@ export default {
     selectedYear(newSelectedYear) {
       this.classNumber = (newSelectedYear + 1) || 1;
       this.schoolLabel = newSelectedYear > 9 ? 'SŠ' : 'ZŠ';
+    },
+  },
+  methods: {
+    showSchool() {
+      this.$emit('showSchool', { classNumber: this.classNumber });
     },
   },
 };
