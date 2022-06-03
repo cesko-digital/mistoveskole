@@ -125,7 +125,12 @@ export default {
   },
   methods: {
     showSchool() {
-      this.$emit('showSchool', { classNumber: this.classNumber });
+      this.$emit('showSchool',
+        {
+          classNumber: this.classNumber,
+          year: this.years[this.selectedYear],
+          month: this.monthLabels[this.selectedMonth],
+        });
     },
   },
 };

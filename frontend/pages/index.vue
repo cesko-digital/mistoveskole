@@ -55,10 +55,10 @@
       </ul>
     </div>
     <!--Main content-->
-    <div class="grow md:flex">
+    <div class="grow flex">
       <div
         v-if="!tabsLayout || activeTabIndex === 0"
-        class="md:w-1/4"
+        class="min-w-full md:min-w-0 md:w-1/4"
         :role="{ 'tabpanel': tabsLayout }"
         aria-labelledby="search-tab"
       >
@@ -68,10 +68,16 @@
       </div>
       <div
         v-if="!tabsLayout || activeTabIndex === 1"
-        class="md:w-3/4"
+        class="min-w-full md:min-w-0 md:w-3/4"
         :role="{ 'tabpanel': tabsLayout }"
         aria-labelledby="map-tab"
       >
+        <div class="md:hidden text-sm tmp-text-gray">
+          Zadaný věk: narození {{ month }}&nbsp;{{ year }}
+        </div>
+        <div class="md:hidden text-sm tmp-text-gray">
+          Doporučená třida: {{ classNumber }}
+        </div>
         <Map :class-number="classNumber" />
       </div>
     </div>
@@ -90,6 +96,8 @@ export default {
       tabsLayout: true,
       activeTabIndex: 0,
       classNumber: 0,
+      year: 0,
+      month: '',
     };
   },
   methods: {
@@ -99,10 +107,18 @@ export default {
     selectTab(i) {
       this.activeTabIndex = i;
     },
-    onShowShcool({ classNumber }) {
+    onShowShcool({ classNumber, year, month }) {
       this.classNumber = classNumber;
+      this.year = year;
+      this.month = month;
       this.activeTabIndex = 1;
     },
   },
 };
 </script>
+
+<style>
+ .tmp-text-gray {
+   color: gray;
+ }
+</style>
