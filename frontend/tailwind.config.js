@@ -3,6 +3,14 @@ const textColor = require('./tailwind/textColor');
 const borderColor = require('./tailwind/borderColor');
 const backgroundColor = require('./tailwind/backgroundColor');
 const fill = require('./tailwind/fill');
+const spacing = require('./tailwind/spacing');
+const borderRadius = require('./tailwind/borderRadius');
+const fontFamily = require('./tailwind/fontFamily');
+const fontSize = require('./tailwind/fontSize');
+const fontWeight = require('./tailwind/fontWeight');
+const letterSpacing = require('./tailwind/letterSpacing');
+const lineHeight = require('./tailwind/lineHeight');
+const typography = require('./tailwind/typography');
 
 module.exports = {
   content: [
@@ -18,14 +26,23 @@ module.exports = {
       center: true,
     },
     colors,
+    spacing,
+    borderRadius,
     extend: {
       textColor,
       borderColor,
       backgroundColor,
       fill,
+      fontFamily,
+      fontSize,
+      fontWeight,
+      letterSpacing,
+      lineHeight,
+      typography,
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
   ],
 };
