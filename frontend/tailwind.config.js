@@ -2,6 +2,7 @@ const { default: colors } = require('./tailwind/colors');
 const textColor = require('./tailwind/textColor');
 const borderColor = require('./tailwind/borderColor');
 const backgroundColor = require('./tailwind/backgroundColor');
+const fill = require('./tailwind/fill');
 const spacing = require('./tailwind/spacing');
 const borderRadius = require('./tailwind/borderRadius');
 const fontFamily = require('./tailwind/fontFamily');
@@ -31,6 +32,7 @@ module.exports = {
       textColor,
       borderColor,
       backgroundColor,
+      fill,
       fontFamily,
       fontSize,
       fontWeight,

@@ -10,17 +10,6 @@ module.exports = {
   danger: danger[10],
   success: success[10],
 
-  icon: {
-    DEFAULT: neutral[10],
-    muted: neutral[50],
-    circle: primary[50],
-
-    info: primary[40],
-    warning: secondary[40],
-    danger: danger[40],
-    success: success[40],
-  },
-
   link: {
     DEFAULT: primary[50],
     hover: primary[40],
