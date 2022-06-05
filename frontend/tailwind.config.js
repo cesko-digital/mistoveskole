@@ -2,6 +2,8 @@ const { default: colors } = require('./tailwind/colors');
 const textColor = require('./tailwind/textColor');
 const borderColor = require('./tailwind/borderColor');
 const backgroundColor = require('./tailwind/backgroundColor');
+const spacing = require('./tailwind/spacing');
+const borderRadius = require('./tailwind/borderRadius');
 const fontFamily = require('./tailwind/fontFamily');
 const fontSize = require('./tailwind/fontSize');
 const fontWeight = require('./tailwind/fontWeight');
@@ -23,6 +25,8 @@ module.exports = {
       center: true,
     },
     colors,
+    spacing,
+    borderRadius,
     extend: {
       textColor,
       borderColor,
