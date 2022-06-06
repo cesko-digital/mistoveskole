@@ -9,7 +9,7 @@
     </div>
 
     <div class="selectors">
-      <select v-model="selectedMonth" name="month">
+      <select class="select" v-model="selectedMonth" name="month">
         <option selected disabled value="">
           Měsíc
         </option>
@@ -23,7 +23,7 @@
         </option>
       </select>
 
-      <select v-model="selectedYear" name="year">
+      <select class="select" v-model="selectedYear" name="year">
         <option selected disabled value="">
           Rok
         </option>

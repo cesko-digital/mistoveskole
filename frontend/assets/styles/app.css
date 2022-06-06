@@ -1,4 +1,5 @@
-@import "tailwindcss/base";
+@tailwind base;
+@tailwind components;
 
 @layer base {
   /* ibm-plex-sans-100 - latin_cyrillic */
@@ -200,5 +201,11 @@
 
   html {
     @apply font-serif;
+  }
+}
+
+@layer components {
+  .select {
+    @apply bg p-s rounded-outer flex-grow font-body text-body tracking-body leading-body border-[3px] border-default border-solid;
   }
 }
