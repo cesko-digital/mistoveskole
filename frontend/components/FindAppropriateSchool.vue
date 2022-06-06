@@ -1,12 +1,18 @@
 <template>
   <div class="box">
-    <div class="title">{{ $t("findAppropriateSchool.title") }}</div>
+    <div class="title">
+      {{ $t("findAppropriateSchool.title") }}
+    </div>
 
-    <div class="subtitle">{{ $t("findAppropriateSchool.setBirthDate") }}</div>
+    <div class="subtitle">
+      {{ $t("findAppropriateSchool.setBirthDate") }}
+    </div>
 
     <div class="selectors">
       <select v-model="selectedMonth" name="month">
-        <option selected disabled value="">Měsíc</option>
+        <option selected disabled value="">
+          Měsíc
+        </option>
 
         <option
           v-for="(monthLabel, index) in monthLabels"
@@ -18,7 +24,9 @@
       </select>
 
       <select v-model="selectedYear" name="year">
-        <option selected disabled value="">Rok</option>
+        <option selected disabled value="">
+          Rok
+        </option>
 
         <option v-for="(year, index) in years" :key="index" :value="index">
           {{ year }}
@@ -63,7 +71,9 @@
         </span>
       </div>
 
-      <button class="right">Informace</button>
+      <button class="right">
+        Informace
+      </button>
     </div>
 
     <Button @click="showSchool()">

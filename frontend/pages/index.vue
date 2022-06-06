@@ -20,7 +20,9 @@
           role="presentation"
           @click="selectTab(0)"
         >
-          <i class="text-base material-icons-outlined"> home </i>
+          <i class="text-base material-icons-outlined">
+            home
+          </i>
           <button
             class="inline-block p-2"
             type="button"
@@ -37,7 +39,9 @@
           role="presentation"
           @click="selectTab(1)"
         >
-          <i class="text-base material-icons-outlined"> map </i>
+          <i class="text-base material-icons-outlined">
+            map
+          </i>
           <button
             class="inline-block p-2"
             type="button"

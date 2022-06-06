@@ -84,7 +84,7 @@ export default {
     vueI18n: {
       fallbackLocale: 'cs-CZ',
     },
-    langDir: '~/locales/'
+    langDir: '~/locales/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
