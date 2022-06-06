@@ -1,9 +1,5 @@
 <template>
-  <!--Header-->
-  <div class="flex flex-col min-h-screen">
-    <!--Header-->
-    <PageHeader />
-
+  <div class="flex flex-col grow">
     <div class="px-4 py-2 border-t border-gray-200 md:hidden">
       {{ $t("info-message") }}
     </div>
@@ -54,11 +50,12 @@
         </li>
       </ul>
     </div>
+
     <!--Main content-->
     <div class="flex grow">
       <div
         v-if="!tabsLayout || activeTabIndex === 0"
-        class="min-w-full md:min-w-0 md:w-1/4"
+        class="sidebar"
         :role="{ tabpanel: tabsLayout }"
         aria-labelledby="search-tab"
       >
@@ -116,8 +113,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .tmp-text-gray {
   color: gray;
+}
+
+.sidebar {
+  @apply w-full max-w-[400px];
+}
+
+@media screen and (max-width: theme("screens.md")) {
+  .sidebar {
+    @apply max-w-full;
+  }
 }
 </style>
