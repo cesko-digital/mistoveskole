@@ -53,7 +53,7 @@ nav {
 }
 
 .logo-wrapper {
-  @apply flex flex-row items-center w-[400px] pl-l;
+  @apply flex flex-row items-center w-[var(--sidebar-width)] pl-l;
 }
 @media screen and (max-width: theme("screens.lg")) {
   .logo-wrapper {

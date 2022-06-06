@@ -128,7 +128,7 @@ export default {
 }
 
 .sidebar {
-  @apply w-full max-w-[400px];
+  @apply w-full max-w-[var(--sidebar-width)];
 }
 
 @media screen and (max-width: theme("screens.md")) {

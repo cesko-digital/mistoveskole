@@ -199,6 +199,10 @@
         url('~assets/fonts/ibm-plex-sans-v14-latin-ext_latin_cyrillic-ext_cyrillic/ibm-plex-sans-v14-latin-ext_latin_cyrillic-ext_cyrillic-700italic.svg#IBMPlexSans') format('svg'); /* Legacy iOS */
   }
 
+  :root {
+    --sidebar-width: 425px;
+  }
+
   html {
     @apply font-serif;
   }
