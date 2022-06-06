@@ -9,7 +9,7 @@
     </div>
 
     <div class="selectors">
-      <select class="select" v-model="selectedMonth" name="month">
+      <select v-model="selectedMonth" class="select" name="month">
         <option selected disabled value="">
           Měsíc
         </option>
@@ -23,7 +23,7 @@
         </option>
       </select>
 
-      <select class="select" v-model="selectedYear" name="year">
+      <select v-model="selectedYear" class="select" name="year">
         <option selected disabled value="">
           Rok
         </option>
@@ -157,7 +157,7 @@ export default {
 
 <style scoped>
 .box {
-  @apply flex flex-col space-y-s bg-muted p-l;
+  @apply flex flex-col space-y-s bg-muted p-l text-center md:text-left;
 }
 
 .title {
@@ -173,7 +173,7 @@ export default {
 }
 
 .link-faq {
-  @apply flex text-link gap-xs text-body-bold leading-body-bold font-body-bold;
+  @apply flex text-link gap-xs text-body-bold leading-body-bold font-body-bold justify-center md:justify-start;
 }
 .link-faq:hover + .link-faq__tooltip__wrapper .link-faq__tooltip {
   @apply block text text-body font-body leading-body tracking-body rounded-outer bg-white p-s;
