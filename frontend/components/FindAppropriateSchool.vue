@@ -1,18 +1,12 @@
 <template>
   <div class="box">
-    <div class="title">
-      Najít vhodnou školu
-    </div>
+    <div class="title">Najít vhodnou školu</div>
 
-    <div class="subtitle">
-      Zadejte měsíc a rok narození dítěte
-    </div>
+    <div class="subtitle">Zadejte měsíc a rok narození dítěte</div>
 
     <div class="selectors">
       <select v-model="selectedMonth" name="month">
-        <option selected disabled value="">
-          Měsíc
-        </option>
+        <option selected disabled value="">Měsíc</option>
 
         <option
           v-for="(monthLabel, index) in monthLabels"
@@ -24,15 +18,9 @@
       </select>
 
       <select v-model="selectedYear" name="year">
-        <option selected disabled value="">
-          Rok
-        </option>
+        <option selected disabled value="">Rok</option>
 
-        <option
-          v-for="(year, index) in years"
-          :key="index"
-          :value="index"
-        >
+        <option v-for="(year, index) in years" :key="index" :value="index">
           {{ year }}
         </option>
       </select>
@@ -60,31 +48,31 @@
 
     <div class="relative !mt-0 link-faq__tooltip__wrapper">
       <div class="absolute hidden link-faq__tooltip">
-        Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.
+        Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše
+        řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky
+        tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout
+        takto staré dítě.
       </div>
     </div>
 
-    <div v-if="showInformation" class="flex flex-row info">
+    <div v-if="appropriateSchool" class="flex flex-row info">
       <div class="flex left">
-        Věk odpovídá
-        &nbsp;
-        <span class="font-bold">
-          {{ classNumber + isNextYear }}. třídě {{ schoolLabel }}
+        Věk odpovídá&nbsp;
+        <span class="font-body-bold">
+          {{ appropriateSchool }}
         </span>
       </div>
 
-      <button class="right">
-        Informace
-      </button>
+      <button class="right">Informace</button>
     </div>
 
-    <button class="btn-show">
-      Zobrazit školy s volnými kapacitami
-    </button>
+    <Button> Zobrazit školy s volnými kapacitami </Button>
   </div>
 </template>
 
 <script>
+import Button from './common/Button.vue';
+
 import range from '@/utils/range.js';
 import getMonthLabels from '@/utils/getMonthLabels.js';
 
@@ -93,16 +81,16 @@ const YEARS_TO_STUDY = 20;
 const YEARS = range(PREV_YEAR - YEARS_TO_STUDY, PREV_YEAR);
 
 export default {
+  components: {
+    Button,
+  },
   emits: ['selectionChanged'],
   data() {
     return {
       monthLabels: getMonthLabels('cs-CZ'),
       years: YEARS,
       selectedMonth: '',
-      selectedYear: '',
-      showMatch: false,
-      classNumber: 1,
-      schoolLabel: '',
+      selectedYear: -1,
     };
   },
   computed: {
@@ -110,17 +98,37 @@ export default {
       return this.selectedMonth >= 7;
     },
     showInformation() {
-      const result = typeof this.selectedMonth === 'number' && typeof this.selectedYear === 'number';
+      const result =
+        typeof this.selectedMonth === 'number' &&
+        typeof this.selectedYear === 'number';
       if (result) {
-        this.$emit('selectionChanged', { classNumber: this.classNumber });
+        this.$emit('selectionChanged', {
+          appropriateSchool: this.appropriateSchool,
+        });
       }
       return result;
     },
-  },
-  watch: {
-    selectedYear(newSelectedYear) {
-      this.classNumber = (newSelectedYear + 1) || 1;
-      this.schoolLabel = newSelectedYear > 9 ? 'SŠ' : 'ZŠ';
+    studentAge() {
+      return this.selectedYear - this.isNextYear;
+    },
+    appropriateSchool() {
+      if (this.studentAge < 2) {
+        return null;
+      }
+
+      if (this.studentAge < 6) {
+        return 'MŠ';
+      }
+
+      if (this.studentAge < 15) {
+        return this.studentAge - 5 + '. třída ZŠ';
+      }
+
+      if (this.studentAge < 19) {
+        return this.studentAge - 14 + '. třída SŠ';
+      }
+
+      return null;
     },
   },
 };
@@ -128,78 +136,33 @@ export default {
 
 <style>
 .box {
-  @apply flex flex-col space-y-4 bg-muted;
-  padding: 32px;
+  @apply flex flex-col space-y-s bg-muted p-l;
 }
 
 .title {
-  @apply text-strong;
-
-  /* font-family: "IBM Plex Sans"; */
-  font-weight: 700;
-  font-size: 25px;
-
-  letter-spacing: -0.03em;
+  @apply text-strong text-headline-h5 leading-headline-h5 font-headline-h5 tracking-headline-h5;
 }
 
 .subtitle {
-  @apply text;
-
-  /* font-family: "IBM Plex Sans"; */
-  font-weight: 400;
-  font-size: 16px;
-
-  letter-spacing: 0.01em;
+  @apply text text-body font-body tracking-body;
 }
 
 .selectors {
-  @apply flex flex-row;
-
-  gap: 8px;
-}
-
-select {
-  @apply bg;
-
-  flex-grow: 1;
-  border-radius: 16px;
-  border-width: 0;
-
-  padding: 16px;
-
-  /* font-family: 'IBM Plex Sans'; */
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  @apply flex flex-row gap-xs;
 }
 
 .link-faq {
-  @apply flex text-link;
-
-  gap: 10px;
-
-  /* font-family: 'IBM Plex Sans'; */
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  @apply flex text-link gap-xs text-body-bold leading-body-bold font-body-bold;
 }
 .link-faq:hover + .link-faq__tooltip__wrapper .link-faq__tooltip {
-  color: black;
-  display: block;
-  padding: 16px;
-  background-color: white;
-  box-shadow: 0px 4px 32px rgba(49, 54, 56, 0.1);
-  border-radius: 16px;
+  @apply block text text-body font-body leading-body tracking-body rounded-outer bg-white p-s;
+  box-shadow: 0px 4px 32px rgba(146, 180, 194, 0.4);
 }
 
 .info {
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 4px 16px;
-  gap: 16px;
+  @apply gap-s py-xss px-s rounded-inner;
 
   background: #dbe7eb;
-  border-radius: 8px;
 }
 
 .info .right {
@@ -210,21 +173,6 @@ select {
 
   letter-spacing: 0.01em;
 
-  color: #0D99FF;
-}
-
-.btn-show {
-  @apply bg-btn-primary text-on-color;
-
-  padding: 16px;
-
-  border-radius: 16px;
-
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-
-  text-align: center;
-  letter-spacing: 0.01em;
+  color: #0d99ff;
 }
 </style>
