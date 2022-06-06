@@ -1,8 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-full">
-    <span class="text-sm">
+  <div class="relative flex flex-col min-h-full ">
+    <span class="absolute text-sm bg-white">
       {{ iframeSrc }}
     </span>
+
     <iframe
       id="iframe-map"
       class="grow"

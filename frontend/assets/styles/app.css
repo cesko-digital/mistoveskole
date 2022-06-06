@@ -204,7 +204,7 @@
   }
 
   html {
-    @apply font-serif;
+    @apply font-serif !overflow-y-auto;
   }
 }
 
