@@ -46,6 +46,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://i18n.nuxtjs.org/setup
+    '@nuxtjs/i18n',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,6 +61,27 @@ export default {
     manifest: {
       lang: 'en',
     },
+  },
+
+  // localization - https://i18n.nuxtjs.org/basic-usage
+  i18n: {
+    locales: [
+      {
+        code: 'cz',
+        name: 'Czech',
+        file: 'cz.json',
+      },
+      {
+        code: 'ua',
+        name: 'Український',
+        file: 'ua.json',
+      },
+    ],
+    defaultLocale: 'cz',
+    vueI18n: {
+      fallbackLocale: 'cz',
+    },
+    langDir: '~/locales/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

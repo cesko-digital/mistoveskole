@@ -1,13 +1,13 @@
 <template>
   <div class="flex items-center">
     <img src="~/assets/logo.svg">
-    <div class="flex">
-      <span class="ml-2 text-lg font-bold text-blue-600 color-blue">
-        Místo
+    <div class="flex text-lg font-bold">
+      <span class="ml-2 text-blue-600 color-blue">
+        {{ $t('logo.place') }}
       </span>
         &nbsp;
-      <span class="text-lg font-bold">
-        ve škole
+      <span>
+        {{ $t('logo.inSchool') }}
       </span>
     </div>
   </div>

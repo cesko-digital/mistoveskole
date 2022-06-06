@@ -1,0 +1,13 @@
+{
+  "logo": {
+    "place": "Místě",
+    "inSchool": "ve škole"
+  },
+  "menu": {
+    "schoolMap": "Mapa škol",
+    "aboutSchools": "O školach v ČR",
+    "statistics": "Statistiky",
+    "aboutApp": "O Místě ve škole"
+  },
+  "info-message": "Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě"
+}

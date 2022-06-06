@@ -5,7 +5,7 @@
     <PageHeader />
 
     <div class="py-2 px-4 border-t border-gray-200 md:hidden">
-      Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě
+      {{ $t('info-message') }}
     </div>
     <!--Tabs header - for mobile only-->
     <div class="border-b border-gray-200 md:hidden">
