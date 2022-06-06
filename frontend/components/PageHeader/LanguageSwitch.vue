@@ -4,7 +4,7 @@
       <button class="rounded-l-inner" @click="$i18n.setLocale('uk-UA')">
         <img src="~/assets/images/flags/ua.svg" class="w-s h-s">
 
-        <span class="hidden m-1 md:inline">
+        <span class="hidden md:block">
           {{ $t("lang.ua") }}
         </span>
       </button>
@@ -14,7 +14,7 @@
       <button class="rounded-r-inner" @click="$i18n.setLocale('cs-CZ')">
         <img src="~/assets/images/flags/cz.svg" class="w-s h-s">
 
-        <span class="hidden m-1 md:inline">
+        <span class="hidden md:block">
           {{ $t("lang.cz") }}
         </span>
       </button>

@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <ul class="menu flex grow flex-col md:flex-row md:items-center md:justify-between bg-gray-300 md:bg-white">
+  <div class="menu">
+    <ul>
       <li>
         <NuxtLink :to="localePath('/')">
           {{ $t('menu.schoolMap') }}
         </NuxtLink>
       </li>
+
       <li>
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.aboutSchools') }}
         </NuxtLink>
       </li>
+
       <li>
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.statistics') }}
         </NuxtLink>
       </li>
+
       <li>
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.aboutApp') }}
@@ -26,25 +29,33 @@
 </template>
 
 <style scoped>
-.menu li {
-  margin: 0 0.5em;
+@media screen and (max-width: theme("screens.md")) {
+  .menu {
+    @apply p-m;
+  }
 }
 
-.menu a:hover {
-  background-color: lightgray;
+.menu ul {
+  @apply space-x-xl flex flex-col grow md:flex-row md:items-center md:justify-between md:bg-white;
+}
+@media screen and (max-width: theme("screens.md")) {
+  .menu ul {
+    @apply space-x-0 space-y-m;
+  }
 }
 
-.menu li > a {
-  padding: 0 0.5em;
-  text-transform: uppercase;
+.menu ul li {
+  @apply text-overline font-overline tracking-overline leading-overline;
 }
 
-/* home route and active route will show in bold as it matches / and /about */
-.menu a.nuxt-link-active {
-  font-weight: bold;
+.menu ul li > a {
+  @apply text uppercase;
+}
+.menu ul li > a:hover {
+  @apply text-link-active underline underline-offset-[3px] decoration-link-active decoration-solid decoration-[3px];
 }
 /* exact link will show the primary color for only the exact matching link */
-.menu a.nuxt-link-exact-active {
-  border-bottom: solid 3px #4493de;
+.menu ul li > a.nuxt-link-exact-active {
+  @apply text-strong underline underline-offset-[3px] decoration-link-active decoration-solid decoration-[3px];
 }
 </style>
