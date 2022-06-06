@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col space-y-4 box">
     <div class="flex title">
-      Najít vhodnou školu
+      {{ $t('findAppropriateSchool.title') }}
     </div>
 
     <div class="flex subtitle">
-      Zadejte měsíc a rok narození dítěte
+      {{ $t('findAppropriateSchool.setBirthDate') }}
     </div>
 
     <div class="flex flex-row selectors">
@@ -79,7 +79,7 @@
     </div>
 
     <button class="show" @click="showSchool()">
-      Zobrazit školy s volnými kapacitami
+      {{ $t('findAppropriateSchool.searchButton') }}
     </button>
   </div>
 </template>
