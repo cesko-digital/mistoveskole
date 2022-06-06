@@ -1,37 +1,16 @@
 module.exports = {
-  headline: {
-    h1: 700,
-    h2: 400,
-    h3: 700,
-    h4: 400,
-    h5: 700,
-  },
+  'headline-h1': 700,
+  'headline-h2': 400,
+  'headline-h3': 700,
+  'headline-h4': 400,
+  'headline-h5': 700,
 
-  overline: {
-    DEFAULT: 700,
-  },
+  overline: 700,
 
-  body: {
-    DEFAULT: 400,
-
-    large: {
-      // DEFAULT: 400,
-
-      bold: {
-        DEFAULT: 700,
-      },
-    },
-
-    bold: {
-      DEFAULT: 700,
-    },
-
-    small: {
-      // DEFAULT: 400,
-    },
-
-    xsmall: {
-      // DEFAULT: 400,
-    },
-  },
+  body: 400,
+  'body-large': 400,
+  'body-large-bold': 700,
+  'body-bold': 700,
+  'body-small': 400,
+  'body-xsmall': 400,
 };
