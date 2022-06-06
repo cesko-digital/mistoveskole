@@ -4,8 +4,8 @@
     <!--Header-->
     <PageHeader />
 
-    <div class="py-2 px-4 border-t border-gray-200 md:hidden">
-      {{ $t('info-message') }}
+    <div class="px-4 py-2 border-t border-gray-200 md:hidden">
+      {{ $t("info-message") }}
     </div>
     <!--Tabs header - for mobile only-->
     <div class="border-b border-gray-200 md:hidden">
@@ -20,9 +20,7 @@
           role="presentation"
           @click="selectTab(0)"
         >
-          <i class="material-icons-outlined text-base">
-            home
-          </i>
+          <i class="text-base material-icons-outlined"> home </i>
           <button
             class="inline-block p-2"
             type="button"
@@ -39,9 +37,7 @@
           role="presentation"
           @click="selectTab(1)"
         >
-          <i class="material-icons-outlined text-base">
-            map
-          </i>
+          <i class="text-base material-icons-outlined"> map </i>
           <button
             class="inline-block p-2"
             type="button"
@@ -55,27 +51,26 @@
       </ul>
     </div>
     <!--Main content-->
-    <div class="grow flex">
+    <div class="flex grow">
       <div
         v-if="!tabsLayout || activeTabIndex === 0"
         class="min-w-full md:min-w-0 md:w-1/4"
-        :role="{ 'tabpanel': tabsLayout }"
+        :role="{ tabpanel: tabsLayout }"
         aria-labelledby="search-tab"
       >
-        <FindAppropriateSchool @showSchool="onShowShcool" />
-
-        <pre class="pt-4 font-bold text-red-500">Selected class: {{ classNumber }}</pre>
+        <Sidebar />
       </div>
+
       <div
         v-if="!tabsLayout || activeTabIndex === 1"
         class="min-w-full md:min-w-0 md:w-3/4"
-        :role="{ 'tabpanel': tabsLayout }"
+        :role="{ tabpanel: tabsLayout }"
         aria-labelledby="map-tab"
       >
-        <div class="md:hidden text-sm tmp-text-gray">
+        <div class="text-sm md:hidden tmp-text-gray">
           Zadaný věk: narození {{ month }}&nbsp;{{ year }}
         </div>
-        <div class="md:hidden text-sm tmp-text-gray">
+        <div class="text-sm md:hidden tmp-text-gray">
           Doporučená třida: {{ classNumber }}
         </div>
         <Map :class-number="classNumber" />
@@ -118,7 +113,7 @@ export default {
 </script>
 
 <style>
- .tmp-text-gray {
-   color: gray;
- }
+.tmp-text-gray {
+  color: gray;
+}
 </style>

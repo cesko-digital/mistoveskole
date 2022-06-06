@@ -23,8 +23,7 @@
         Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě
       </div>
 
-      <!-- placeholder -->
-      <span>search input</span>
+      <SchoolSelect />
     </div>
 
     <FindAppropriateSchool />
@@ -146,6 +145,7 @@ export default {
     Button,
     FindAppropriateSchool,
   },
+  emits: ['showSchool'],
 };
 </script>
 

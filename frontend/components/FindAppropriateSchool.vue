@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="title">{{ $t("findAppropriateSchool.title") }}u</div>
+    <div class="title">{{ $t("findAppropriateSchool.title") }}</div>
 
     <div class="subtitle">{{ $t("findAppropriateSchool.setBirthDate") }}</div>
 
