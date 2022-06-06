@@ -1,4 +1,5 @@
 module.exports = {
+  0: '0px',
   xss: '4px',
   xs: '8px',
   s: '16px',
