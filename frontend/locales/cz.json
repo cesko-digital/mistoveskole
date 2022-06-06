@@ -1,0 +1,22 @@
+{
+  "logo": {
+    "place": "Místě",
+    "inSchool": "ve škole"
+  },
+  "menu": {
+    "schoolMap": "Mapa škol",
+    "aboutSchools": "O školach v ČR",
+    "statistics": "Statistiky",
+    "aboutApp": "O Místě ve škole"
+  },
+  "lang": {
+    "ua": "Pro UA občany",
+    "cz": "Česká verze"
+  },
+  "findAppropriateSchool": {
+    "title": "Najít vhodnou školu",
+    "setBirthDate": "Zadejte měsíc a rok narození dítěte",
+    "searchButton": "Zobrazit školy s volnými kapacitami"
+  },
+  "info-message": "Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě"
+}

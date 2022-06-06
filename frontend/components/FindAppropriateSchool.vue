@@ -1,8 +1,8 @@
 <template>
   <div class="box">
-    <div class="title">Najít vhodnou školu</div>
+    <div class="title">{{ $t("findAppropriateSchool.title") }}u</div>
 
-    <div class="subtitle">Zadejte měsíc a rok narození dítěte</div>
+    <div class="subtitle">{{ $t("findAppropriateSchool.setBirthDate") }}</div>
 
     <div class="selectors">
       <select v-model="selectedMonth" name="month">
@@ -66,7 +66,9 @@
       <button class="right">Informace</button>
     </div>
 
-    <Button> Zobrazit školy s volnými kapacitami </Button>
+    <Button @click="showSchool()">
+      {{ $t("findAppropriateSchool.searchButton") }}
+    </Button>
   </div>
 </template>
 
@@ -84,10 +86,10 @@ export default {
   components: {
     Button,
   },
-  emits: ['selectionChanged'],
+  emits: ['selectionChanged', 'showSchool'],
   data() {
     return {
-      monthLabels: getMonthLabels('cs-CZ'),
+      monthLabels: getMonthLabels(this.$i18n.locale),
       years: YEARS,
       selectedMonth: '',
       selectedYear: -1,
@@ -129,6 +131,15 @@ export default {
       }
 
       return null;
+    },
+  },
+  methods: {
+    showSchool() {
+      this.$emit('showSchool', {
+        classNumber: this.classNumber,
+        year: this.years[this.selectedYear],
+        month: this.monthLabels[this.selectedMonth],
+      });
     },
   },
 };
