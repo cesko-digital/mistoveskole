@@ -23,7 +23,7 @@
       </i>
     </div>
 
-    <Menu v-if="menuOpen" class="z-10 bg-white lg:hidden" />
+    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid lg:hidden border-default" />
   </nav>
 </template>
 
@@ -50,6 +50,11 @@ export default {
 <style scoped>
 nav {
   @apply relative h-2xl items-center;
+}
+@media screen and (max-width: theme("screens.lg")) {
+  nav {
+    @apply border-b border-default border-solid;
+  }
 }
 
 .logo-wrapper {
