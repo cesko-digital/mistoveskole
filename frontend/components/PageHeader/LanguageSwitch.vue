@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .bg-color-blue {
   background-color: #4493de;
 }

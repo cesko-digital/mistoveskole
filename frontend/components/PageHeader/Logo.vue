@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .color-blue {
   color: #4493de;
 }

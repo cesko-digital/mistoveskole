@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .menu li {
   margin: 0 0.5em;
 }
