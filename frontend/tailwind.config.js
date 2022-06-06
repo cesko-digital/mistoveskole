@@ -1,3 +1,8 @@
+const { default: colors } = require('./tailwind/colors');
+const textColor = require('./tailwind/textColor');
+const borderColor = require('./tailwind/borderColor');
+const backgroundColor = require('./tailwind/backgroundColor');
+
 module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
@@ -6,12 +11,17 @@ module.exports = {
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
-  important: true,
+  // important: true,
   theme: {
     container: {
       center: true,
     },
-    extend: {},
+    colors,
+    extend: {
+      textColor,
+      borderColor,
+      backgroundColor,
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
