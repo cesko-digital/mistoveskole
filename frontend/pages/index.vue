@@ -3,6 +3,7 @@
     <div class="px-4 py-2 border-t border-gray-200 md:hidden">
       {{ $t("info-message") }}
     </div>
+
     <!--Tabs header - for mobile only-->
     <div class="border-b border-gray-200 md:hidden">
       <ul
@@ -19,6 +20,7 @@
           <i class="text-base material-icons-outlined">
             home
           </i>
+
           <button
             class="inline-block p-2"
             type="button"
@@ -29,6 +31,7 @@
             NAJÍT MÍSTO
           </button>
         </li>
+
         <li
           class="flex items-center mx-2 border-blue-600"
           :class="{ 'border-b-4': activeTabIndex === 1 }"
@@ -38,6 +41,7 @@
           <i class="text-base material-icons-outlined">
             map
           </i>
+
           <button
             class="inline-block p-2"
             type="button"
@@ -71,9 +75,11 @@
         <div class="text-sm md:hidden tmp-text-gray">
           Zadaný věk: narození {{ month }}&nbsp;{{ year }}
         </div>
+
         <div class="text-sm md:hidden tmp-text-gray">
           Doporučená třida: {{ classNumber }}
         </div>
+
         <Map :class-number="classNumber" />
       </div>
     </div>
@@ -96,13 +102,16 @@ export default {
       month: '',
     };
   },
+
   methods: {
     tabsVisibilityChanged(isVisible, entry) {
       this.tabsLayout = isVisible;
     },
+
     selectTab(i) {
       this.activeTabIndex = i;
     },
+
     onShowShcool({ classNumber, year, month }) {
       this.classNumber = classNumber;
       this.year = year;
