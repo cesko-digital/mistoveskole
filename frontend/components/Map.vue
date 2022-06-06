@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col min-h-full ">
+  <div class="relative flex flex-col min-w-full min-h-full ">
     <span class="absolute text-sm bg-white">
       {{ iframeSrc }}
     </span>
