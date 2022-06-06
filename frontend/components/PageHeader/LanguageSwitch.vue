@@ -1,18 +1,21 @@
 <template>
-  <div class="lang-switch flex">
+  <div class="lang-switch">
     <nuxt-link key="ua" :to="switchLocalePath('uk-UA')">
-      <button class="flex items-center px-4 py-1 md:px-2 border rounded-l-md br-color-blue" @click="$i18n.setLocale('uk-UA')">
-        <img src="~/assets/ua-flag.svg" class="w-4 h-4">
-        <span class="m-1 hidden md:inline">
-          {{ $t('lang.ua') }}
+      <button class="rounded-l-inner" @click="$i18n.setLocale('uk-UA')">
+        <img src="~/assets/images/flags/ua.svg" class="w-s h-s">
+
+        <span class="hidden m-1 md:inline">
+          {{ $t("lang.ua") }}
         </span>
       </button>
     </nuxt-link>
+
     <nuxt-link key="cz" :to="switchLocalePath('cs-CZ')">
-      <button class="flex items-center px-4 py-1 md:px-2 border rounded-r-md br-color-blue" @click="$i18n.setLocale('cs-CZ')">
-        <img src="~/assets/cz-flag.svg" class="w-4 h-4">
-        <span class="m-1 hidden md:inline">
-          {{ $t('lang.cz') }}
+      <button class="rounded-r-inner" @click="$i18n.setLocale('cs-CZ')">
+        <img src="~/assets/images/flags/cz.svg" class="w-s h-s">
+
+        <span class="hidden m-1 md:inline">
+          {{ $t("lang.cz") }}
         </span>
       </button>
     </nuxt-link>
@@ -20,22 +23,21 @@
 </template>
 
 <style scoped>
-.bg-color-blue {
-  background-color: #4493de;
-}
-.br-color-blue {
-  border-color: #4493de;
+.lang-switch {
+  @apply flex flex-row;
 }
 
+.lang-switch a button {
+  @apply flex py-xss space-x-xs items-center px-xs border border-solid border-link text-overline font-overline tracking-overline leading-overline overflow-hidden;
+}
 .lang-switch a.nuxt-link-exact-active button {
-  background-color: #4493de;
-}
-
-.lang-switch a.nuxt-link-exact-active span {
-  color: white;
+  @apply bg-link;
 }
 
 .lang-switch a span {
-  text-transform: uppercase;
+  @apply uppercase;
+}
+.lang-switch a.nuxt-link-exact-active span {
+  @apply text-on-color;
 }
 </style>
