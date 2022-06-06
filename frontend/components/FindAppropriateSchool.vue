@@ -134,7 +134,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box {
   @apply flex flex-col space-y-s bg-muted p-l;
 }
