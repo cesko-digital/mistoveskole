@@ -67,21 +67,21 @@ export default {
   i18n: {
     locales: [
       {
-        code: 'cz',
+        code: 'cs-CZ',
         name: 'Czech',
         file: 'cz.json',
       },
       {
-        code: 'ua',
+        code: 'uk-UA',
         name: 'Український',
         file: 'ua.json',
       },
     ],
-    defaultLocale: 'cz',
+    defaultLocale: 'cs-CZ',
     vueI18n: {
-      fallbackLocale: 'cz',
+      fallbackLocale: 'cs-CZ',
     },
-    langDir: '~/locales/',
+    langDir: '~/locales/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

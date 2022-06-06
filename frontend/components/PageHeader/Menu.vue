@@ -25,11 +25,6 @@
   </div>
 </template>
 
-<script>
-export default {
-};
-</script>
-
 <style>
 .menu li {
   margin: 0 0.5em;

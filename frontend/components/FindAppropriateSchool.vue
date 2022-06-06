@@ -96,7 +96,7 @@ export default {
   emits: ['selectionChanged', 'showSchool'],
   data() {
     return {
-      monthLabels: getMonthLabels('cs-CZ'),
+      monthLabels: getMonthLabels(this.$i18n.locale),
       years: YEARS,
       selectedMonth: '',
       selectedYear: '',
