@@ -155,7 +155,7 @@ export default {
 }
 
 .collapse {
-  @apply flex flex-row py-xss px-l place-content-end;
+  @apply lg:flex hidden flex-row py-xss px-l place-content-end;
 }
 
 .search {
