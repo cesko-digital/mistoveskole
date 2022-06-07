@@ -20,7 +20,7 @@ module.exports = {
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
-  important: true,
+  // important: true,
   theme: {
     container: {
       center: true,
@@ -28,17 +28,17 @@ module.exports = {
     colors,
     spacing,
     borderRadius,
+    fontFamily,
+    fontSize,
+    fontWeight,
+    letterSpacing,
+    lineHeight,
+    typography,
     extend: {
       textColor,
       borderColor,
       backgroundColor,
       fill,
-      fontFamily,
-      fontSize,
-      fontWeight,
-      letterSpacing,
-      lineHeight,
-      typography,
     },
   },
   plugins: [
