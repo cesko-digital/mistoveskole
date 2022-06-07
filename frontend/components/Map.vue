@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col min-w-full">
+  <div class="relative flex flex-col min-w-full min-h-full">
     <iframe
       id="iframe-map"
       class="grow"
