@@ -1,5 +1,5 @@
 <template>
-  <div data-app>
+  <div data-app class="flex flex-col">
     <div v-if="overflowWarning">
       <v-icon color="orange">
         mdi-alert-circle-outline
@@ -22,7 +22,7 @@
       hide-selected
       item-text="name"
       item-value="link"
-      placeholder="Hledat školu"
+      placeholder="Hledat místo, kraj"
       prepend-inner-icon="mdi-magnify"
       return-object
       @change="onModelChanged"
@@ -56,6 +56,8 @@ export default {
             return {
               name: p.name,
               link: `${p.id}-${p.slug}`,
+              // name: p.description,
+              // link: p.place_id,
             };
           });
         })

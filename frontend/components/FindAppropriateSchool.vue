@@ -28,7 +28,7 @@
           Rok
         </option>
 
-        <option v-for="(year, index) in years" :key="index" :value="index">
+        <option v-for="(year, index) in years" :key="index" :value="year">
           {{ year }}
         </option>
       </select>
@@ -76,7 +76,7 @@
       </button>
     </div>
 
-    <Button @click="showSchool()">
+    <Button :disabled="appropriateSchool === null" @click="showSchool()">
       {{ $t("findAppropriateSchool.searchButton") }}
     </Button>
   </div>
@@ -88,8 +88,9 @@ import Button from './common/Button.vue';
 import range from '@/utils/range.js';
 import getMonthLabels from '@/utils/getMonthLabels.js';
 
-const PREV_YEAR = new Date().getFullYear() - 1;
-const YEARS_TO_STUDY = 20;
+const CURRENT_YEAR = new Date().getFullYear();
+const PREV_YEAR = CURRENT_YEAR - 1;
+const YEARS_TO_STUDY = 18;
 const YEARS = range(PREV_YEAR - YEARS_TO_STUDY, PREV_YEAR);
 
 export default {
@@ -107,7 +108,7 @@ export default {
   },
   computed: {
     isNextYear() {
-      return this.selectedMonth >= 7;
+      return this.selectedMonth >= 8; // 8 index corresponding to September
     },
     showInformation() {
       const result =
@@ -121,7 +122,7 @@ export default {
       return result;
     },
     studentAge() {
-      return this.selectedYear - this.isNextYear;
+      return CURRENT_YEAR - this.selectedYear - this.isNextYear;
     },
     appropriateSchool() {
       if (this.studentAge < 2) {
@@ -146,8 +147,8 @@ export default {
   methods: {
     showSchool() {
       this.$emit('showSchool', {
-        classNumber: this.classNumber,
-        year: this.years[this.selectedYear],
+        age: this.studentAge,
+        year: this.selectedYear,
         month: this.monthLabels[this.selectedMonth],
       });
     },

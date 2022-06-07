@@ -44,7 +44,7 @@
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
         >
-          <Sidebar />
+          <Sidebar @showSchool="onShowSchool($event)" @showPlace="onShowPlace($event)" />
         </div>
 
         <div
@@ -53,15 +53,10 @@
           :role="{ tabpanel: matches }"
           aria-labelledby="map-tab"
         >
-          <div class="text-sm md:hidden tmp-text-gray">
+          <div v-if="year > 0" class="text-sm md:hidden tmp-text-gray">
             Zadaný věk: narození {{ month }}&nbsp;{{ year }}
           </div>
-
-          <div class="text-sm md:hidden tmp-text-gray">
-            Doporučená třida: {{ classNumber }}
-          </div>
-
-          <Map :class-number="classNumber" />
+          <Map :age="age" :link="link" />
         </div>
       </div>
     </div>
@@ -79,9 +74,10 @@ export default {
     return {
       activeTabIndex: 0,
       classNumber: 0,
-      year: 0,
+      year: null,
       month: '',
       isMounted: false,
+      link: '',
     };
   },
   mounted() {
@@ -92,11 +88,15 @@ export default {
       this.activeTabIndex = i;
     },
 
-    onShowShcool({ classNumber, year, month }) {
-      this.classNumber = classNumber;
+    onShowSchool({ age, year, month }) {
+      this.age = age;
       this.year = year;
       this.month = month;
       this.activeTabIndex = 1;
+    },
+
+    onShowPlace(link) {
+      this.link = link;
     },
   },
 };

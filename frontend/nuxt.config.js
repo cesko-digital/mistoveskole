@@ -92,7 +92,8 @@ export default {
   },
 
   publicRuntimeConfig: {
-    umapaUrl: 'https://www.umapa.eu/embed-pro?fcat=25972&attr54492=iynt,p0pw,1yll&_from=mistoveskole',
+    umapaUrl: 'https://www.umapa.eu/embed-pro',
+    umapaDefaultFilter: 'fcat=25972,p0pw,1yll&_from=mistoveskole',
     mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search',
   },
 };

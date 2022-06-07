@@ -20,13 +20,13 @@
 
     <div class="search">
       <div class="search-text">
-        Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě
+        {{ $t("info-message") }}
       </div>
 
-      <SchoolSelect />
+      <SchoolSelect class="hidden md:flex" @selectionChanged="onPlaceSelected($event)" />
     </div>
 
-    <FindAppropriateSchool />
+    <FindAppropriateSchool @showSchool="onShowSchool($event)" />
 
     <div class="info">
       <a href="/how-the-czech-education-system-works" class="info-item">
@@ -145,7 +145,15 @@ export default {
     Button,
     FindAppropriateSchool,
   },
-  emits: ['showSchool'],
+  emits: ['showSchool', 'showPlace'],
+  methods: {
+    onShowSchool($event) {
+      this.$emit('showSchool', $event);
+    },
+    onPlaceSelected($event) {
+      this.$emit('showPlace', $event);
+    },
+  },
 };
 </script>
 

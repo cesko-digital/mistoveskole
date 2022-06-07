@@ -1,9 +1,5 @@
 <template>
-  <div class="relative flex flex-col min-w-full min-h-full ">
-    <span class="absolute text-sm bg-white">
-      {{ iframeSrc }}
-    </span>
-
+  <div class="relative flex flex-col min-w-full">
     <iframe
       id="iframe-map"
       class="grow"
@@ -17,9 +13,13 @@
 <script>
 export default {
   props: {
-    classNumber: {
+    age: {
       type: Number,
       default: 1,
+    },
+    link: {
+      type: String,
+      default: null,
     },
   },
   data() {
@@ -29,7 +29,10 @@ export default {
     };
   },
   watch: {
-    classNumber(newVal, oldVal) {
+    age(newVal, oldVal) {
+      this.updateIframeSrc();
+    },
+    link(newVal, oldVal) {
       this.updateIframeSrc();
     },
   },
@@ -46,10 +49,16 @@ export default {
       return classToParamValueMapping[classNumber - 1];
     },
     updateIframeSrc() {
-      const classSearchParamValue = this.classNumberToSearchValue(this.classNumber);
-      this.iframeSrc = classSearchParamValue
-        ? `${this.$config.umapaUrl}&attr58982=${classSearchParamValue}`
-        : this.$config.umapaUrl;
+      let classQueryStringValue = '';
+      if (this.age >= 2 && this.age < 6) {
+        classQueryStringValue = '&attr54492=sojw'; // MS
+      } else {
+        const classSearchParamValue = this.classNumberToSearchValue(this.age - 5);
+        classQueryStringValue = classSearchParamValue ? `&attr54492=iynt&attr58982=${classSearchParamValue}` : '';
+      }
+      const linkRouteValue = this.link ? `/${this.link}` : '';
+      this.iframeSrc = `${this.$config.umapaUrl}${linkRouteValue}?${this.$config.umapaDefaultFilter}${classQueryStringValue}`;
+      console.log(this.iframeSrc);
     },
   },
 };
