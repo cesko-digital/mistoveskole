@@ -9597,6 +9597,11 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
 
+vue-component-media-queries@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-component-media-queries/-/vue-component-media-queries-1.0.0.tgz#3be97b6b2ed32facfce7cb90d436ad3ecf741210"
+  integrity sha512-fcGjDNqfOjPkk9hfs4x+K8d0nYUSwDzpcrNwLyHCaGWImEoQXGU2gROCBMXnBTErgzIRNgyYwCqCeB+p6guLtQ==
+
 vue-easytable@2.16.1:
   version "2.16.1"
   resolved "https://registry.yarnpkg.com/vue-easytable/-/vue-easytable-2.16.1.tgz#2c652bd39c252364f14bbbb8582c15fef354df94"
