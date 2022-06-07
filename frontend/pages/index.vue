@@ -1,113 +1,93 @@
 <template>
-  <div class="flex flex-col grow">
-    <div class="px-m py-s md:hidden text-body font-body tracking-body leading-body text">
-      {{ $t("info-message") }}
-    </div>
-
-    <!--Tabs header - for mobile only-->
-    <div class="md:hidden">
-      <ul
-        v-observe-visibility="tabsVisibilityChanged"
-        class="flex flex-wrap -mb-px text-sm font-medium text-center"
-        role="tablist"
-      >
-        <li
-          class="tabs-item"
-          :class="{ '!border-active !text-strong': activeTabIndex === 0 }"
-          role="presentation"
-          @click="selectTab(0)"
-        >
-          <i class="text-base material-icons-outlined">
-            home
-          </i>
-
-          <button
-            class="inline-block"
-            type="button"
-            role="tab"
-            aria-controls="search"
-            aria-selected="false"
+  <MatchMedia v-slot="{ matches }" query="(max-width: 760px)">
+    <div class="flex flex-col grow">
+      <!--Tabs header - for mobile only-->
+      <div class="md:hidden">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" role="tablist">
+          <li
+            class="tabs-item"
+            :class="{ '!border-active !text-strong': activeTabIndex === 0 }"
+            role="presentation"
+            @click="selectTab(0)"
           >
-            NAJÍT MÍSTO
-          </button>
-        </li>
+            <i class="text-base material-icons-outlined">
+              home
+            </i>
 
-        <li
-          class="tabs-item"
-          :class="{ '!border-active !text-strong': activeTabIndex === 1 }"
-          role="presentation"
-          @click="selectTab(1)"
-        >
-          <i class="text-base material-icons-outlined">
-            map
-          </i>
+            <button class="inline-block" type="button" role="tab" aria-controls="search" aria-selected="false">
+              NAJÍT MÍSTO
+            </button>
+          </li>
 
-          <button
-            class="inline-block"
-            type="button"
-            role="tab"
-            aria-controls="map"
-            aria-selected="false"
+          <li
+            class="tabs-item"
+            :class="{ '!border-active !text-strong': activeTabIndex === 1 }"
+            role="presentation"
+            @click="selectTab(1)"
           >
-            MAPA ŠKOL
-          </button>
-        </li>
-      </ul>
-    </div>
+            <i class="text-base material-icons-outlined">
+              map
+            </i>
 
-    <!--Main content-->
-    <div class="flex grow">
-      <div
-        v-if="!tabsLayout || activeTabIndex === 0"
-        class="sidebar"
-        :role="{ tabpanel: tabsLayout }"
-        aria-labelledby="search-tab"
-      >
-        <Sidebar />
+            <button class="inline-block" type="button" role="tab" aria-controls="map" aria-selected="false">
+              MAPA ŠKOL
+            </button>
+          </li>
+        </ul>
       </div>
 
-      <div
-        v-if="!tabsLayout || activeTabIndex === 1"
-        class="flex grow"
-        :role="{ tabpanel: tabsLayout }"
-        aria-labelledby="map-tab"
-      >
-        <div class="text-sm md:hidden tmp-text-gray">
-          Zadaný věk: narození {{ month }}&nbsp;{{ year }}
+      <!--Main content-->
+      <div class="main-content flex grow">
+        <div
+          v-if="isMounted && !matches || activeTabIndex === 0"
+          class="sidebar"
+          :role="{ tabpanel: matches }"
+          aria-labelledby="search-tab"
+        >
+          <Sidebar />
         </div>
 
-        <div class="text-sm md:hidden tmp-text-gray">
-          Doporučená třida: {{ classNumber }}
-        </div>
+        <div
+          v-if="isMounted && !matches || activeTabIndex === 1"
+          class="flex grow flex-col"
+          :role="{ tabpanel: matches }"
+          aria-labelledby="map-tab"
+        >
+          <div class="text-sm md:hidden tmp-text-gray">
+            Zadaný věk: narození {{ month }}&nbsp;{{ year }}
+          </div>
 
-        <Map :class-number="classNumber" />
+          <div class="text-sm md:hidden tmp-text-gray">
+            Doporučená třida: {{ classNumber }}
+          </div>
+
+          <Map :class-number="classNumber" />
+        </div>
       </div>
     </div>
-  </div>
+  </MatchMedia>
 </template>
 
 <script>
-import Vue from 'vue';
-import VueObserveVisibility from 'vue-observe-visibility';
-
-Vue.use(VueObserveVisibility);
+import { MatchMedia } from 'vue-component-media-queries';
 
 export default {
+  components: {
+    MatchMedia,
+  },
   data() {
     return {
-      tabsLayout: true,
       activeTabIndex: 0,
       classNumber: 0,
       year: 0,
       month: '',
+      isMounted: false,
     };
   },
-
+  mounted() {
+    this.isMounted = true;
+  },
   methods: {
-    tabsVisibilityChanged(isVisible, entry) {
-      this.tabsLayout = isVisible;
-    },
-
     selectTab(i) {
       this.activeTabIndex = i;
     },
@@ -139,5 +119,10 @@ export default {
 
 .tabs-item {
   @apply text fill-icon-muted flex grow items-center justify-center border-b-[3px] border-transparent space-x-xs text-overline font-overline tracking-overline leading-overline;
+}
+
+/* TODO: investigate how to avoid it and still have reasonable map height on mobile */
+.main-content {
+    min-height: 90vh;
 }
 </style>

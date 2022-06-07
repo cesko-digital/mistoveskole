@@ -165,8 +165,10 @@ export default {
   @apply font-body-large text-body-large leading-body-large tracking-body-large text;
 }
 
+/* Pages for these links are not implemented yet */
 .info {
   @apply flex flex-col p-l space-y-m;
+  display: none;
 }
 .info-item {
   @apply flex flex-row space-x-s items-center;
