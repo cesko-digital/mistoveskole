@@ -23,10 +23,10 @@
         {{ $t("info-message") }}
       </div>
 
-      <SchoolSelect class="hidden md:flex" @selectionChanged="onPlaceSelected($event)" />
+      <SchoolSelect class="hidden md:flex" />
     </div>
 
-    <FindAppropriateSchool @showSchool="onShowSchool($event)" />
+    <FindAppropriateSchool />
 
     <div class="info">
       <a href="/how-the-czech-education-system-works" class="info-item">
@@ -144,15 +144,6 @@ export default {
   components: {
     Button,
     FindAppropriateSchool,
-  },
-  emits: ['showSchool', 'showPlace'],
-  methods: {
-    onShowSchool($event) {
-      this.$emit('showSchool', $event);
-    },
-    onPlaceSelected($event) {
-      this.$emit('showPlace', $event);
-    },
   },
 };
 </script>

@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 import Button from './common/Button.vue';
 
 import range from '@/utils/range.js';
@@ -97,7 +99,6 @@ export default {
   components: {
     Button,
   },
-  emits: ['selectionChanged', 'showSchool'],
   data() {
     return {
       monthLabels: getMonthLabels(this.$i18n.locale),
@@ -109,17 +110,6 @@ export default {
   computed: {
     isNextYear() {
       return this.selectedMonth >= 8; // 8 index corresponding to September
-    },
-    showInformation() {
-      const result =
-        typeof this.selectedMonth === 'number' &&
-        typeof this.selectedYear === 'number';
-      if (result) {
-        this.$emit('selectionChanged', {
-          appropriateSchool: this.appropriateSchool,
-        });
-      }
-      return result;
     },
     studentAge() {
       return CURRENT_YEAR - this.selectedYear - this.isNextYear;
@@ -145,12 +135,11 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      mapSetAge: 'map/setAge',
+    }),
     showSchool() {
-      this.$emit('showSchool', {
-        age: this.studentAge,
-        year: this.selectedYear,
-        month: this.monthLabels[this.selectedMonth],
-      });
+      this.mapSetAge(this.studentAge);
     },
   },
 };

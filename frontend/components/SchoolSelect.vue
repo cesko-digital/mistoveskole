@@ -31,8 +31,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
-  emits: ['selectionChanged'],
   data() {
     return {
       entries: [],
@@ -68,10 +69,14 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      mapSetFullTextSearch: 'map/setFullTextSearch',
+    }),
+
     onModelChanged(val) {
       this.overflowWarning = false;
       const link = val != null ? val.link : null;
-      this.$emit('selectionChanged', link);
+      this.mapSetFullTextSearch(link);
     },
     schoolFilter(item, queryText, itemText) {
       // filter is a part of query to backend, so ne need to filter on top of it

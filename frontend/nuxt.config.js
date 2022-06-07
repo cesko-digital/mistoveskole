@@ -93,7 +93,7 @@ export default {
 
   publicRuntimeConfig: {
     umapaUrl: 'https://www.umapa.eu/embed-pro',
-    umapaDefaultFilter: 'fcat=25972,p0pw,1yll&_from=mistoveskole',
+    umapaDefaultSearchParams: 'fcat=25972,p0pw,1yll&_from=mistoveskole',
     mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search',
   },
 };

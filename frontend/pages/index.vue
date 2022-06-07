@@ -37,26 +37,23 @@
       </div>
 
       <!--Main content-->
-      <div class="main-content flex grow">
+      <div class="flex main-content grow">
         <div
           v-if="isMounted && !matches || activeTabIndex === 0"
           class="sidebar"
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
         >
-          <Sidebar @showSchool="onShowSchool($event)" @showPlace="onShowPlace($event)" />
+          <Sidebar />
         </div>
 
         <div
           v-if="isMounted && !matches || activeTabIndex === 1"
-          class="flex grow flex-col"
+          class="flex flex-col grow"
           :role="{ tabpanel: matches }"
           aria-labelledby="map-tab"
         >
-          <div v-if="year > 0" class="text-sm md:hidden tmp-text-gray">
-            Zadaný věk: narození {{ month }}&nbsp;{{ year }}
-          </div>
-          <Map :age="age" :link="link" />
+          <Map />
         </div>
       </div>
     </div>
@@ -73,11 +70,7 @@ export default {
   data() {
     return {
       activeTabIndex: 0,
-      classNumber: 0,
-      year: null,
-      month: '',
       isMounted: false,
-      link: '',
     };
   },
   mounted() {
@@ -88,15 +81,8 @@ export default {
       this.activeTabIndex = i;
     },
 
-    onShowSchool({ age, year, month }) {
-      this.age = age;
-      this.year = year;
-      this.month = month;
+    onShowSchool() {
       this.activeTabIndex = 1;
-    },
-
-    onShowPlace(link) {
-      this.link = link;
     },
   },
 };
