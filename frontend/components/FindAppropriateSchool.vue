@@ -85,8 +85,6 @@
 <script>
 import { mapMutations } from 'vuex';
 
-import Button from './common/Button.vue';
-
 import range from '@/utils/range.js';
 import getMonthLabels from '@/utils/getMonthLabels.js';
 
@@ -96,9 +94,6 @@ const YEARS_TO_STUDY = 18;
 const YEARS = range(PREV_YEAR - YEARS_TO_STUDY, PREV_YEAR);
 
 export default {
-  components: {
-    Button,
-  },
   data() {
     return {
       monthLabels: getMonthLabels(this.$i18n.locale),

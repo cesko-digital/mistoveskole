@@ -28,12 +28,7 @@
 </template>
 
 <script>
-import LanguageSwitch from './LanguageSwitch';
-
 export default {
-  components: {
-    LanguageSwitch,
-  },
   data() {
     return {
       menuOpen: false,

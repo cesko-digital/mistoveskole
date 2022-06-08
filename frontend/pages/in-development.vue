@@ -1,5 +1,5 @@
 <template>
-  <p class="m-4">
-    Stranka jšte není připravená.
-  </p>
+  <div class="px-3 text-center my-2xl text-lg">
+    Stranka ještě není připravená.
+  </div>
 </template>
