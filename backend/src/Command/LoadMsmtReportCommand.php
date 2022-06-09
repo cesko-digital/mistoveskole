@@ -106,7 +106,9 @@ class LoadMsmtReportCommand extends Command
                     $typ .= ' ZŠ';
                 }
             }
-            $this->io->info(static::NAME.': updated '.$row['NÁZEV ZKRÁCENĚ']. ' '.$typ);
+            if ($entity) {
+                $this->io->info(static::NAME.': updated '.$row['NÁZEV ZKRÁCENĚ']. ', '.$typ.', id:'.$entity->getId());
+            }
 //if ($counter > 1000) break;
         }
         return Command::SUCCESS;
@@ -152,6 +154,11 @@ class LoadMsmtReportCommand extends Command
 
     protected function formatZarizeni(array $data, string $typZarizeni): ?Entity\Zarizeni
     {
+        if (isset($data['ODESLÁNO']) && ($dateTime = new \DateTime($data['ODESLÁNO'])) && $data['ODESLÁNO'] < '2022-04-07') {
+            $this->io->info(static::NAME.': SKIPPING update of '.$data['NÁZEV ZKRÁCENĚ'].', before 2022-04-07');
+            return null;
+        }
+
         $reditelstviRepository = $this->em->getRepository(Entity\Reditelstvi::class);
 
         $reditelstvi = $reditelstviRepository->findOneBy(array('redIzo' => $data["RED IZO"]));
@@ -171,7 +178,6 @@ class LoadMsmtReportCommand extends Command
             return null;
 
         }
-
         // create classrooms by type and assign numbers
         if ($typZarizeni == 'A00' || $typZarizeni == 'A15') {
 // datum jako vstupni hodnota
@@ -182,7 +188,7 @@ class LoadMsmtReportCommand extends Command
                 array(30,40,50),
                 $data['MŠ OTÁZKA 2'],
                 $data['MŠ OTÁZKA 1 (celkem)'] - $data['MŠ OTÁZKA 1 (povinné předškolní vzdělávání)'], // minus next "class" to have correct sum
-                new \DateTime('2022-07-04') // FIXME
+                $dateTime
             );
             $this->em->persist($trida);
 
@@ -192,7 +198,7 @@ class LoadMsmtReportCommand extends Command
                 array(2000),
                 null,
                 $data['MŠ OTÁZKA 1 (povinné předškolní vzdělávání)'],
-                new \DateTime('2022-07-04') // FIXME
+                $dateTime
             );
             $this->em->persist($trida);
 
@@ -207,7 +213,7 @@ class LoadMsmtReportCommand extends Command
                         array($vlastnost),
                         $data['ZŠ OTÁZKA 2 ('.$rocnik.'. ročník)'],
                         null,
-                        new \DateTime('2022-07-04') // FIXME
+                        $dateTime
                     );
                     $this->em->persist($trida);
                 }
@@ -218,7 +224,7 @@ class LoadMsmtReportCommand extends Command
                         array(60,70,80,90,100,1000),
                         $data['ZŠ OTÁZKA 2 (malotřídky)'],
                         null,
-                        new \DateTime('2022-07-04') // FIXME
+                        $dateTime
                     );
                     $this->em->persist($trida);
                 }
@@ -229,7 +235,7 @@ class LoadMsmtReportCommand extends Command
                         array(60,70,80,90,100,1100),
                         $data['ZŠ OTÁZKA 2 (speciální třídy 1. stupeň)'],
                         null,
-                        new \DateTime('2022-07-04') // FIXME
+                        $dateTime
                     );
                     $this->em->persist($trida);
                 }
@@ -239,7 +245,7 @@ class LoadMsmtReportCommand extends Command
                         array(110,120,130,140,1105),
                         $data['ZŠ OTÁZKA 2 (speciální třídy 2. stupeň)'],
                         null,
-                        new \DateTime('2022-07-04') // FIXME
+                        $dateTime
                     );
                     $this->em->persist($trida);
                 }
@@ -249,8 +255,9 @@ class LoadMsmtReportCommand extends Command
                     array(2010),
                     null,
                     $data['ZŠ OTÁZKA 1'],
-                    new \DateTime('2022-07-04') // FIXME
+                    $dateTime
                 );
+                $this->em->persist($trida);
             }
         }
 
@@ -260,6 +267,7 @@ class LoadMsmtReportCommand extends Command
             ->setDatovaSchranka($data['DATOVKA'])
             ->setObec($data['OBEC'])
             ->setRedZkracenyNazev($data['NÁZEV ZKRÁCENĚ'])
+            ->setAktivni(true)
         ;
         $this->em->persist($zarizeni);
         $this->em->flush();
@@ -267,7 +275,7 @@ class LoadMsmtReportCommand extends Command
         return $zarizeni;
     }
 
-    protected function formatTrida(Entity\Zarizeni $zarizeni, array $vlastnosti, $kapacitaVolno, $kapacitaObsazeno)
+    protected function formatTrida(Entity\Zarizeni $zarizeni, array $vlastnosti, $kapacitaVolno, $kapacitaObsazeno, \DateTime $datumCas)
     {
         $tridy = $zarizeni->getTridy();
         $trida = null;
@@ -286,7 +294,7 @@ class LoadMsmtReportCommand extends Command
         }
         $trida->setAktualniKapacitaUkVolno($kapacitaVolno)
             ->setAktualniKapacitaUkObsazeno($kapacitaObsazeno)
-            ->setDatumCasAktualizace(new \DateTime('2022-07-04')) // FIXME
+            ->setDatumCasAktualizace($datumCas)
         ;
         return $trida;
     }
