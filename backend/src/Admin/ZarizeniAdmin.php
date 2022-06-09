@@ -88,7 +88,9 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('idReditelstvi.idOkres.idKraj')
             ->add('skolaPlnyNazev')
             ->add('idJazyk')
-            ->add('aktivni')
+            ->add('aktivni', null, array(
+                'editable' => true,
+            ))
             ->add('kapacitaUkVolnoCelkem')
             ->add('kapacitaUkObsazenoCelkem')
             ->add('skolaKapacita')
@@ -179,6 +181,9 @@ class ZarizeniAdmin extends AbstractAdmin
                 'disabled' => true,
             ))
             ->add('kapacitaUk2223')
+            ->add('DatumAktualizaceString', null, array(
+                'disabled' => true,
+            ))
             ->end()
             ->with('Kontakt pro rodiče', array('class' => 'col-md-6'))
             ->add('kontaktJmeno')
@@ -238,16 +243,19 @@ class ZarizeniAdmin extends AbstractAdmin
             'mistoAdresa2'             => 'MistoAdresa2',
             'mistoAdresa3'             => 'MistoAdresa3',
             'mistoRuianKod'            => 'MistoRuianKod',
-            'kontaktEmail'             => 'KontaktEmail',
-            'kontaktTelefon'           => 'KontaktTelefon',
+            'kontaktEmail1'            => 'KontaktEmail1',
+            'kontaktEmail2'            => 'KontaktEmail2',
+            'kontaktTelefon1'          => 'KontaktTelefon1',
+            'kontaktTelefon2'          => 'KontaktTelefon2',
             'kontaktJmeno'             => 'KontaktJmeno',
-            'kontaktWww'               => 'KontaktWww',
+            'kontaktWww1'              => 'KontaktWww1',
+            'kontaktWww2'              => 'KontaktWww2',
 //            'KapacitaUkObsazenoCelkem',
             'kapacitaVolno'            => 'KapacitaUkVolnoCelkem',
             'poznamkaCz'               => 'PoznamkaCz',
             'poznamkaUk'               => 'PoznamkaUk',
             'volneTridy'               => 'VolneTridy',
-            'datumCasAktualizace'      => 'DatumCasAktualizaceString',
+            'datumAktualizace'      => 'DatumAktualizaceString',
         );
 
         return $fieldsArray;

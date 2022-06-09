@@ -259,6 +259,15 @@ class Zarizeni
         return $this;
     }
 
+    public function getKontaktEmail1(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktEmail(), 0);
+    }
+    public function getKontaktEmail2(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktEmail(), 1);
+    }
+
     public function getKontaktTelefon(): ?string
     {
         return $this->kontaktTelefon;
@@ -269,6 +278,14 @@ class Zarizeni
         $this->kontaktTelefon = $kontaktTelefon;
 
         return $this;
+    }
+    public function getKontaktTelefon1(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktTelefon(), 0);
+    }
+    public function getKontaktTelefon2(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktTelefon(), 1);
     }
 
     public function getKontaktJmeno(): ?string
@@ -330,6 +347,29 @@ class Zarizeni
         $this->kontaktWww = $kontaktWww;
 
         return $this;
+    }
+
+    // legacy export for umapa, TODO remove
+    public function getKontaktWwwHref(): ?string
+    {
+        if (!($www = $this->getKontaktWww())) {
+            return null;
+        }
+        $array = explode(',', $this->getKontaktWww());
+        foreach ($array as &$item) {
+            $item = trim($item);
+            $item = '<a href="'.$item.'">'.$item.'</a>';
+        }
+        return implode('!', $array);
+    }
+
+    public function getKontaktWww1(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktWww(), 0);
+    }
+    public function getKontaktWww2(): ?string
+    {
+        return $this->getValueSplit($this->getKontaktWww(), 1);
     }
 
     public function getPoznamkaCz(): ?string
@@ -644,11 +684,29 @@ class Zarizeni
         return $result;
     }
 
-    public function getDatumCasAktualizaceString(): ?string
+    public function getDatumAktualizaceString(): ?string
     {
         // FIXME store in sql?
-        $dt = $this->getTridy()->first()->getDatumCasAktualizace();
-        return $dt ? $dt->format('c') : null;
+        if (($tridy = $this->getTridy()) && $tridy->first()) {
+            $dt = $tridy->first()->getDatumCasAktualizace();
+            return $dt ? $dt->format('j. n. Y') : null;
+        } else {
+            return null;
+        }
+    }
+
+    protected function getValueSplit(?string $value, int $index): ?string
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        $array = explode(',', $value);
+        if (isset($array[$index])) {
+            return trim($array[$index]);
+        } else {
+            return null;
+        }
     }
 }
 
