@@ -7,19 +7,19 @@
         </NuxtLink>
       </li>
 
-      <li>
+      <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.aboutSchools') }}
         </NuxtLink>
       </li>
 
-      <li>
+      <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.statistics') }}
         </NuxtLink>
       </li>
 
-      <li>
+      <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('menu.aboutApp') }}
         </NuxtLink>
