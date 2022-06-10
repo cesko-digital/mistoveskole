@@ -50,6 +50,10 @@ export const mutations = {
 };
 
 export const getters = {
+  age(state) {
+    return state.age;
+  },
+
   // convert current state to URL
   url(state) {
     const url = new URL(state.baseUrl);

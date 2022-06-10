@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { MatchMedia } from 'vue-component-media-queries';
 
 export default {
@@ -88,16 +89,20 @@ export default {
       isMounted: false,
     };
   },
+  computed: {
+    ...mapGetters({ mapAge: 'map/age' }),
+  },
+  watch: {
+    mapAge(oldAge, newAge) {
+      this.activeTabIndex = 1;
+    },
+  },
   mounted() {
     this.isMounted = true;
   },
   methods: {
     selectTab(i) {
       this.activeTabIndex = i;
-    },
-
-    onShowSchool() {
-      this.activeTabIndex = 1;
     },
   },
 };
