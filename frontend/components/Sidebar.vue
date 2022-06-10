@@ -137,14 +137,8 @@
 </template>
 
 <script>
-import Button from './common/Button.vue';
-import FindAppropriateSchool from './FindAppropriateSchool.vue';
-
 export default {
-  components: {
-    Button,
-    FindAppropriateSchool,
-  },
+
 };
 </script>
 

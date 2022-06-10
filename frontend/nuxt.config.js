@@ -35,8 +35,7 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
-    '~/components',
-    { path: '~/components/PageHeader/' },
+    { path: '~/components', pathPrefix: false },
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -91,6 +90,10 @@ export default {
       fallbackLocale: 'cs-CZ',
     },
     langDir: '~/locales/',
+  },
+
+  eslint: {
+    cache: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
