@@ -19,9 +19,7 @@
     </div>
 
     <div class="search">
-      <div class="search-text">
-        {{ $t("info-message") }}
-      </div>
+      <InfoText />
 
       <SchoolSelect class="hidden md:flex" />
     </div>
@@ -136,12 +134,6 @@
   </div>
 </template>
 
-<script>
-export default {
-
-};
-</script>
-
 <style scoped>
 .sidebar {
   @apply flex flex-col flex-grow;
@@ -152,10 +144,7 @@ export default {
 }
 
 .search {
- @apply flex flex-col gap-l p-l;
-}
-.search-text {
-  @apply font-body-large text-body-large leading-body-large tracking-body-large text;
+ @apply hidden md:flex flex-col gap-l p-l;
 }
 
 /* Pages for these links are not implemented yet */

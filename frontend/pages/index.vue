@@ -1,5 +1,7 @@
 <template>
   <MatchMedia v-slot="{ matches }" query="(max-width: 760px)">
+    <InfoText class="px-m py-s md:hidden" />
+
     <div class="flex flex-col grow">
       <!--Tabs header - for mobile only-->
       <div class="md:hidden">
