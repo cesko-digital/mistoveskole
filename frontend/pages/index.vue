@@ -54,8 +54,8 @@
       <!--Main content-->
       <div class="flex main-content grow">
         <div
-          v-if="(isMounted && !matches) || activeTabIndex === 0"
           class="sidebar"
+          :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 0) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
         >
@@ -63,8 +63,8 @@
         </div>
 
         <div
-          v-if="(isMounted && !matches) || activeTabIndex === 1"
           class="flex flex-col grow"
+          :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 1) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="map-tab"
         >
