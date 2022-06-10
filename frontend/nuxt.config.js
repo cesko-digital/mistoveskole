@@ -1,14 +1,20 @@
+const title = 'Místo ve škole';
+const description = 'Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Místo ve škole',
+    title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: description },
+      { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'og:description', name: 'og:description', content: description },
+      // { hid: 'og:image', name: 'og:description', content: '' }, // TODO: Add OG image
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
