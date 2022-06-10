@@ -5,7 +5,10 @@
     <div class="flex flex-col grow">
       <!--Tabs header - for mobile only-->
       <div class="md:hidden">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" role="tablist">
+        <ul
+          class="flex flex-wrap -mb-px text-sm font-medium text-center"
+          role="tablist"
+        >
           <li
             class="tabs-item"
             :class="{ '!border-active !text-strong': activeTabIndex === 0 }"
@@ -16,7 +19,13 @@
               home
             </i>
 
-            <button class="inline-block" type="button" role="tab" aria-controls="search" aria-selected="false">
+            <button
+              class="inline-block"
+              type="button"
+              role="tab"
+              aria-controls="search"
+              aria-selected="false"
+            >
               NAJÍT MÍSTO
             </button>
           </li>
@@ -31,7 +40,13 @@
               map
             </i>
 
-            <button class="inline-block" type="button" role="tab" aria-controls="map" aria-selected="false">
+            <button
+              class="inline-block"
+              type="button"
+              role="tab"
+              aria-controls="map"
+              aria-selected="false"
+            >
               MAPA ŠKOL
             </button>
           </li>
@@ -41,8 +56,8 @@
       <!--Main content-->
       <div class="flex main-content grow">
         <div
-          v-if="isMounted && !matches || activeTabIndex === 0"
           class="sidebar"
+          :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 0) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
         >
@@ -50,8 +65,8 @@
         </div>
 
         <div
-          v-if="isMounted && !matches || activeTabIndex === 1"
           class="flex flex-col grow"
+          :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 1) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="map-tab"
         >
@@ -63,6 +78,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { MatchMedia } from 'vue-component-media-queries';
 
 export default {
@@ -75,16 +91,20 @@ export default {
       isMounted: false,
     };
   },
+  computed: {
+    ...mapGetters({ mapAge: 'map/age' }),
+  },
+  watch: {
+    mapAge(oldAge, newAge) {
+      this.activeTabIndex = 1;
+    },
+  },
   mounted() {
     this.isMounted = true;
   },
   methods: {
     selectTab(i) {
       this.activeTabIndex = i;
-    },
-
-    onShowSchool() {
-      this.activeTabIndex = 1;
     },
   },
 };
@@ -111,6 +131,6 @@ export default {
 
 /* TODO: investigate how to avoid it and still have reasonable map height on mobile */
 .main-content {
-    min-height: 90vh;
+  min-height: 90vh;
 }
 </style>
