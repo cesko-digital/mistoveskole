@@ -1,6 +1,6 @@
 <template>
   <div class="info-text">
-    {{ $t("info-text") }}
+    {{ $t("components.InfoText.text") }}
   </div>
 </template>
 

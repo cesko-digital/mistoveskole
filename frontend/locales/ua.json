@@ -1,18 +1,49 @@
 {
-  "menu": {
-    "schoolMap": "Карта шкіл",
-    "aboutSchools": "О школах в ЧР",
-    "statistics": "Статистика",
-    "aboutApp": "О Місце в школе"
+  "components": {
+    "FindAppropriateSchool": {
+      "title": "Знайдіть відповідну школу",
+      "set_birth_date": "Введіть місяць і рік народження дитини",
+      "search_button": "Показати школи з вільними містамі",
+      "month": "Měsíc",
+      "year": "Rok",
+      "why_do_we_want_to_know_that": "Proč to chceme vědět?",
+      "faq_tooltip": "Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.",
+      "age_corresponds": "Věk odpovídá",
+      "information": "Informace"
+    },
+    "InfoText": {
+      "text": "Навчальні заклади в Чехії та їх волни міста в одному місці"
+    },
+    "PageHeader": {
+      "Menu": {
+        "school_map": "Карта шкіл",
+        "about_schools": "О школах в ЧР",
+        "statistics": "Статистика",
+        "about_app": "О Місце в школе"
+      }
+    },
+    "PageFooter": {
+      "portal_for_arranging_offers_of_help": "Майданчик з пропозиціями допомоги",
+      "independent_information_guide": "Незалежний інформаційний довідник",
+      "we_are_changing_the_Czechia_for_the_better_through_ones_and_zeros": "Через одиниці і нулі змінюємо Чехію на краще"
+    },
+    "SchoolSelect": {
+      "more_than_20_search_results_found_please_enter_a_more_specific_search_term": "Nalezeno více než 20 výsledků vyhledávání, uveďte prosím konkrétnější hledaný výraz."
+    },
+    "Sidebar": {
+      "how_the_Czech_education_system_works": "Jak funguje český vzdělávací systém",
+      "how_to_enroll_a_child_in_school": "Jak přihlásit dítě do školy",
+      "more_information": "Další informace"
+    }
+  },
+  "pages": {
+    "index": {
+      "find_a_place": "Najít místo",
+      "school_map": "Mapa škol"
+    }
   },
   "lang": {
     "ua": "Український",
     "cz": "Český"
-  },
-  "findAppropriateSchool": {
-    "title": "Знайдіть відповідну школу",
-    "setBirthDate": "Введіть місяць і рік народження дитини",
-    "searchButton": "Показати школи з вільними містамі"
-  },
-  "info-text": "Навчальні заклади в Чехії та їх волни міста в одному місці"
+  }
 }

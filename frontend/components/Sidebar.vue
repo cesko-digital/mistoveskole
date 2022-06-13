@@ -47,7 +47,9 @@
           </svg>
         </div>
 
-        <div class="info-item-text">Jak funguje český vzdělávací systém</div>
+        <div class="info-item-text">
+          {{ $t('components.Sidebar.how_the_Czech_education_system_works') }}
+        </div>
 
         <div class="info-item-arrow">
           <svg
@@ -88,7 +90,9 @@
           </svg>
         </div>
 
-        <div class="info-item-text">Jak přihlásit dítě do školy</div>
+        <div class="info-item-text">
+          {{ $t('components.Sidebar.how_to_enroll_a_child_in_school') }}
+        </div>
 
         <div class="info-item-arrow">
           <svg
@@ -111,7 +115,9 @@
 
       <div>
         <Button :inline="true">
-          <span>Další informace</span>
+          <span>
+            {{ $t('components.Sidebar.more_information') }}
+          </span>
 
           <svg
             width="16"

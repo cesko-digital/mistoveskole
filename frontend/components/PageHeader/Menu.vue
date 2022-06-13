@@ -3,25 +3,25 @@
     <ul>
       <li>
         <NuxtLink :to="localePath('/')">
-          {{ $t('menu.schoolMap') }}
+          {{ $t('components.PageHeader.Menu.school_map') }}
         </NuxtLink>
       </li>
 
       <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
-          {{ $t('menu.aboutSchools') }}
+          {{ $t('components.PageHeader.Menu.about_schools') }}
         </NuxtLink>
       </li>
 
       <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
-          {{ $t('menu.statistics') }}
+          {{ $t('components.PageHeader.Menu.statistics') }}
         </NuxtLink>
       </li>
 
       <li class="hidden">
         <NuxtLink :to="localePath('/in-development')">
-          {{ $t('menu.aboutApp') }}
+          {{ $t('components.PageHeader.Menu.about_app') }}
         </NuxtLink>
       </li>
     </ul>

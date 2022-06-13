@@ -26,7 +26,7 @@
               aria-controls="search"
               aria-selected="false"
             >
-              NAJÍT MÍSTO
+              {{ $t('pages.index.find_a_place') }}
             </button>
           </li>
 
@@ -47,7 +47,7 @@
               aria-controls="map"
               aria-selected="false"
             >
-              MAPA ŠKOL
+              {{ $t('pages.index.school_map') }}
             </button>
           </li>
         </ul>
