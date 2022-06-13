@@ -137,12 +137,18 @@
         </Button>
       </div>
     </div>
+
+    <div class="grow">
+      &nbsp;
+    </div>
+
+    <StandWithUkraine class=" rounded-t-outer" />
   </div>
 </template>
 
 <style scoped>
 .sidebar {
-  @apply flex flex-col flex-grow;
+  @apply flex flex-col flex-grow h-full;
 }
 
 .collapse {

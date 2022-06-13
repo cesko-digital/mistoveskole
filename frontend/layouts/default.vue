@@ -3,7 +3,5 @@
     <PageHeader />
 
     <Nuxt />
-
-    <PageFooter />
   </div>
 </template>

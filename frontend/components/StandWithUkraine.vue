@@ -3,19 +3,21 @@
     <span class="hash-tag">
       #StandWithUkraine
     </span>
-    <div class="flex flex-col justify-between sm:flex-row">
+    <div class="flex flex-col justify-between">
       <a target="_blank" href="https://www.pomahejukrajine.cz">
         <div>
           <p>Pomáhej Ukrajině</p>
           <p>{{ $t('components.PageFooter.portal_for_arranging_offers_of_help') }}</p>
         </div>
       </a>
+
       <a target="_blank" href="https://www.stojimezaukrajinou.cz/en">
         <div>
           <p>Stojíme za Ukrajinou</p>
           <p>{{ $t('components.PageFooter.independent_information_guide') }}</p>
         </div>
       </a>
+
       <a target="_blank" href="https://cesko.digital">
         <div>
           <p>Česko.Digital</p>
@@ -28,29 +30,27 @@
 
 <style scoped>
 .footer-wrapper {
-  @apply flex flex-col;
-  background-color: #FFE70D;
+  @apply flex flex-col text-strong;
+  background-color: theme('colors.sg.secondary.50');
 }
 
 .hash-tag {
-  @apply m-xs text-body-large-bold leading-body-large-bold font-body-large-bold tracking-body-large-bold text-center
+  @apply m-xs text-body-large-bold leading-body-large-bold font-body-large-bold tracking-body-large-bold text-center;
 }
 
 a {
   @apply md:mx-xs;
-   flex: 1 1 0px
 }
 
 a > div {
-   @apply py-xss;
+  @apply py-xss;
 }
 
 a > div > p:first-child {
-    @apply text-body-bold leading-body-bold font-body-bold tracking-body-bold text-center;
+  @apply text-body-bold leading-body-bold font-body-bold tracking-body-bold text-center;
 }
 
 a > div > p:last-child {
-    @apply font-body-small text-body-small text-center;
-    white-space: nowrap;
+  @apply font-body-small text-body-small text-center whitespace-nowrap;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <MatchMedia v-slot="{ matches }" query="(max-width: 760px)">
+  <MatchMedia class="flex flex-col grow" v-slot="{ matches }" query="(max-width: 760px)">
     <InfoText class="px-m py-s md:hidden" />
 
     <div class="flex flex-col grow">
@@ -127,10 +127,5 @@ export default {
 
 .tabs-item {
   @apply text fill-icon-muted flex grow items-center justify-center border-b-[3px] border-transparent space-x-xs text-overline font-overline tracking-overline leading-overline;
-}
-
-/* TODO: investigate how to avoid it and still have reasonable map height on mobile */
-.main-content {
-  min-height: 90vh;
 }
 </style>
