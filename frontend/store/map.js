@@ -4,6 +4,12 @@ const AGE_QUERY_PARAM_NAME = 'attr58982';
 
 // TODO: docs
 const AGE_TO_PARAM_VALUE_MAPPING = [
+  null,
+  null,
+  '5zbe',
+  'qbou',
+  'sv0p',
+  '9ju7',
   'q0hf',
   '76aa',
   'ceqf',
@@ -17,14 +23,17 @@ const AGE_TO_PARAM_VALUE_MAPPING = [
   '4z73',
   'v028',
   'esi8',
+  'jvx1',
+  'qwuy',
+  'fpf9',
 ];
 
 function ageToSearchValue(age) {
-  if (age < 1 || age > AGE_TO_PARAM_VALUE_MAPPING.length) {
+  if (age > AGE_TO_PARAM_VALUE_MAPPING.length) {
     return null;
   }
 
-  return AGE_TO_PARAM_VALUE_MAPPING[age - 1];
+  return AGE_TO_PARAM_VALUE_MAPPING[age];
 }
 
 export const state = () => ({
@@ -65,11 +74,9 @@ export const getters = {
     }
 
     if (state.age && typeof state.age === 'number') {
-      if (state.age >= 2 && state.age < 6) {
-        url.searchParams.set('attr54492', 'sojw'); // TODO: docs
-      } else {
-        url.searchParams.set('attr54492', 'iynt'); // TODO: docs
-        url.searchParams.set(AGE_QUERY_PARAM_NAME, ageToSearchValue(state.age));
+      const ageQueryParamValue = ageToSearchValue(state.age);
+      if (ageQueryParamValue) {
+        url.searchParams.set(AGE_QUERY_PARAM_NAME, ageQueryParamValue);
       }
     }
 
