@@ -18,7 +18,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' },
+      // { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' }, // TODO: If needed replace with a proper build strategy instead of requesting it from some remote service
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' },
     ],
   },
