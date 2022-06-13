@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="collapse">
+    <div class="!hidden collapse">
       <svg
         width="8"
         height="14"
@@ -47,7 +47,9 @@
           </svg>
         </div>
 
-        <div class="info-item-text">Jak funguje český vzdělávací systém</div>
+        <div class="info-item-text">
+          {{ $t('components.Sidebar.how_the_Czech_education_system_works') }}
+        </div>
 
         <div class="info-item-arrow">
           <svg
@@ -88,7 +90,9 @@
           </svg>
         </div>
 
-        <div class="info-item-text">Jak přihlásit dítě do školy</div>
+        <div class="info-item-text">
+          {{ $t('components.Sidebar.how_to_enroll_a_child_in_school') }}
+        </div>
 
         <div class="info-item-arrow">
           <svg
@@ -111,7 +115,9 @@
 
       <div>
         <Button :inline="true">
-          <span>Další informace</span>
+          <span>
+            {{ $t('components.Sidebar.more_information') }}
+          </span>
 
           <svg
             width="16"
@@ -131,12 +137,18 @@
         </Button>
       </div>
     </div>
+
+    <div class="grow">
+      &nbsp;
+    </div>
+
+    <StandWithUkraine class=" rounded-t-outer" />
   </div>
 </template>
 
 <style scoped>
 .sidebar {
-  @apply flex flex-col flex-grow;
+  @apply flex flex-col flex-grow h-full;
 }
 
 .collapse {

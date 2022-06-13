@@ -4,8 +4,10 @@
       <v-icon color="orange">
         mdi-alert-circle-outline
       </v-icon>
-      Nalezeno více než 20 výsledků vyhledávání, uveďte prosím konkrétnější hledaný výraz.
+
+      {{ $t('components.SchoolSelect.more_than_20_search_results_found_please_enter_a_more_specific_search_term') }}
     </div>
+
     <v-autocomplete
       v-model="model"
       :items="entries"

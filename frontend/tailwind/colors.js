@@ -54,6 +54,14 @@ module.exports = {
   danger,
 
   default: {
+    sg: {
+      primary,
+      neutral,
+      secondary,
+      success,
+      danger,
+    },
+
     inherit: 'inherit',
     current: 'currentColor',
     transparent: 'transparent',

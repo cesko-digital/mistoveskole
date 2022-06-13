@@ -1,17 +1,17 @@
 <template>
   <div class="box">
     <div class="title">
-      {{ $t("findAppropriateSchool.title") }}
+      {{ $t("components.FindAppropriateSchool.title") }}
     </div>
 
     <div class="subtitle">
-      {{ $t("findAppropriateSchool.setBirthDate") }}
+      {{ $t("components.FindAppropriateSchool.set_birth_date") }}
     </div>
 
     <div class="selectors">
       <select v-model="selectedMonth" class="select" name="month">
         <option selected disabled value="">
-          Měsíc
+          {{ $t("components.FindAppropriateSchool.month") }}
         </option>
 
         <option
@@ -25,7 +25,7 @@
 
       <select v-model="selectedYear" class="select" name="year">
         <option selected disabled value="">
-          Rok
+          {{ $t("components.FindAppropriateSchool.year") }}
         </option>
 
         <option v-for="(year, index) in years" :key="index" :value="year">
@@ -51,33 +51,30 @@
         />
       </svg>
 
-      Proč to chceme vědět?
+      {{ $t("components.FindAppropriateSchool.why_do_we_want_to_know_that") }}
     </div>
 
     <div class="relative !mt-0 link-faq__tooltip__wrapper">
       <div class="absolute hidden link-faq__tooltip">
-        Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše
-        řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky
-        tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout
-        takto staré dítě.
+        {{ $t("components.FindAppropriateSchool.faq_tooltip") }}
       </div>
     </div>
 
     <div v-if="appropriateSchool" class="flex flex-row info">
       <div class="flex left">
-        Věk odpovídá&nbsp;
+        {{ $t("components.FindAppropriateSchool.age_corresponds") }}&nbsp;
         <span class="font-body-bold">
           {{ appropriateSchool }}
         </span>
       </div>
 
-      <button class="right">
-        Informace
+      <button class="!hidden right">
+        {{ $t('findAppropriateSchool.information') }}
       </button>
     </div>
 
     <Button :disabled="appropriateSchool === null" @click="showSchool()">
-      {{ $t("findAppropriateSchool.searchButton") }}
+      {{ $t("components.FindAppropriateSchool.search_button") }}
     </Button>
   </div>
 </template>
@@ -99,7 +96,7 @@ export default {
       monthLabels: getMonthLabels(this.$i18n.locale),
       years: YEARS,
       selectedMonth: '',
-      selectedYear: -1,
+      selectedYear: '',
     };
   },
   computed: {

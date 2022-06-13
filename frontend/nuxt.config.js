@@ -18,7 +18,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' },
+      // { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' }, // TODO: If needed replace with a proper build strategy instead of requesting it from some remote service
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' },
     ],
   },
@@ -102,7 +102,7 @@ export default {
 
   publicRuntimeConfig: {
     umapaUrl: 'https://www.umapa.eu/embed-pro',
-    umapaDefaultSearchParams: 'fcat=25972,p0pw,1yll&_from=mistoveskole',
+    umapaDefaultSearchParams: 'attr54492=sojw,p0pw,1yll&fcat=25972&_from=mistoveskole',
     mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search',
   },
 };
