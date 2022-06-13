@@ -71,7 +71,7 @@
         </span>
       </div>
 
-      <button class="right">
+      <button class="!hidden right">
         Informace
       </button>
     </div>
