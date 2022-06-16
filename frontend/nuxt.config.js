@@ -75,19 +75,19 @@ export default {
   i18n: {
     locales: [
       {
-        code: 'cs-CZ',
+        code: 'cs',
         name: 'Czech',
         file: 'cz.json',
       },
       {
-        code: 'uk-UA',
+        code: 'uk',
         name: 'Український',
         file: 'ua.json',
       },
     ],
-    defaultLocale: 'cs-CZ',
+    defaultLocale: 'uk',
     vueI18n: {
-      fallbackLocale: 'cs-CZ',
+      fallbackLocale: 'uk',
     },
     langDir: '~/locales/',
   },

@@ -41,6 +41,7 @@ export const state = () => ({
   defaultSearchParams: [],
   fullTextSearch: null,
   age: null,
+  language: 'uk',
 });
 
 export const mutations = {
@@ -55,6 +56,9 @@ export const mutations = {
   },
   setAge(state, newAge) {
     state.age = newAge;
+  },
+  language(state, newLanguage) {
+    state.language = newLanguage;
   },
 };
 
@@ -82,6 +86,10 @@ export const getters = {
 
     if (typeof state.fullTextSearch === 'string' && state.fullTextSearch.length) {
       url.pathname = new URL(state.baseUrl).pathname + '/' + encodeURIComponent(state.fullTextSearch);
+    }
+
+    if (typeof state.language === 'string' && state.language.length) {
+      url.searchParams.set('lang', state.language);
     }
 
     return url;

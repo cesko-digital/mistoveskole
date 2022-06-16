@@ -1,8 +1,8 @@
 <template>
   <div class="lang-switch">
-    <nuxt-link key="ua" :to="switchLocalePath('uk-UA')">
-      <button class="rounded-l-inner" @click="$i18n.setLocale('uk-UA')">
-        <img src="~/assets/images/flags/ua.svg" class="w-s h-s">
+    <nuxt-link key="ua" :to="switchLocalePath('uk')">
+      <button class="rounded-l-inner" @click="setLocale('uk')">
+        <img src="~/assets/images/flags/ua.svg" class="w-s h-s" />
 
         <span class="hidden md:block">
           {{ $t("lang.ua") }}
@@ -10,9 +10,9 @@
       </button>
     </nuxt-link>
 
-    <nuxt-link key="cz" :to="switchLocalePath('cs-CZ')">
-      <button class="rounded-r-inner" @click="$i18n.setLocale('cs-CZ')">
-        <img src="~/assets/images/flags/cz.svg" class="w-s h-s">
+    <nuxt-link key="cz" :to="switchLocalePath('cs')">
+      <button class="rounded-r-inner" @click="setLocale('cs')">
+        <img src="~/assets/images/flags/cz.svg" class="w-s h-s" />
 
         <span class="hidden md:block">
           {{ $t("lang.cz") }}
@@ -21,6 +21,23 @@
     </nuxt-link>
   </div>
 </template>
+
+<script>
+import { mapMutations } from 'vuex';
+
+export default {
+  methods: {
+    ...mapMutations({
+      setMapLanguage: 'map/language',
+    }),
+
+    setLocale(newLocale) {
+      this.$i18n.setLocale(newLocale);
+      this.setMapLanguage(newLocale);
+    },
+  },
+};
+</script>
 
 <style scoped>
 .lang-switch {
