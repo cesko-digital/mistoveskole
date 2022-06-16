@@ -13,6 +13,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: description },
       { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: title },
+      { hid: 'og:site_name', name: 'og:site_name', content: title },
       { hid: 'og:description', name: 'og:description', content: description },
       // { hid: 'og:image', name: 'og:description', content: '' }, // TODO: Add OG image
       { name: 'format-detection', content: 'telephone=no' },
