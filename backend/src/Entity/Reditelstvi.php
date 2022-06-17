@@ -121,6 +121,20 @@ class Reditelstvi
      */
     private $obec;
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="gps_lon", type="decimal", precision=10, scale=6, nullable=true)
+     */
+    private $gpsLon;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="gps_lat", type="decimal", precision=10, scale=6, nullable=true)
+     */
+    private $gpsLat;
+
     public function __construct()
     {
         $this->zarizeni = new ArrayCollection();
@@ -310,4 +324,25 @@ class Reditelstvi
         return $this;
     }
 
+    public function getGpsLat(): ?string
+    {
+        return $this->gpsLat;
+    }
+
+    public function setGpsLat(?string $lat): self
+    {
+        $this->gpsLat = $lat;
+        return $this;
+    }
+
+    public function getGpsLon(): ?string
+    {
+        return $this->gpsLon;
+    }
+
+    public function setGpsLon(?string $lon): self
+    {
+        $this->gpsLon = $lon;
+        return $this;
+    }
 }

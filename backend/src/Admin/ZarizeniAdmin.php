@@ -198,6 +198,14 @@ class ZarizeniAdmin extends AbstractAdmin
             ->add('mistoRuianKod', null, array(
                 'disabled' => true,
             ))
+            ->add('gpsLat', Type\NumberType::class, array(
+                'scale' => 6,
+                'required' => false,
+            ))
+            ->add('gpsLon', Type\NumberType::class, array(
+                'scale' => 6,
+                'required' => false,
+            ))
             ->end()
             ->with('Poznámky zařízení', array('class' => 'col-md-12'))
             ->add('poznamkaCz')

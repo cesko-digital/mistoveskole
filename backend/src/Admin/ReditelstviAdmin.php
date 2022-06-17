@@ -86,17 +86,31 @@ class ReditelstviAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
+            ->with('Info', array('class' => 'col-md-6'))
             ->add('redIzo')
             ->add('redPlnyNazev')
-            ->add('redAdresa1')
-            ->add('redAdresa2')
-            ->add('redAdresa3')
-            ->add('redRuianKod')
+            ->add('datovaSchranka')
+            ->add('idZrizovatel')
+            ->end()
+            ->with('Adresa', array('class' => 'col-md-6'))
             ->add('idOkres')
             ->add('idOrp')
             ->add('obec')
-            ->add('datovaSchranka')
-            ->add('idZrizovatel')
+            ->add('redAdresa1')
+            ->add('redAdresa2')
+            ->add('redAdresa3')
+            ->add('redRuianKod', null, array(
+                'disabled' => true,
+            ))
+            ->add('gpsLat', Type\NumberType::class, array(
+                'scale' => 6,
+                'required' => false,
+            ))
+            ->add('gpsLon', Type\NumberType::class, array(
+                'scale' => 6,
+                'required' => false,
+            ))
+            ->end()
         ;
     }
 }
