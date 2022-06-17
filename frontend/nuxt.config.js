@@ -13,6 +13,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: description },
       { hid: 'og:title', name: 'og:title', content: title },
+      { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: title },
+      { hid: 'og:site_name', name: 'og:site_name', content: title },
       { hid: 'og:description', name: 'og:description', content: description },
       // { hid: 'og:image', name: 'og:description', content: '' }, // TODO: Add OG image
       { name: 'format-detection', content: 'telephone=no' },
@@ -75,19 +77,19 @@ export default {
   i18n: {
     locales: [
       {
-        code: 'cs-CZ',
+        code: 'cs',
         name: 'Czech',
         file: 'cz.json',
       },
       {
-        code: 'uk-UA',
+        code: 'uk',
         name: 'Український',
         file: 'ua.json',
       },
     ],
-    defaultLocale: 'cs-CZ',
+    defaultLocale: 'uk',
     vueI18n: {
-      fallbackLocale: 'cs-CZ',
+      fallbackLocale: 'uk',
     },
     langDir: '~/locales/',
   },
@@ -102,7 +104,7 @@ export default {
 
   publicRuntimeConfig: {
     umapaUrl: 'https://www.umapa.eu/embed-pro',
-    umapaDefaultSearchParams: 'attr54492=sojw,p0pw,1yll&fcat=25972&_from=mistoveskole',
+    umapaDefaultSearchParams: 'attr54492=sojw,p0pw,1yll,d9o1&fcat=25972&_from=mistoveskole',
     mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search',
   },
 };

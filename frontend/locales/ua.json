@@ -2,48 +2,48 @@
   "components": {
     "FindAppropriateSchool": {
       "title": "Знайдіть відповідну школу",
-      "set_birth_date": "Введіть місяць і рік народження дитини",
-      "search_button": "Показати школи з вільними містамі",
-      "month": "Měsíc",
-      "year": "Rok",
-      "why_do_we_want_to_know_that": "Proč to chceme vědět?",
-      "faq_tooltip": "Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.",
-      "age_corresponds": "Věk odpovídá",
-      "information": "Informace"
+      "set_birth_date": "Введіть місяць та рік народження дитини",
+      "search_button": "Показати школи з вільними місцями",
+      "month": "Місяць",
+      "year": "Рік",
+      "why_do_we_want_to_know_that": "Чому це хочемо знати?",
+      "faq_tooltip": "Система освіти в Чехії дещо інакша, ніж в Україні. Простіше кажучи, діти б мали ходити до школи з дітьми того ж віку. Завдяки цій інформації вам відразу покажемо школи, які мають можливість прийняти дитину цього віку.",
+      "age_corresponds": "Вік відповідає",
+      "information": "Інформація"
     },
     "InfoText": {
-      "text": "Навчальні заклади в Чехії та їх волни міста в одному місці"
+      "text": "Навчальні заклади в Чехії та їх вільні місця в одному місці"
     },
     "PageHeader": {
       "Menu": {
-        "school_map": "Карта шкіл",
-        "about_schools": "О школах в ЧР",
+        "school_map": "Мапа шкіл",
+        "about_schools": "Про школи в ЧР",
         "statistics": "Статистика",
-        "about_app": "О Місце в школе"
+        "about_app": "Про Місце в школі"
       }
     },
     "PageFooter": {
       "portal_for_arranging_offers_of_help": "Майданчик з пропозиціями допомоги",
       "independent_information_guide": "Незалежний інформаційний довідник",
-      "we_are_changing_the_Czechia_for_the_better_through_ones_and_zeros": "Через одиниці і нулі змінюємо Чехію на краще"
+      "we_are_changing_the_Czechia_for_the_better_through_ones_and_zeros": "Через одиниці та нулі змінюємо Чехію на краще"
     },
     "SchoolSelect": {
-      "more_than_20_search_results_found_please_enter_a_more_specific_search_term": "Nalezeno více než 20 výsledků vyhledávání, uveďte prosím konkrétnější hledaný výraz."
+      "more_than_20_search_results_found_please_enter_a_more_specific_search_term": "Знайдено більше ніж 20 результатів пошуку, введіть будь ласка запит конкретніше"
     },
     "Sidebar": {
-      "how_the_Czech_education_system_works": "Jak funguje český vzdělávací systém",
-      "how_to_enroll_a_child_in_school": "Jak přihlásit dítě do školy",
-      "more_information": "Další informace"
+      "how_the_Czech_education_system_works": "Як працює чеська система освіти",
+      "how_to_enroll_a_child_in_school": "Як записати дитину до школи",
+      "more_information": "Більше інформації"
     }
   },
   "pages": {
     "index": {
-      "find_a_place": "Najít místo",
-      "school_map": "Mapa škol"
+      "find_a_place": "Знайти місце",
+      "school_map": "Мапа шкіл"
     }
   },
   "lang": {
-    "ua": "Український",
-    "cz": "Český"
+    "ua": "Українська",
+    "cz": "Česky"
   }
 }
