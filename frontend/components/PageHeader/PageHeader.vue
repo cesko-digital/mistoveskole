@@ -2,7 +2,9 @@
   <nav>
     <div class="flex flex-row items-center justify-between h-full pr-m md:pr-l">
       <div class="logo-wrapper">
-        <img src="~/assets/images/logo.svg">
+        <NuxtLink :to="localePath('/')">
+          <img src="~/assets/images/logo.svg">
+        </NuxtLink>
       </div>
 
       <Menu class="hidden xl:flex" />
