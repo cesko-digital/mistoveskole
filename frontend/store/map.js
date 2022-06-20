@@ -41,7 +41,7 @@ export const state = () => ({
   defaultSearchParams: [],
   fullTextSearch: null,
   age: null,
-  language: 'uk',
+  locale: 'uk',
 });
 
 export const mutations = {
@@ -57,8 +57,8 @@ export const mutations = {
   setAge(state, newAge) {
     state.age = newAge;
   },
-  language(state, newLanguage) {
-    state.language = newLanguage;
+  setLocale(state, newLocale) {
+    state.locale = newLocale;
   },
 };
 
@@ -88,8 +88,8 @@ export const getters = {
       url.pathname = new URL(state.baseUrl).pathname + '/' + encodeURIComponent(state.fullTextSearch);
     }
 
-    if (typeof state.language === 'string' && state.language.length) {
-      url.searchParams.set('lang', state.language);
+    if (typeof state.locale === 'string' && state.locale.length) {
+      url.searchParams.set('lang', state.locale);
     }
 
     return url;
@@ -97,8 +97,9 @@ export const getters = {
 };
 
 export const actions = {
-  nuxtServerInit(context, { $config }) {
+  nuxtServerInit(context, { $config, i18n }) {
     context.commit('setBaseUrl', $config.umapaUrl);
     context.commit('setDefaultSearchParams', [...(new URLSearchParams($config.umapaDefaultSearchParams).entries())]);
+    context.commit('setLocale', i18n.locale);
   },
 };

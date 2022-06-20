@@ -28,12 +28,12 @@ import { mapMutations } from 'vuex';
 export default {
   methods: {
     ...mapMutations({
-      setMapLanguage: 'map/language',
+      setMapLocale: 'map/setLocale',
     }),
 
     setLocale(newLocale) {
       this.$i18n.setLocale(newLocale);
-      this.setMapLanguage(newLocale);
+      this.setMapLocale(newLocale);
     },
   },
 };
