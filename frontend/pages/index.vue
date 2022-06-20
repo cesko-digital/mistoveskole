@@ -1,5 +1,5 @@
 <template>
-  <MatchMedia class="flex flex-col grow" v-slot="{ matches }" query="(max-width: 760px)">
+  <MatchMedia v-slot="{ matches }" class="flex flex-col grow" query="(max-width: 760px)">
     <InfoText class="px-m py-s md:hidden" />
 
     <div class="flex flex-col grow">
