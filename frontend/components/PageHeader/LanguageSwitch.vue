@@ -2,7 +2,7 @@
   <div class="lang-switch">
     <nuxt-link key="ua" :to="switchLocalePath('uk')">
       <button class="rounded-l-inner" @click="setLocale('uk')">
-        <img src="~/assets/images/flags/ua.svg" class="w-s h-s" />
+        <img src="~/assets/images/flags/ua.svg" class="w-s h-s">
 
         <span class="hidden md:block">
           {{ $t("lang.ua") }}
@@ -12,7 +12,7 @@
 
     <nuxt-link key="cz" :to="switchLocalePath('cs')">
       <button class="rounded-r-inner" @click="setLocale('cs')">
-        <img src="~/assets/images/flags/cz.svg" class="w-s h-s" />
+        <img src="~/assets/images/flags/cz.svg" class="w-s h-s">
 
         <span class="hidden md:block">
           {{ $t("lang.cz") }}
