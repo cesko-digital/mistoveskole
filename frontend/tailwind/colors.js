@@ -54,6 +54,7 @@ module.exports = {
   danger,
 
   default: {
+    // style-guide
     sg: {
       primary,
       neutral,
