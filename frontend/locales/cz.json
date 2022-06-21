@@ -9,7 +9,28 @@
       "why_do_we_want_to_know_that": "Proč to chceme vědět?",
       "faq_tooltip": "Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.",
       "age_corresponds": "Věk odpovídá",
-      "information": "Informace"
+      "information": "Informace",
+      "appropriate_school_for_age_message": {
+        "0": "Dětská skupina (od 6 měsíců věku)",
+        "1": "Dětská skupina",
+        "2": "Dětská skupina, některé MŠ (2 roky)",
+        "3": "MŠ (3 roky)",
+        "4": "MŠ (4 roky)",
+        "5": "MŠ (5 let, povinné předškolní)",
+        "6": "1. třída ZŠ",
+        "7": "2. třída ZŠ",
+        "8": "3. třída ZŠ",
+        "9": "4. třída ZŠ",
+        "10": "5. třída ZŠ",
+        "11": "6. třída ZŠ",
+        "12": "7. třída ZŠ",
+        "13": "8. třída ZŠ",
+        "14": "9. třída ZŠ",
+        "15": "1. třída SŠ",
+        "16": "2. třída SŠ",
+        "17": "3. třída SŠ",
+        "18": "4. třída SŠ"
+      }
     },
     "InfoText": {
       "text": "Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě"

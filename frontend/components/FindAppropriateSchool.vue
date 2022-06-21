@@ -107,20 +107,14 @@ export default {
       return CURRENT_YEAR - this.selectedYear - this.isNextYear;
     },
     appropriateSchool() {
-      if (this.studentAge < 2) {
-        return null;
-      }
+      const messages = this.$t('components.FindAppropriateSchool.appropriate_school_for_age_message');
 
-      if (this.studentAge < 6) {
-        return 'MŠ';
-      }
+      if (this.studentAge < Object.keys(messages).length) {
+        const message = messages[this.studentAge];
 
-      if (this.studentAge < 15) {
-        return this.studentAge - 5 + '. třída ZŠ';
-      }
-
-      if (this.studentAge < 19) {
-        return this.studentAge - 14 + '. třída SŠ';
+        if (typeof message === 'string' && message.length) {
+          return message;
+        }
       }
 
       return null;
