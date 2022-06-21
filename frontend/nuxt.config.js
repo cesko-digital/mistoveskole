@@ -1,113 +1,98 @@
+const TITLE = 'Místo ve škole';
+const DESCRIPTION =
+  'Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxt2js.dev/config-head
-  head() {
-    const title = 'Místo ve škole';
-    const description =
-      'Vzdělávací zařízení v České republice a jejich volné kapacity na jednom místě';
-    const head = {
-      title,
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: description },
-        { hid: 'og:title', name: 'og:title', content: title },
-        {
-          hid: 'apple-mobile-web-app-title',
-          name: 'apple-mobile-web-app-title',
-          content: title,
-        },
-        { hid: 'og:site_name', name: 'og:site_name', content: title },
-        { hid: 'og:description', name: 'og:description', content: description },
-        // { hid: 'og:image', name: 'og:description', content: '' }, // TODO: Add OG image
-        { name: 'format-detection', content: 'telephone=no' },
-        {
-          name: 'apple-mobile-web-app-title',
-          content: 'M&iacute;sto ve &scaron;kole',
-        },
-        {
-          name: 'application-name',
-          content: 'M&iacute;sto ve &scaron;kole',
-        },
-        {
-          name: 'msapplication-TileColor',
-          content: '#0D97FB',
-        },
-        {
-          name: 'msapplication-config',
-          content: '/browserconfig.xml',
-        },
-        {
-          name: 'theme-color',
-          content: '#ffffff',
-        },
-      ],
-      link: [
-        {
-          rel: 'apple-touch-icon',
-          sizes: '180x180',
-          href: '/images/icons/apple-touch-icon.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '32x32',
-          href: '/images/icons/favicon-32x32.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '194x194',
-          href: '/images/icons/favicon-194x194.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '192x192',
-          href: '/images/icons/android-chrome-192x192.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '16x16',
-          href: '/images/icons/favicon-16x16.png',
-        },
-        {
-          rel: 'manifest',
-          href: '/site.webmanifest',
-        },
-        {
-          rel: 'mask-icon',
-          href: '/images/icons/safari-pinned-tab.svg',
-          color: '#5bbad5',
-        },
-        {
-          rel: 'shortcut icon',
-          href: '/favicon.ico',
-        },
-        // { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' }, // TODO: If needed replace with a proper build strategy instead of requesting it from some remote service
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp',
-        },
-      ],
-    };
-
-    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
-    for (const key in i18nHead) {
-      const i18nHeadEntry = i18nHead[key];
-      if (Array.isArray(i18nHeadEntry)) {
-        if (!head[key]) {
-          head[key] = [];
-        }
-
-        head[key] = head[key].concat(i18nHeadEntry);
-      }
-    }
-
-    return head;
+  head: {
+    title: TITLE,
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: DESCRIPTION },
+      { hid: 'og:title', name: 'og:title', content: TITLE },
+      {
+        hid: 'apple-mobile-web-app-title',
+        name: 'apple-mobile-web-app-title',
+        content: TITLE,
+      },
+      { hid: 'og:site_name', name: 'og:site_name', content: TITLE },
+      { hid: 'og:description', name: 'og:description', content: DESCRIPTION },
+      // { hid: 'og:image', name: 'og:description', content: '' }, // TODO: Add OG image
+      { name: 'format-detection', content: 'telephone=no' },
+      {
+        name: 'apple-mobile-web-app-title',
+        content: 'M&iacute;sto ve &scaron;kole',
+      },
+      {
+        name: 'application-name',
+        content: 'M&iacute;sto ve &scaron;kole',
+      },
+      {
+        name: 'msapplication-TileColor',
+        content: '#0D97FB',
+      },
+      {
+        name: 'msapplication-config',
+        content: '/browserconfig.xml',
+      },
+      {
+        name: 'theme-color',
+        content: '#ffffff',
+      },
+    ],
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/images/icons/apple-touch-icon.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/images/icons/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '194x194',
+        href: '/images/icons/favicon-194x194.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/images/icons/android-chrome-192x192.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/images/icons/favicon-16x16.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/site.webmanifest',
+      },
+      {
+        rel: 'mask-icon',
+        href: '/images/icons/safari-pinned-tab.svg',
+        color: '#5bbad5',
+      },
+      {
+        rel: 'shortcut icon',
+        href: '/favicon.ico',
+      },
+      // { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' }, // TODO: If needed replace with a proper build strategy instead of requesting it from some remote service
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
