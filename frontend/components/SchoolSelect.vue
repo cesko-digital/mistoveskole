@@ -1,10 +1,7 @@
 <template>
   <div data-app class="flex flex-col">
-    <div v-if="overflowWarning">
-      <v-icon color="orange">
-        mdi-alert-circle-outline
-      </v-icon>
-
+    <div v-if="overflowWarning" class="flex items-center">
+      <i class="warning-icon" />
       {{ $t('components.SchoolSelect.more_than_20_search_results_found_please_enter_a_more_specific_search_term') }}
     </div>
 
@@ -25,10 +22,13 @@
       item-text="name"
       item-value="link"
       placeholder="Hledat místo, kraj"
-      prepend-inner-icon="mdi-magnify"
       return-object
       @change="onModelChanged"
-    />
+    >
+      <template #prepend-inner>
+        <img src="~/assets/images/icons/search.svg">
+      </template>
+    </v-autocomplete>
   </div>
 </template>
 
@@ -89,6 +89,14 @@ export default {
 </script>
 
 <style>
+.v-input__prepend-inner {
+  padding: 0 0.5em;
+}
+
+.v-text-field.v-input--dense:not(.v-text-field--outlined) input {
+    padding: 0;
+}
+
 .v-autocomplete__content.v-menu__content {
   position: relative;
   top: -20px !important;
@@ -105,5 +113,16 @@ export default {
 
 .v-text-field--rounded > .v-input__control > .v-input__slot {
     padding: 0 4px;
+}
+
+.warning-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 0.5em;
+  mask: url(~/assets/images/icons/warning.svg) no-repeat 50% 50%;
+  mask-size: cover;
+  background-color: orange;
+  flex-shrink: 0;
 }
 </style>
