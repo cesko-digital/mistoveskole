@@ -15,10 +15,7 @@
             role="presentation"
             @click="selectTab(0)"
           >
-            <i class="text-base material-icons-outlined">
-              home
-            </i>
-
+            <img :class="{ 'inactive-tab-icon': activeTabIndex !== 0 }" src="~/assets/images/icons/home.svg">
             <button
               class="inline-block"
               type="button"
@@ -36,10 +33,7 @@
             role="presentation"
             @click="selectTab(1)"
           >
-            <i class="text-base material-icons-outlined">
-              map
-            </i>
-
+            <img :class="{ 'inactive-tab-icon': activeTabIndex !== 1 }" src="~/assets/images/icons/map.svg">
             <button
               class="inline-block"
               type="button"
@@ -111,8 +105,8 @@ export default {
 </script>
 
 <style scoped>
-.tmp-text-gray {
-  color: gray;
+.inactive-tab-icon {
+  opacity: 0.5;
 }
 
 .sidebar {
