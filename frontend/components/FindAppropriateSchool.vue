@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .box {
-  @apply flex flex-col space-y-s bg-muted p-l text-center md:text-left;
+  @apply flex flex-col space-y-s bg-muted py-xl px-m md:p-l text-center md:text-left;
 }
 
 .title {
