@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 button {
-  @apply flex flex-row items-center justify-center gap-s py-s px-l bg-btn-primary text-on-color leading-overline font-body-bold text-body-bold rounded-outer tracking-body-bold text-center;
+  @apply flex flex-row items-center justify-center gap-s py-s px-m bg-btn-primary text-on-color leading-overline font-body-bold text-body-bold rounded-outer tracking-body-bold text-center;
 }
 button:hover {
   @apply bg-btn-primary-hover;
