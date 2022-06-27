@@ -114,6 +114,7 @@ export default {
     '@nuxtjs/tailwindcss',
     // https://github.com/nuxt-community/vuetify-module
     '@nuxtjs/vuetify',
+    '@nuxtjs/svg',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
