@@ -15,7 +15,8 @@
             role="presentation"
             @click="selectTab(0)"
           >
-            <img :class="{ 'inactive-tab-icon': activeTabIndex !== 0 }" src="~/assets/images/icons/home.svg">
+            <HomeIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 0 }" />
+
             <button
               class="inline-block"
               type="button"
@@ -33,7 +34,8 @@
             role="presentation"
             @click="selectTab(1)"
           >
-            <img :class="{ 'inactive-tab-icon': activeTabIndex !== 1 }" src="~/assets/images/icons/map.svg">
+            <MapIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 1 }" />
+
             <button
               class="inline-block"
               type="button"
@@ -75,9 +77,14 @@
 import { mapGetters } from 'vuex';
 import { MatchMedia } from 'vue-component-media-queries';
 
+import HomeIcon from '~/assets/images/icons/home.svg?inline';
+import MapIcon from '~/assets/images/icons/map.svg?inline';
+
 export default {
   components: {
     MatchMedia,
+    HomeIcon,
+    MapIcon,
   },
   data() {
     return {
@@ -105,10 +112,6 @@ export default {
 </script>
 
 <style scoped>
-.inactive-tab-icon {
-  opacity: 0.5;
-}
-
 .sidebar {
   @apply w-full max-w-[var(--sidebar-width)];
 }
@@ -120,6 +123,10 @@ export default {
 }
 
 .tabs-item {
-  @apply text fill-icon-muted flex grow items-center justify-center border-b-[3px] border-transparent space-x-xs text-overline font-overline tracking-overline leading-overline;
+  @apply text flex grow items-center justify-center border-b-[3px] border-transparent space-x-[10px] text-overline font-overline tracking-overline leading-overline;
+}
+
+.tabs-item button {
+  @apply uppercase py-[5px];
 }
 </style>
