@@ -48,31 +48,31 @@ export default {
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/images/icons/apple-touch-icon.png',
+        href: '/images/favicons/apple-touch-icon.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: '/images/icons/favicon-32x32.png',
+        href: '/images/favicons/favicon-32x32.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '194x194',
-        href: '/images/icons/favicon-194x194.png',
+        href: '/images/favicons/favicon-194x194.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '192x192',
-        href: '/images/icons/android-chrome-192x192.png',
+        href: '/images/favicons/android-chrome-192x192.png',
       },
       {
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: '/images/icons/favicon-16x16.png',
+        href: '/images/favicons/favicon-16x16.png',
       },
       {
         rel: 'manifest',
@@ -80,7 +80,7 @@ export default {
       },
       {
         rel: 'mask-icon',
-        href: '/images/icons/safari-pinned-tab.svg',
+        href: '/images/favicons/safari-pinned-tab.svg',
         color: '#5bbad5',
       },
       {
