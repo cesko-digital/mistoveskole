@@ -231,42 +231,11 @@ class ZarizeniAdmin extends AbstractAdmin
 
     protected function configureExportFields(): array
     {
-        // undocumented way of customize export headers, see e.g. https://stackoverflow.com/questions/34342811/can-header-labels-be-translated-in-sonata-admin-bundle-export-feature
+        // array key is undocumented way of customize export headers, see e.g. https://stackoverflow.com/questions/34342811/can-header-labels-be-translated-in-sonata-admin-bundle-export-feature
         // new idea, but not implemented https://github.com/sonata-project/SonataAdminBundle/issues/5854
-        $fieldsArray = array(
-            'id'                       => 'Id',
-            'reditelstvi.redPlnyNazev' => 'idReditelstvi.redPlnyNazev',
-            'reditelstvi.redZkracenyNazev' => 'idReditelstvi.redZkracenyNazev',
-            'reditelstvi.okres'        => 'idReditelstvi.idOkres.jmenoCz',
-            'reditelstvi.kraj'         => 'idReditelstvi.idOkres.idKraj.jmenoCz',
-            'reditelstvi.obec'         => 'idReditelstvi.obec',
-            'reditelstvi.redIzo'       => 'idReditelstvi.redIzo',
-            'izo'                      =>  'Izo',
-            'skolaPlnyNazev'           => 'SkolaPlnyNazev',
-            'typSkoly'                 => 'idSkolaTyp',
-            'jazykSkoly'               => 'idJazyk',
-//            'SkolaKapacita',
-//            'Aktivni',
-            'mistoAdresa1'             => 'MistoAdresa1',
-            'mistoAdresa2'             => 'MistoAdresa2',
-            'mistoAdresa3'             => 'MistoAdresa3',
-            'mistoRuianKod'            => 'MistoRuianKod',
-            'kontaktEmail1'            => 'KontaktEmail1',
-            'kontaktEmail2'            => 'KontaktEmail2',
-            'kontaktTelefon1'          => 'KontaktTelefon1',
-            'kontaktTelefon2'          => 'KontaktTelefon2',
-            'kontaktJmeno'             => 'KontaktJmeno',
-            'kontaktWww1'              => 'KontaktWww1',
-            'kontaktWww2'              => 'KontaktWww2',
-//            'KapacitaUkObsazenoCelkem',
-            'kapacitaVolno'            => 'KapacitaUkVolnoCelkem',
-            'poznamkaCz'               => 'PoznamkaCz',
-            'poznamkaUk'               => 'PoznamkaUk',
-            'volneTridy'               => 'VolneTridy',
-            'datumAktualizace'      => 'DatumAktualizaceString',
-        );
 
-        return $fieldsArray;
+        // see entity for export config
+        return $this->getNewInstance()->getExportConfig();
     }
 
     protected function loadVlastnostiChoices(): array

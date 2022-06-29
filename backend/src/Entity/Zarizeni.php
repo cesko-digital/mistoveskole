@@ -17,6 +17,37 @@ use Doctrine\Persistence\Event\LifecycleEventArgs;
  */
 class Zarizeni
 {
+    const ExportFields = array(
+            'id'                       => 'Id',
+            'reditelstvi'              => 'IdReditelstvi',
+            'izo'                      =>  'Izo',
+            'skolaPlnyNazev'           => 'SkolaPlnyNazev',
+            'typSkoly'                 => 'IdSkolaTyp',
+            'jazykSkoly'               => 'IdJazyk',
+//            'SkolaKapacita',
+//            'Aktivni',
+            'mistoAdresa1'             => 'MistoAdresa1',
+            'mistoAdresa2'             => 'MistoAdresa2',
+            'mistoAdresa3'             => 'MistoAdresa3',
+            'mistoRuianKod'            => 'MistoRuianKod',
+            'mistoGpsLat'              => 'GpsLat',
+            'mistoGpsLon'              => 'GpsLon',
+            'kontaktEmail1'            => 'KontaktEmail1',
+            'kontaktEmail2'            => 'KontaktEmail2',
+            'kontaktTelefon1'          => 'KontaktTelefon1',
+            'kontaktTelefon2'          => 'KontaktTelefon2',
+            'kontaktJmeno'             => 'KontaktJmeno',
+            'kontaktWww1'              => 'KontaktWww1',
+            'kontaktWww2'              => 'KontaktWww2',
+//            'KapacitaUkObsazenoCelkem',
+            'kapacitaVolno'            => 'KapacitaUkVolnoCelkem',
+            'poznamkaCz'               => 'PoznamkaCz',
+            'poznamkaUk'               => 'PoznamkaUk',
+            'volneTridy'               => 'VolneTridy',
+            'datumAktualizace'      => 'DatumAktualizaceString',
+            'hash'                     => 'ExportHash',
+    );
+
     /**
      * @var int
      *
@@ -731,6 +762,55 @@ class Zarizeni
         }
     }
 
+    /**
+     * @return string calculated hash of all exported fields to detect changes
+     */
+    public function getExportHash(): string
+    {
+        $value = '';
+        // calculate only exported fields
+        foreach (Zarizeni::ExportFields as $item) {
+            if ($item == 'ExportHash') {
+                continue; // prevent loop
+            } elseif ($item == 'IdReditelstvi') {
+                $value .= $this->getIdReditelstvi()->getExportHash();
+                continue;
+            } elseif ($item == 'VolneTridy') {
+                foreach ($this->getTridy() as $trida) {
+                    $value .= $trida->getExportHash();
+                }
+                continue;
+            }
+            $method = 'get'.$item;
+            $itemValue = $this->$method();
+            if (is_array($itemValue)) {
+                $value .= json_encode($itemValue);
+            } else {
+                $value .= $itemValue;
+            }
+        }
+        return substr(md5($value), 0, 16);
+    }
+
+    /**
+     * @return array fields config for sonata admin export action
+     */
+    public function getExportConfig(): array
+    {
+        $result = array();
+        foreach (Zarizeni::ExportFields as $key => $item) {
+            if ($item == 'IdReditelstvi') {
+                // no entity available during config export
+                foreach (Reditelstvi::ExportFields as $key2 => $item2) {
+                    $result[$key.'.'.$key2] = $item.'.'.$item2;
+                }
+                continue;
+            }
+            $result[$key] = $item;
+        }
+        return $result;
+    }
+
     protected function getValueSplit(?string $value, int $index): ?string
     {
         if ($value === null) {
@@ -745,4 +825,3 @@ class Zarizeni
         }
     }
 }
-

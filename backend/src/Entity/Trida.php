@@ -230,4 +230,17 @@ class Trida
 
         return $this;
     }
+
+    public function getExportHash(): string
+    {
+        return md5(
+            $this->getDatumCasAktualizace()->format('c')
+            .$this->getAktualniKapacitaUkVolno()
+            .$this->getAktualniKapacitaUkObsazeno()
+// now unused for export
+//            .$this->getPoznamkaUk()
+//            .$this->getPoznamkaUk()
+            .json_encode($this->getVlastnosti())
+        );
+    }
 }

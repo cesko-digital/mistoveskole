@@ -14,6 +14,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reditelstvi
 {
+    const ExportFields = array(
+            'redPlnyNazev' => 'RedPlnyNazev',
+            'redZkracenyNazev' => 'RedZkracenyNazev',
+            'okres'        => 'idOkres.jmenoCz',
+            'kraj'         => 'idOkres.idKraj.jmenoCz',
+            'obec'         => 'Obec',
+            'redIzo'       => 'RedIzo',
+    );
+
     /**
      * @var int
      *
@@ -344,5 +353,20 @@ class Reditelstvi
     {
         $this->gpsLon = $lon;
         return $this;
+    }
+
+    public function getExportHash(): string
+    {
+       $value = '';
+        // calculate only exported fields
+        foreach (Reditelstvi::ExportFields as $item) {
+            $method = 'get'.$item;
+            if (method_exists($this, $method)) { // skip relations
+                $value .= $this->$method();
+            } elseif ($method == 'idOkres.jmenoCz') {
+                $itemValue .= $this->getIdOkres->getId();
+            }
+        }
+        return md5($value);
     }
 }
