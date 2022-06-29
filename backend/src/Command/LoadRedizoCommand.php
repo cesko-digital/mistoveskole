@@ -39,6 +39,7 @@ class LoadRedizoCommand extends Command
     {
          $this
             ->addOption('only-contacts', null, InputOption::VALUE_NONE ,'update only zarizeni\'s contacts data', null)
+            ->addOption('only-gps', null, InputOption::VALUE_NONE ,'update only zarizeni\'s gps data', null)
         ;
     }
 
@@ -49,25 +50,29 @@ class LoadRedizoCommand extends Command
 
         //$io->success('You have a new command! Now make it your own! Pass --help to see your options.');
 
-        if ($input->hasOption('only-contacts')) {
+        if ($input->getOption('only-contacts')) {
             $io->info('updating only contact data');
         }
 
+        if ($input->getOption('only-gps')) {
+            $io->info('updating only gps data');
+        }
+
         $list = $this->redIzoService->getRedIzoList();
-        $counterNew = $counterUpdated = 0; 
+        $counterNew = $counterUpdated = 0;
         foreach ($list as $redIzo) {
             $detail = $this->redIzoService->getRedIzoDetail($redIzo);
             $entity = $this->em->getRepository(Entity\Reditelstvi::class)->findOneBy(array('redIzo' => $redIzo));
             if ($entity) {
-                $this->formatReditelstvi($entity, $detail, $input->hasOption('only-contacts'));
+                $this->formatReditelstvi($entity, $detail, $input->getOption('only-contacts'), $input->getOption('only-gps'));
                 $this->em->persist($entity);
                 $this->em->flush();
                 $io->info('updated existing '.$redIzo);
                 $counterUpdated++;
 //                if ($counterUpdated> 2000) break;
             } else {
-                if ($input->hasOption('only-contacts')) {
-                    $io->info('skipping '.$detail['name'].', only contacts update');
+                if ($input->getOption('only-contacts') || $input->getOption('only-gps')) {
+                    $io->info('skipping '.$detail['name'].', only contacts/gps update');
                     continue;
                 }
                 $entity = new Entity\Reditelstvi();
@@ -96,13 +101,13 @@ class LoadRedizoCommand extends Command
         return $result;
     }
 
-    protected function formatReditelstvi(Entity\Reditelstvi $entity, array $detail, bool $contactOnly):void
+    protected function formatReditelstvi(Entity\Reditelstvi $entity, array $detail, bool $contactOnly, bool $gpsOnly):void
     {
         $okresRepository = $this->em->getRepository(Entity\Okres::class);
         $zarizeniRepository = $this->em->getRepository(Entity\Zarizeni::class);
         $types = $this->loadSupportedTypes();
 
-        if (!$contactOnly) {
+        if (!$contactOnly && !$gpsOnly) {
             $entity->setRedIzo($detail['redIzo'])
                 ->setRedPlnyNazev($detail['name'])
                 ->setRedRuianKod($detail['address']['ruainCode'] ?? null)
@@ -113,6 +118,13 @@ class LoadRedizoCommand extends Command
                 ->setRedAdresa3($detail['address']['line3'])
             ;
         }
+        if (!$contactOnly) {
+            if (isset($detail['address'], $detail['address']['lat'], $detail['address']['lon'])) {
+                $entity->setGpsLon($detail['address']['lon'])
+                    ->setGpsLat($detail['address']['lat']);
+            }
+        }
+
         foreach ($detail['schools'] as $subDetail) {
             if (!array_key_exists($subDetail['type'], $types)) { // only whitelisted types
                 $this->io->info("skiping ".$subDetail['type']." ".$subDetail['name']."\n");
@@ -123,7 +135,7 @@ class LoadRedizoCommand extends Command
                 $zarizeni = new Entity\Zarizeni();
             }
             $contacts = $detail['contacts'] ?? [];
-            $this->formatZarizeni($zarizeni, $subDetail, $types, $contacts, $contactOnly);
+            $this->formatZarizeni($zarizeni, $subDetail, $types, $contacts, $contactOnly, $gpsOnly);
             if (!empty($zarizeni->getSkolaPlnyNazev())) {
                 $entity->addZarizeni($zarizeni);
                 $this->em->persist($zarizeni);
@@ -131,7 +143,7 @@ class LoadRedizoCommand extends Command
         }
     }
 
-    protected function formatZarizeni(Entity\Zarizeni $izo, array $data, array &$types, array &$contacts, $contactOnly): void
+    protected function formatZarizeni(Entity\Zarizeni $izo, array $data, array &$types, array &$contacts, bool $contactOnly, bool $gpsOnly): void
     {
         $jazykRepository = $this->em->getRepository(Entity\JazykVyuky::class);
         $jazyk = $jazykRepository->findOneBy(array('jmenoCz' => $data['language'])); // note: matching by full string
@@ -139,7 +151,7 @@ class LoadRedizoCommand extends Command
             $this->io->warning("skipping ".$data['name'].", izo ".$data['izo'].", missing language ".$data['language']);
             return;
         }
-        if (!$contactOnly) {
+        if (!$contactOnly && $gpsOnly) {
             $izo->setIzo($data['izo'])
                 ->setSkolaPlnyNazev($data['name'])
                 ->setSkolaKapacita($data['capacity'])
@@ -159,7 +171,7 @@ class LoadRedizoCommand extends Command
                 ;
             }
         }
-        if (count($contacts)>0) {
+        if (count($contacts)>0 && !$gpsOnly) {
             if (isset($contacts['emails'])) {
                 $value = count($contacts['emails']) > 0 ? implode(',', $contacts['emails']) : null;
                 $izo->setKontaktEmail($value);
@@ -179,6 +191,12 @@ class LoadRedizoCommand extends Command
                 }
                 $value = count($contacts['web']) > 0 ? implode(',', $contacts['web']) : null;
                 $izo->setKontaktWww($value);
+            }
+        }
+        if (!$contactOnly) {
+            if (isset($data['address'], $data['address']['lat'], $data['address']['lon'])) {
+                $izo->setGpsLon($data['address']['lon'])
+                    ->setGpsLat($data['address']['lat']);
             }
         }
     }
