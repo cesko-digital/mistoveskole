@@ -154,7 +154,7 @@ class LoadMsmtReportCommand extends Command
 
     protected function formatZarizeni(array $data, string $typZarizeni): ?Entity\Zarizeni
     {
-        if (isset($data['ODESLÁNO']) && ($dateTime = new \DateTime($data['ODESLÁNO'])) && $data['ODESLÁNO'] < '2022-04-07') {
+        if (isset($data['ODESLÁNO']) && ($dateTime = new \DateTime($data['ODESLÁNO'])) && (new \DateTime($data['ODESLÁNO'])) < (new \DateTime('2022-04-07'))) {
             $this->io->info(static::NAME.': SKIPPING update of '.$data['NÁZEV ZKRÁCENĚ'].', before 2022-04-07');
             return null;
         }
@@ -267,6 +267,8 @@ class LoadMsmtReportCommand extends Command
             ->setDatovaSchranka($data['DATOVKA'])
             ->setObec($data['OBEC'])
             ->setRedZkracenyNazev($data['NÁZEV ZKRÁCENĚ'])
+        ;
+        $zarizeni
             ->setAktivni(true)
         ;
         $this->em->persist($zarizeni);
