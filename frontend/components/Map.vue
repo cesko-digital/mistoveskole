@@ -14,16 +14,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  props: {
-    age: {
-      type: Number,
-      default: 1,
-    },
-    link: {
-      type: String,
-      default: null,
-    },
-  },
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
