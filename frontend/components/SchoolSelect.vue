@@ -48,19 +48,22 @@ export default {
   watch: {
     search(val) {
       this.isLoading = true;
+      if (!val) {
+        return;
+      }
       if (this.model && val === this.model.name) {
         return;
       }
       fetch(`${this.$config.mapoticUrl}/?q=${val}&categories_ids=25972`)
         .then((res) => res.json())
         .then((res) => {
-          this.overflowWarning = res.results.pois.length > 20;
-          this.entries = res.results.pois.slice(0, 20).map((p) => {
+          this.overflowWarning = res.results.places.length > 20;
+          this.entries = res.results.places.slice(0, 20).map((p) => {
             return {
-              name: p.name,
-              link: `${p.id}-${p.slug}`,
-              // name: p.description,
-              // link: p.place_id,
+            //  name: p.name,
+            //  link: `${p.id}-${p.slug}`,
+              name: p.description,
+              link: p.place_id,
             };
           });
         })
@@ -78,6 +81,7 @@ export default {
     onModelChanged(val) {
       this.overflowWarning = false;
       const link = val != null ? val.link : null;
+      console.log(link);
       this.mapSetFullTextSearch(link);
     },
     schoolFilter(item, queryText, itemText) {

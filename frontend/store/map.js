@@ -85,7 +85,7 @@ export const getters = {
     }
 
     if (typeof state.fullTextSearch === 'string' && state.fullTextSearch.length) {
-      url.pathname = new URL(state.baseUrl).pathname + '/' + encodeURIComponent(state.fullTextSearch);
+      url.pathname = new URL(state.baseUrl).pathname + '/places/' + encodeURIComponent(state.fullTextSearch);
     }
 
     if (typeof state.locale === 'string' && state.locale.length) {
