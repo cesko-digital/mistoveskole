@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div>
     <div class="!hidden collapse">
       <svg
         width="8"
