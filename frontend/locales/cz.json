@@ -61,6 +61,14 @@
     "index": {
       "find_a_place": "Najít místo",
       "school_map": "Mapa škol"
+    },
+    "how-the-czech-education-system-works": {
+      "Info_in_cz": "Informace v češtině",
+      "Info_in_ua": "Informace v ukrajinštině",
+      "Info_about_school": "Informace o mateřských školách (2-5 let), základních školách (6-15 let) a středních školách (16-19 let) v ČR",
+      "Education_comparison": "Srovnání českého a ukrajinského vzdělávacího systému",
+      "FAQ": "FAQ o přijímání do českých škol",
+      "Info_hi_school": "Informace o studiu na vysokých školách v ČR a o možnostech získání stipendia"
     }
   },
   "lang": {
