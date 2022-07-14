@@ -17,7 +17,7 @@
         <LanguageSwitch class="md:order-2 md:justify-end md:grow" />
       </div>
 
-      <img src="~/assets/images/icons/menu.svg" @click="toggleMenu()" class="cursor-pointer xl:hidden"/>
+      <img src="~/assets/images/icons/menu.svg" class="cursor-pointer xl:hidden" @click="toggleMenu()"></img>
     </div>
 
     <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid lg:hidden border-default" @menuSelected="toggleMenu()" />

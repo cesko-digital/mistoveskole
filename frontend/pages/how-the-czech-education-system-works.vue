@@ -38,12 +38,12 @@
 <style scoped>
 
 .info-text {
-  @apply w-full max-w-[60vw];
+  @apply w-full ml-[var(--sidebar-width)] p-l pl-0;
 }
 
 @media screen and (max-width: theme("screens.md")) {
   .info-text {
-    @apply max-w-full;
+   @apply max-w-full ml-0 p-m;
   }
 }
 
