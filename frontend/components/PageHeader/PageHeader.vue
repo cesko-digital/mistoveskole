@@ -25,7 +25,7 @@
       </i>
     </div>
 
-    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid lg:hidden border-default" />
+    <Menu v-if="menuOpen" @menuSelected="toggleMenu()" class="z-10 bg-white border-b border-solid lg:hidden border-default" />
   </nav>
 </template>
 

@@ -1,25 +1,25 @@
 <template>
   <div class="menu">
     <ul>
-      <li>
+      <li @click="$emit('menuSelected')">
         <NuxtLink :to="localePath('/')">
           {{ $t('components.PageHeader.Menu.school_map') }}
         </NuxtLink>
       </li>
 
-      <li class="hidden">
+      <li @click="$emit('menuSelected')" class="hidden">
         <NuxtLink :to="localePath('/how-the-czech-education-system-works')">
           {{ $t('components.PageHeader.Menu.about_schools') }}
         </NuxtLink>
       </li>
 
-      <li class="hidden">
+      <li @click="$emit('menuSelected')" class="hidden">
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('components.PageHeader.Menu.statistics') }}
         </NuxtLink>
       </li>
 
-      <li>
+      <li @click="$emit('menuSelected')">
         <NuxtLink :to="localePath('/about-app')">
           {{ $t('components.PageHeader.Menu.about_app') }}
         </NuxtLink>
