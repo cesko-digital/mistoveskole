@@ -89,6 +89,13 @@ export default {
       },
       // { rel: 'stylesheet', href: 'https://unpkg.com/vue-easytable/libs/theme-default/index.css' }, // TODO: If needed replace with a proper build strategy instead of requesting it from some remote service
     ],
+    script: [
+      {
+        defer: true,
+        'data-domain': 'mistoveskole.cz',
+        src: 'https://plausible.io/js/plausible.js',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
