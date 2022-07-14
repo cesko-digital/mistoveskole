@@ -9,11 +9,11 @@
     </p>
     <p>
       Data o kapacitách škol sbírá a poskytuje <a href="https://www.msmt.cz/" target="_blank">Ministerstvo školství a mládeže ČR </a>,
-      případnou aktualizaci volných kapacit na vaší škole zadejte <a href="https://www.edu.cz/dotaznik-k-valce-na-ukrajine-kapacity-materskych-a-zakladnich-skol/" target="_blank">do dotazníku MŠMT</a>.
+      případnou aktualizaci volných kapacit na vaší škole zadejte <a href="https://www.edu.cz/2-dotaznik-k-valecnemu-konfliktu-na-ukrajine-kapacity-materskych-a-zakladnich-skol/" target="_blank">do dotazníku MŠMT</a>.
     </p>
     <p>
       Pokud máte zájem zapojit se do tvorby tohoto webu, přidejte se do <a href="https://cesko.digital/join" target="_blank">Slacku Česko.Digital</a>,
-      nápady na rozšiřování služby můžete posílat na <a href="mistoveskole@cesko.digital" target="_blank">mistoveskole@cesko.digital</a>.
+      nápady na rozšiřování služby můžete posílat na <a href="mailto:mistoveskole@cesko.digital" target="_blank">mistoveskole@cesko.digital</a>.
     </p>
   </div>
 </template>
