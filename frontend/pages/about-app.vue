@@ -1,5 +1,6 @@
 <template>
   <div class="container prose about">
+    <h4>O místě ve škole</h4>
     <p>
       Web mistoveskole.cz vznikl z iniciativy <a href="https://pedf.cuni.cz/" target="_blank">Pedagogické fakulty Univerzity Karlovy</a>,
       vytvořili a provozují jej dobrovolníci z komunity expertních dobrovolníků z <a href="https://cesko.digital/" target="_blank">Česko.digital</a>

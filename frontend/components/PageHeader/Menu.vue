@@ -7,13 +7,13 @@
         </NuxtLink>
       </li>
 
-      <li @click="$emit('menuSelected')" class="hidden">
+      <li @click="$emit('menuSelected')">
         <NuxtLink :to="localePath('/how-the-czech-education-system-works')">
           {{ $t('components.PageHeader.Menu.about_schools') }}
         </NuxtLink>
       </li>
 
-      <li @click="$emit('menuSelected')" class="hidden">
+      <li class="hidden" @click="$emit('menuSelected')">
         <NuxtLink :to="localePath('/in-development')">
           {{ $t('components.PageHeader.Menu.statistics') }}
         </NuxtLink>

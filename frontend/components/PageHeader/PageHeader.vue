@@ -17,15 +17,10 @@
         <LanguageSwitch class="md:order-2 md:justify-end md:grow" />
       </div>
 
-      <i
-        class="text-lg cursor-pointer material-icons-outlined xl:hidden"
-        @click="toggleMenu()"
-      >
-        menu
-      </i>
+      <img src="~/assets/images/icons/menu.svg" @click="toggleMenu()" class="cursor-pointer xl:hidden"/>
     </div>
 
-    <Menu v-if="menuOpen" @menuSelected="toggleMenu()" class="z-10 bg-white border-b border-solid lg:hidden border-default" />
+    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid lg:hidden border-default" @menuSelected="toggleMenu()" />
   </nav>
 </template>
 
