@@ -8,7 +8,7 @@
       </li>
 
       <li class="hidden">
-        <NuxtLink :to="localePath('/in-development')">
+        <NuxtLink :to="localePath('/how-the-czech-education-system-works')">
           {{ $t('components.PageHeader.Menu.about_schools') }}
         </NuxtLink>
       </li>
@@ -19,8 +19,8 @@
         </NuxtLink>
       </li>
 
-      <li class="hidden">
-        <NuxtLink :to="localePath('/in-development')">
+      <li>
+        <NuxtLink :to="localePath('/about-app')">
           {{ $t('components.PageHeader.Menu.about_app') }}
         </NuxtLink>
       </li>
