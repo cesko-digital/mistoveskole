@@ -209,12 +209,18 @@
 
   .container-text {
     @apply p-m;
+    max-width: 75ch !important;
   }
 
-  @media screen and (min-width: theme("screens.lg")) {
+  @media screen and (max-width: theme("screens.xl")) {
+    .container-text {
+      @apply mx-auto;
+    }
+  }
+
+  @media screen and (min-width: theme("screens.xl")) {
     .container-text {
       @apply ml-[var(--sidebar-width)] p-l pl-0;
-      max-width: 75ch !important;
     }
   }
 }
