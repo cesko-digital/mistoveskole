@@ -70,7 +70,7 @@
         </div>
       </a>
 
-      <a href="/how-to-enroll-a-child-in-school" class="info-item">
+      <!-- <a href="/how-to-enroll-a-child-in-school" class="info-item">
         <div class="info-item-icon">
           <svg
             width="40"
@@ -111,7 +111,7 @@
             />
           </svg>
         </div>
-      </a>
+      </a> -->
 
       <div>
         <Button :inline="true">
