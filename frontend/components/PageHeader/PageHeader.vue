@@ -20,7 +20,7 @@
       <img src="~/assets/images/icons/menu.svg" class="cursor-pointer xl:hidden" @click="toggleMenu()"></img>
     </div>
 
-    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid lg:hidden border-default" @menuSelected="toggleMenu()" />
+    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid xl:hidden border-default" @menuSelected="toggleMenu()" />
   </nav>
 </template>
 
