@@ -29,16 +29,16 @@
 </template>
 
 <style scoped>
-@media screen and (max-width: theme("screens.md")) {
+@media screen and (max-width: theme("screens.xl")) {
   .menu {
     @apply p-m;
   }
 }
 
 .menu ul {
-  @apply space-x-xl flex flex-col grow md:flex-row md:items-center md:justify-between md:bg-white;
+  @apply space-x-xl flex flex-col grow xl:flex-row xl:items-center xl:justify-between xl:bg-white;
 }
-@media screen and (max-width: theme("screens.md")) {
+@media screen and (max-width: theme("screens.xl")) {
   .menu ul {
     @apply space-x-0 space-y-m;
   }
