@@ -20,7 +20,7 @@
       </li>
 
       <li @click="$emit('menuSelected')">
-        <NuxtLink :to="localePath('/about-app')">
+        <NuxtLink :to="localePath('/about')">
           {{ $t('components.PageHeader.Menu.about_app') }}
         </NuxtLink>
       </li>

@@ -206,6 +206,17 @@
   html {
     @apply font-serif !overflow-y-auto;
   }
+
+  .container-text {
+    @apply p-m;
+  }
+
+  @media screen and (min-width: theme("screens.lg")) {
+    .container-text {
+      @apply ml-[var(--sidebar-width)] p-l pl-0;
+      max-width: 75ch !important;
+    }
+  }
 }
 
 @layer components {
