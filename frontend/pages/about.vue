@@ -1,5 +1,5 @@
 <template>
-  <div class="container prose about">
+  <div class="prose container-text about">
     <h4>O místě ve škole</h4>
     <p>
       Web mistoveskole.cz vznikl z iniciativy <a href="https://pedf.cuni.cz/" target="_blank">Pedagogické fakulty Univerzity Karlovy</a>,
@@ -19,16 +19,6 @@
 </template>
 
 <style scoped>
-
-.about {
-  @apply w-full ml-[var(--sidebar-width)] p-l pl-0;
-}
-
-@media screen and (max-width: theme("screens.md")) {
-  .about {
-    @apply max-w-full ml-0 p-m;
-  }
-}
 
 p {
     text-align: justify;
