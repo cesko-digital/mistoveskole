@@ -1,8 +1,7 @@
 <template>
   <div class="prose container-text info-text">
     <h4>{{ $t("components.PageHeader.Menu.about_schools") }}</h4>
-    <h5>{{ $t("pages.how-the-czech-education-system-works.Info_in_cz") }}</h5>
-    <ul>
+    <ul v-if="locale === 'cs'">
       <li>
         <a
           href="https://talentova.cz/wp-content/uploads/2022/03/Prirucka_rodice_cz.pdf"
@@ -31,8 +30,7 @@
         </a>
       </li>
     </ul>
-    <h5>{{ $t("pages.how-the-czech-education-system-works.Info_in_ua") }}</h5>
-    <ul>
+    <ul v-if="locale !== 'cs'">
       <li>
         <a
           href="https://www.edu.cz/ukrajina/%D0%B4%D0%BB%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%86%D1%96%D0%B2/"
@@ -50,6 +48,19 @@
     </ul>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      locale: 'map/locale',
+    }),
+  },
+};
+</script>
 
 <style scoped>
 h4 {
