@@ -25,8 +25,13 @@
       return-object
       @change="onModelChanged"
     >
-      <template #prepend-inner>
+      <template slot="prepend-inner">
         <img src="~/assets/images/icons/search.svg">
+      </template>
+      <template slot="item" slot-scope="{ item }">
+        <img v-if="item.isPlace" src="~/assets/images/icons/place.png">
+        <img v-if="!item.isPlace" src="~/assets/images/icons/school.png">
+        <sapn>{{ item.name }}</sapn>
       </template>
     </v-autocomplete>
   </div>
@@ -57,15 +62,24 @@ export default {
       fetch(`${this.$config.mapoticUrl}/?q=${val}&categories_ids=25972`)
         .then((res) => res.json())
         .then((res) => {
-          this.overflowWarning = res.results.places.length > 20;
+          this.overflowWarning = res.results.places.length + res.results.pois.length > 20;
           this.entries = res.results.places.slice(0, 20).map((p) => {
             return {
-            //  name: p.name,
-            //  link: `${p.id}-${p.slug}`,
               name: p.description,
-              link: p.place_id,
+              link: `places/${encodeURIComponent(p.place_id)}`,
+              isPlace: true,
             };
           });
+          const pointCount = 20 - this.entries.length;
+          if (pointCount > 0) {
+            this.entries = this.entries.concat(res.results.pois.slice(0, pointCount).map((p) => {
+              return {
+                name: p.name,
+                link: encodeURIComponent(`${p.id}-${p.slug}`),
+                isPlace: false,
+              };
+            }));
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -81,7 +95,6 @@ export default {
     onModelChanged(val) {
       this.overflowWarning = false;
       const link = val != null ? val.link : null;
-      console.log(link);
       this.mapSetFullTextSearch(link);
     },
     schoolFilter(item, queryText, itemText) {
@@ -106,6 +119,7 @@ export default {
   top: -20px !important;
   left: 0 !important;
 }
+
 .theme--light.v-list-item {
   min-height: 20px;
   line-height: 20px;
@@ -117,6 +131,10 @@ export default {
 
 .v-text-field--rounded > .v-input__control > .v-input__slot {
     padding: 0 4px;
+}
+
+.v-list-item > img {
+  margin-right: 4px;
 }
 
 .warning-icon {
