@@ -28,11 +28,13 @@
       <template slot="prepend-inner">
         <img src="~/assets/images/icons/search.svg">
       </template>
+      <!--
       <template slot="item" slot-scope="{ item }">
         <img v-if="item.isPlace" src="~/assets/images/icons/place.png">
         <img v-if="!item.isPlace" src="~/assets/images/icons/school.png">
         <sapn>{{ item.name }}</sapn>
       </template>
+      -->
     </v-autocomplete>
   </div>
 </template>
@@ -54,6 +56,8 @@ export default {
     search(val) {
       this.isLoading = true;
       if (!val) {
+        this.entries = [];
+        this.overflowWarning = false;
         return;
       }
       if (this.model && val === this.model.name) {
@@ -62,14 +66,15 @@ export default {
       fetch(`${this.$config.mapoticUrl}/?q=${val}&categories_ids=25972`)
         .then((res) => res.json())
         .then((res) => {
-          this.overflowWarning = res.results.places.length + res.results.pois.length > 20;
-          this.entries = res.results.places.slice(0, 20).map((p) => {
-            return {
-              name: p.description,
-              link: `places/${encodeURIComponent(p.place_id)}`,
-              isPlace: true,
-            };
-          });
+          this.overflowWarning = res.results.pois.length > 20;
+          // this.overflowWarning = res.results.places.length + res.results.pois.length > 20;
+          // this.entries = res.results.places.slice(0, 20).map((p) => {
+          //   return {
+          //     name: p.description,
+          //     link: `places/${encodeURIComponent(p.place_id)}`,
+          //     isPlace: true,
+          //   };
+          // });
           const pointCount = 20 - this.entries.length;
           if (pointCount > 0) {
             this.entries = this.entries.concat(res.results.pois.slice(0, pointCount).map((p) => {
