@@ -9,18 +9,18 @@
 
       <Menu class="hidden xl:flex" />
 
-      <div class="hidden grow xl:block">
+      <div class="grow">
         &nbsp;
       </div>
 
       <div>
-        <LanguageSwitch class="md:order-2 md:justify-end md:grow" />
+        <LanguageSwitch class="xl:order-2 xl:justify-end xl:grow" />
       </div>
 
-      <img src="~/assets/images/icons/menu.svg" class="cursor-pointer xl:hidden" @click="toggleMenu()"></img>
+      <img src="~/assets/images/icons/menu.svg" class="cursor-pointer ml-s xl:hidden" @click="toggleMenu()">
     </div>
 
-    <Menu v-if="menuOpen" class="z-10 bg-white border-b border-solid xl:hidden border-default" @menuSelected="toggleMenu()" />
+    <Menu v-if="menuOpen" class="z-10 border-b border-solid xl:hidden border-default" @menuSelected="toggleMenu()" />
   </nav>
 </template>
 
