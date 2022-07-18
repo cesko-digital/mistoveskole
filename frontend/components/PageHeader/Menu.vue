@@ -32,6 +32,9 @@
 @media screen and (max-width: theme("screens.xl")) {
   .menu {
     @apply p-m;
+    position: absolute;
+    right: 0;
+    background-color: lightgray;
   }
 }
 
