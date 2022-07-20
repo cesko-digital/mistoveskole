@@ -24,7 +24,7 @@
       </li>
       <li>
         <a
-          href="https://www.edu.cz/ukrajina/faq-ukrajina/#6--distan%C4%8Dn%C3%AD-vzd%C4%9Bl%C3%A1v%C3%A1n%C3%AD-"
+          href="https://www.edu.cz/ukrajina/faq-v-dobe-valecneho-konfliktu-na-ukrajine/"
         >
           {{ $t("pages.how-the-czech-education-system-works.FAQ") }}
         </a>
