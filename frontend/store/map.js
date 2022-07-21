@@ -63,10 +63,6 @@ export const mutations = {
 };
 
 export const getters = {
-  locale(state) {
-    return state.locale;
-  },
-
   age(state) {
     return state.age;
   },

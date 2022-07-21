@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <div class="prose container-text info-text grow">
       <h4>{{ $t("components.PageHeader.Menu.about_schools") }}</h4>
-      <ul v-if="locale === 'cs'">
+      <ul v-if="$i18n.locale === 'cs'">
         <li>
           <a
             href="https://talentova.cz/wp-content/uploads/2022/03/Prirucka_rodice_cz.pdf"
@@ -31,7 +31,7 @@
           </a>
         </li>
       </ul>
-      <ul v-if="locale !== 'cs'">
+      <ul v-if="$i18n.locale !== 'cs'">
         <li>
           <a
             href="https://www.edu.cz/ukrajina/%D0%B4%D0%BB%D1%8F-%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%86%D1%96%D0%B2/"
@@ -53,20 +53,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   nuxtI18n: {
     paths: {
       uk: `/${encodeURIComponent('про-школи-в-чр')}`,
       cs: `/${encodeURIComponent('o-školách-v-čr')}`,
     },
-  },
-  computed: {
-    // mix the getters into computed with object spread operator
-    ...mapGetters({
-      locale: 'map/locale',
-    }),
   },
 };
 </script>
