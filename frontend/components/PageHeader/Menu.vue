@@ -8,7 +8,7 @@
       </li>
 
       <li @click="$emit('menuSelected')">
-        <NuxtLink :to="localePath('/how-the-czech-education-system-works')">
+        <NuxtLink :to="localePath('how-the-czech-education-system-works')">
           {{ $t('components.PageHeader.Menu.about_schools') }}
         </NuxtLink>
       </li>
@@ -20,7 +20,7 @@
       </li>
 
       <li @click="$emit('menuSelected')">
-        <NuxtLink :to="localePath('/about')">
+        <NuxtLink :to="localePath('about')">
           {{ $t('components.PageHeader.Menu.about_app') }}
         </NuxtLink>
       </li>
