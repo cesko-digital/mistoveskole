@@ -27,7 +27,7 @@
     <FindAppropriateSchool />
 
     <div class="info">
-      <a href="/how-the-czech-education-system-works" class="info-item">
+      <NuxtLink :to="localePath('how-the-czech-education-system-works')" class="info-item">
         <div class="info-item-icon">
           <svg
             width="40"
@@ -68,7 +68,7 @@
             />
           </svg>
         </div>
-      </a>
+      </NuxtLink>
 
       <!-- <a href="/how-to-enroll-a-child-in-school" class="info-item">
         <div class="info-item-icon">
