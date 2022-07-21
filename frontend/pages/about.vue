@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="locale !== 'cs'" class="prose container-text about">
+  <div class="flex flex-col">
+    <div v-if="locale !== 'cs'" class="prose container-text about grow">
       <h4>О проекту "Місце у школі"</h4>
       <p>
         Сайт mistoveskole.cz був створений за ініціативи <a href="https://pedf.cuni.cz/" target="_blank">педагогічного факультету Карлового університету</a>.
@@ -17,7 +17,7 @@
         Ви також можете надсилати свої ідеї щодо розширення сервісу на <a href="mailto:mistoveskole@cesko.digital" target="_blank">mistoveskole@cesko.digital</a>.
       </p>
     </div>
-    <div v-if="locale === 'cs'" class="prose container-text about">
+    <div v-if="locale === 'cs'" class="prose container-text about grow">
       <h4>O místě ve škole</h4>
       <p>
         Web mistoveskole.cz vznikl z iniciativy <a href="https://pedf.cuni.cz/" target="_blank">Pedagogické fakulty Univerzity Karlovy</a>,
@@ -34,6 +34,7 @@
         nápady na rozšiřování služby můžete posílat na <a href="mailto:mistoveskole@cesko.digital" target="_blank">mistoveskole@cesko.digital</a>.
       </p>
     </div>
+    <StandWithUkraine />
   </div>
 </template>
 
