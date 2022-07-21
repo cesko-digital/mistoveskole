@@ -13,12 +13,6 @@
         </NuxtLink>
       </li>
 
-      <li class="hidden" @click="$emit('menuSelected')">
-        <NuxtLink :to="localePath('/in-development')">
-          {{ $t('components.PageHeader.Menu.statistics') }}
-        </NuxtLink>
-      </li>
-
       <li @click="$emit('menuSelected')">
         <NuxtLink :to="localePath('about')">
           {{ $t('components.PageHeader.Menu.about_app') }}
