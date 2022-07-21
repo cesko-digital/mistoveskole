@@ -174,18 +174,7 @@ export default {
     },
     langDir: './locales',
     lazy: true,
-    parsePages: false,   // Disable babel parsing
-    pages: {
-      about: {
-        cs: `/${encodeURIComponent('o_místě_ve_škole')}`,
-        uk: `/${encodeURIComponent('о_проекту_місце_у_школі')}`,
-      },
-      'how-the-czech-education-system-works': {
-        cs: `/${encodeURIComponent('o_školách_v_ČR')}`,
-        uk: `/${encodeURIComponent('про_школи_в_ЧР')}`,
-      },
   },
-},
 
   eslint: {
     cache: false,
@@ -199,5 +188,5 @@ export default {
     umapaUrl: 'https://www.umapa.eu/embed-pro',
     umapaDefaultSearchParams: 'attr54492=sojw,p0pw,1yll,d9o1&fcat=25972&_from=mistoveskole',
     mapoticUrl: 'https://www.mapotic.com/api/v1/maps/10392/search',
-  }
+  },
 };

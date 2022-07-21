@@ -42,6 +42,12 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  nuxtI18n: {
+    paths: {
+      uk: `/${encodeURIComponent('о-проекту-місце-у-школі')}`,
+      cs: `/${encodeURIComponent('o-místě-ve-škole')}`,
+    },
+  },
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
