@@ -2,6 +2,7 @@
   <div class="flex flex-col flex-grow">
     <div class="prose container-text info-text grow">
       <h4>{{ $t("components.PageHeader.Menu.about_schools") }}</h4>
+
       <ul v-if="$i18n.locale === 'cs'">
         <li>
           <a
@@ -31,6 +32,7 @@
           </a>
         </li>
       </ul>
+
       <ul v-if="$i18n.locale !== 'cs'">
         <li>
           <a
@@ -48,6 +50,7 @@
         </li>
       </ul>
     </div>
+
     <StandWithUkraine />
   </div>
 </template>
