@@ -206,26 +206,24 @@
   html {
     @apply font-serif !overflow-y-auto;
   }
+}
 
+@layer components {
   .container-text {
     @apply p-m;
     max-width: 75ch !important;
   }
-
   @media screen and (max-width: theme("screens.xl")) {
     .container-text {
       @apply mx-auto;
     }
   }
-
   @media screen and (min-width: theme("screens.xl")) {
     .container-text {
       @apply ml-[var(--sidebar-width)] p-l pl-0;
     }
   }
-}
 
-@layer components {
   .select {
     @apply bg p-s rounded-outer flex-grow font-body text-body tracking-body leading-body border-[3px] border-default border-solid;
   }

@@ -113,14 +113,14 @@ export default {
 
 <style scoped>
 .sidebar {
-  @apply w-full max-w-[var(--sidebar-width)];
-  height: calc(100vh - 64px);
-  overflow-y: scroll;
+  @apply w-full max-w-full;
+  overflow-y: auto;
 }
 
-@media screen and (max-width: theme("screens.md")) {
+@media screen and (min-width: theme("screens.md")) {
   .sidebar {
-    @apply max-w-full;
+    @apply max-w-[var(--sidebar-width)];
+    height: calc(100vh - 64px);
   }
 }
 
