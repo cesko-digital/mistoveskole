@@ -16,10 +16,10 @@
 
 <style scoped>
 .sidebar {
-  @apply flex flex-col flex-grow lg:content-between;
+  @apply flex h-full flex-col flex-grow justify-between;
 }
 
 .search {
- @apply hidden md:flex flex-col gap-l p-l;
+  @apply hidden md:flex flex-col gap-l p-l;
 }
 </style>
