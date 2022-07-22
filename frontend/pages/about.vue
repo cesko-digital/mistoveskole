@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col flex-grow">
     <div v-if="$i18n.locale !== 'cs'" class="prose container-text about grow">
       <h4>О проекту "Місце у школі"</h4>
       <p>
