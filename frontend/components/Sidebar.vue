@@ -10,7 +10,7 @@
       <FindAppropriateSchool />
     </div>
 
-    <StandWithUkraine type="lg:flex-col" />
+    <StandWithUkraine type="sidebar" />
   </div>
 </template>
 
