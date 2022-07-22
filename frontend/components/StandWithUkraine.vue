@@ -1,9 +1,10 @@
 <template>
-  <div class="footer-wrapper">
+  <div :class="'footer-wrapper flex-col ' + type">
     <span class="hash-tag">
       #StandWithUkraine
     </span>
-    <div class="flex flex-col justify-between">
+
+    <div :class="'flex flex-col justify-between ' + type">
       <a target="_blank" href="https://www.pomahejukrajine.cz">
         <div>
           <p>Pomáhej Ukrajině</p>
@@ -28,14 +29,25 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    type: {
+      type: String,
+      default: 'lg:flex-row',
+    },
+  },
+};
+</script>
+
 <style scoped>
 .footer-wrapper {
-  @apply flex flex-col text-strong;
+  @apply flex text-strong py-xl px-m md:p-l;
   background-color: theme('colors.sg.secondary.50');
 }
 
 .hash-tag {
-  @apply m-xs text-body-large-bold leading-body-large-bold font-body-large-bold tracking-body-large-bold text-center;
+  @apply m-xs text-body-large-bold leading-body-large-bold font-body-large-bold tracking-body-large-bold text-center md:text-left;
 }
 
 a {
@@ -47,10 +59,10 @@ a > div {
 }
 
 a > div > p:first-child {
-  @apply text-body-bold leading-body-bold font-body-bold tracking-body-bold text-center;
+  @apply text-body-bold leading-body-bold font-body-bold tracking-body-bold text-center md:text-left;
 }
 
 a > div > p:last-child {
-  @apply font-body-small text-body-small text-center whitespace-nowrap;
+  @apply font-body-small text-body-small whitespace-nowrap text-center md:text-left;
 }
 </style>
