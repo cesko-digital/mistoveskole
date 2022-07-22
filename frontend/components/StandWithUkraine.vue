@@ -49,14 +49,14 @@ export default {
   @apply py-xl px-m md:p-l flex-col space-y-s;
 }
 .swu-wrapper:not(.swu-sidebar) {
-  @apply items-center space-x-l space-y-s md:space-y-0 pr-0 md:pr-l;
+  @apply items-center space-y-s md:space-y-0 pr-0 md:pr-l;
 }
 
 .hash-tag {
   @apply text-body-large-bold leading-body-large-bold font-body-large-bold tracking-body-large-bold text-center md:text-left;
 }
 .swu-wrapper:not(.swu-sidebar) .hash-tag {
-  @apply lg:w-[var(--sidebar-width)] pl-l;
+  @apply lg:w-[var(--sidebar-width)] md:px-l;
 }
 
 .swu-link-list {
