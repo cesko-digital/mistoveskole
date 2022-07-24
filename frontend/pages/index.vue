@@ -52,8 +52,7 @@
       <!--Main content-->
       <div class="flex main-content grow">
         <Sidebar
-          class="sidebar"
-          :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 0) }"
+          :class="{ '!hidden': !((isMounted && !matches) || activeTabIndex === 0) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
         />
