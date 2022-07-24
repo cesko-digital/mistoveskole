@@ -200,6 +200,7 @@
   }
 
   :root {
+    --nav-height: 64px;
     --sidebar-width: 425px;
   }
 

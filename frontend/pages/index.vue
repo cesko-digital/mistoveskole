@@ -51,14 +51,12 @@
 
       <!--Main content-->
       <div class="flex main-content grow">
-        <div
+        <Sidebar
           class="sidebar"
           :class="{ hidden: !((isMounted && !matches) || activeTabIndex === 0) }"
           :role="{ tabpanel: matches }"
           aria-labelledby="search-tab"
-        >
-          <Sidebar />
-        </div>
+        />
 
         <div
           class="flex flex-col grow"
@@ -120,7 +118,7 @@ export default {
 @media screen and (min-width: theme("screens.md")) {
   .sidebar {
     @apply max-w-[var(--sidebar-width)];
-    height: calc(100vh - 64px);
+    height: calc(100vh - var(--nav-height));
   }
 }
 

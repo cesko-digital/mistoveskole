@@ -23,6 +23,10 @@
 </template>
 
 <style scoped>
+.menu {
+  @apply h-[var(--nav-height)];
+}
+
 @media screen and (max-width: theme("screens.xl")) {
   .menu {
     @apply p-m;
