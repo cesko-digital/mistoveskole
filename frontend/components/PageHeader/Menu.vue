@@ -49,10 +49,10 @@
   @apply text uppercase;
 }
 .menu ul li > a:hover {
-  @apply text-link-active underline underline-offset-[3px] decoration-link-active decoration-solid decoration-[3px];
+  @apply text-link-active underline underline-offset-[8px] decoration-link-active decoration-solid decoration-[3px];
 }
 /* exact link will show the primary color for only the exact matching link */
 .menu ul li > a.nuxt-link-exact-active {
-  @apply text-strong underline underline-offset-[3px] decoration-link-active decoration-solid decoration-[3px];
+  @apply text-strong underline underline-offset-[8px] decoration-link-active decoration-solid decoration-[3px];
 }
 </style>
