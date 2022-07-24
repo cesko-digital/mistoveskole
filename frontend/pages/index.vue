@@ -111,7 +111,6 @@ export default {
 <style scoped>
 .sidebar {
   @apply w-full max-w-full;
-  overflow-y: auto;
 }
 
 @media screen and (min-width: theme("screens.md")) {

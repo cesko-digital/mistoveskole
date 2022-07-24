@@ -20,17 +20,19 @@
       </button>
     </div>
 
-    <div class="flex flex-col">
-      <div class="search">
-        <InfoText />
+    <div class="w-sidebar">
+      <div class="flex flex-col">
+        <div class="search">
+          <InfoText />
 
-        <SchoolSelect class="hidden md:flex" />
+          <SchoolSelect class="hidden md:flex" />
+        </div>
+
+        <FindAppropriateSchool />
       </div>
 
-      <FindAppropriateSchool />
+      <StandWithUkraine type="sidebar" />
     </div>
-
-    <StandWithUkraine type="sidebar" />
   </div>
 </template>
 
@@ -59,13 +61,17 @@ export default {
 
 <style scoped>
 .sidebar {
-  @apply flex h-full flex-col flex-grow justify-between;
+  @apply transition-[max-width] flex h-full flex-col flex-grow justify-between;
 }
 .sidebar.collapsed {
   @apply max-w-[var(--nav-height)];
 }
-.sidebar.collapsed > *:not(.collapse) {
+.sidebar.collapsed > .w-sidebar {
   @apply hidden;
+}
+
+.w-sidebar {
+  @apply w-[var(--sidebar-width)] overflow-y-auto;
 }
 
 .collapse {
@@ -77,8 +83,12 @@ export default {
 .collapsed .collapse button {
   @apply px-0 w-full flex justify-center;
 }
+
+.collapse button svg {
+  @apply transition-transform transform rotate-0;
+}
 .collapsed .collapse button svg {
-  @apply transform rotate-180;
+  @apply rotate-180;
 }
 
 .search {
