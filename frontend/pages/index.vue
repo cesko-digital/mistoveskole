@@ -1,10 +1,10 @@
 <template>
-  <MatchMedia v-slot="{ matches }" class="flex flex-col grow" query="(max-width: 760px)">
+  <MatchMedia v-slot="{ matches }" class="flex flex-col grow" query="(max-width: 1024px)">
     <InfoText class="px-m py-s md:hidden" />
 
     <div class="flex flex-col grow">
       <!--Tabs header - for mobile only-->
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <ul
           class="flex flex-wrap -mb-px text-sm font-medium text-center"
           role="tablist"
@@ -117,7 +117,7 @@ export default {
   overflow-y: auto;
 }
 
-@media screen and (min-width: theme("screens.md")) {
+@media screen and (min-width: theme("screens.lg")) {
   .sidebar {
     @apply max-w-[var(--sidebar-width)];
     height: calc(100vh - 64px);
