@@ -116,7 +116,7 @@ export default {
 @media screen and (min-width: theme("screens.md")) {
   .sidebar {
     @apply max-w-[var(--sidebar-width)];
-    height: calc(100vh - var(--nav-height));
+    height: calc(100vh - var(--nav-height)) !important;
   }
 }
 
