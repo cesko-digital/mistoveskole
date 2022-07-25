@@ -42,6 +42,7 @@ export const state = () => ({
   fullTextSearch: null,
   age: null,
   locale: 'uk',
+  show: false,
 });
 
 export const mutations = {
@@ -59,6 +60,10 @@ export const mutations = {
   },
   setLocale(state, newLocale) {
     state.locale = newLocale;
+  },
+  setShow(state, show) {
+    console.log('setShow', show);
+    state.show = show;
   },
 };
 
@@ -94,6 +99,10 @@ export const getters = {
 
     return url;
   },
+
+  show(state) {
+    return state.show;
+  },
 };
 
 export const actions = {
@@ -101,5 +110,10 @@ export const actions = {
     context.commit('setBaseUrl', $config.umapaUrl);
     context.commit('setDefaultSearchParams', [...(new URLSearchParams($config.umapaDefaultSearchParams).entries())]);
     context.commit('setLocale', i18n.locale);
+  },
+
+  show(context) {
+    context.commit('setShow', true);
+    setTimeout(() => context.commit('setShow', false));
   },
 };
