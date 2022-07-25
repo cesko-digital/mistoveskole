@@ -93,11 +93,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ mapAge: 'map/age' }),
+    ...mapGetters({ mapShow: 'map/show' }),
   },
   watch: {
-    mapAge(oldAge, newAge) {
-      this.activeTabIndex = 1;
+    mapShow(show, _) {
+      console.log('mapShow index', show);
+      if (show) {
+        this.selectTab(1);
+      }
     },
   },
   mounted() {
