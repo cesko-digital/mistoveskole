@@ -8,15 +8,17 @@
       </div>
 
       <FindAppropriateSchool />
-      <NuxtLink :to="localePath('how-the-czech-education-system-works')" target="_blank">
-        <div class="flex items-center">
-          <BookIcon class="m-s" />
-          <span class="grow">
-            {{ $t('components.Sidebar.how_the_Czech_education_system_works') }}
-          </span>
-          <ArrowIcon class="m-s" />
-        </div>
-      </NuxtLink>
+      <div class="p-l">
+        <NuxtLink :to="localePath('how-the-czech-education-system-works')" target="_blank">
+          <div class="flex items-center">
+            <BookIcon class="shrink-0 m-xs" />
+            <span class="font-body-bold px-xs">
+              {{ $t('components.Sidebar.how_the_Czech_education_system_works') }}
+            </span>
+            <ArrowIcon class="shrink-0 m-xs" />
+          </div>
+        </NuxtLink>
+      </div>
     </div>
 
     <StandWithUkraine type="sidebar" />
