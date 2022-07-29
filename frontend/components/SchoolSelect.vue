@@ -1,41 +1,43 @@
 <template>
-  <div data-app class="flex flex-col">
+  <div class="flex flex-col">
     <div v-if="overflowWarning" class="flex items-center">
       <i class="warning-icon" />
       {{ $t('components.SchoolSelect.more_than_20_search_results_found_please_enter_a_more_specific_search_term') }}
     </div>
 
-    <v-autocomplete
-      v-model="model"
-      :items="entries"
-      :loading="isLoading"
-      :search-input.sync="search"
-      clearable
-      :outlined="false"
-      :rounded="true"
-      :solo="true"
-      :single-line="true"
-      :dense="true"
-      :filter="schoolFilter"
-      hide-no-data
-      hide-selected
-      item-text="name"
-      item-value="link"
-      placeholder="Hledat místo, kraj"
-      return-object
-      @change="onModelChanged"
-    >
-      <template slot="prepend-inner">
-        <img src="~/assets/images/icons/search.svg">
-      </template>
-      <!--
-      <template slot="item" slot-scope="{ item }">
-        <img v-if="item.isPlace" src="~/assets/images/icons/place.png">
-        <img v-if="!item.isPlace" src="~/assets/images/icons/school.png">
-        <sapn>{{ item.name }}</sapn>
-      </template>
-      -->
-    </v-autocomplete>
+    <div data-app class="autocomplete-container">
+      <v-autocomplete
+        v-model="model"
+        :items="entries"
+        :loading="isLoading"
+        :search-input.sync="search"
+        clearable
+        :outlined="false"
+        :rounded="true"
+        :solo="true"
+        :single-line="true"
+        :dense="true"
+        :filter="schoolFilter"
+        hide-no-data
+        hide-selected
+        item-text="name"
+        item-value="link"
+        placeholder="Hledat místo, kraj"
+        return-object
+        @change="onModelChanged"
+      >
+        <template slot="prepend-inner">
+          <img src="~/assets/images/icons/search.svg">
+        </template>
+        <!--
+        <template slot="item" slot-scope="{ item }">
+          <img v-if="item.isPlace" src="~/assets/images/icons/place.png">
+          <img v-if="!item.isPlace" src="~/assets/images/icons/school.png">
+          <sapn>{{ item.name }}</sapn>
+        </template>
+        -->
+      </v-autocomplete>
+    </div>
   </div>
 </template>
 
@@ -111,18 +113,16 @@ export default {
 </script>
 
 <style>
+.autocomplete-container {
+  position: relative;
+}
+
 .v-input__prepend-inner {
   padding: 0 0.5em;
 }
 
 .v-text-field.v-input--dense:not(.v-text-field--outlined) input {
     padding: 0;
-}
-
-.v-autocomplete__content.v-menu__content {
-  position: relative;
-  top: -20px !important;
-  left: 0 !important;
 }
 
 .theme--light.v-list-item {
