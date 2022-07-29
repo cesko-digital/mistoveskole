@@ -71,6 +71,9 @@
       "Info_hi_school": "Informace o studiu na vysokých školách v ČR a o možnostech získání stipendia"
     }
   },
+  "toasts": {
+    "contact_a_school": "Pro zápis ditěti kontaktujte školy přímo na uvedených kontaktních e-mailech nebo telefonních čislech."
+  },
   "lang": {
     "ua": "Український",
     "cz": "Český"

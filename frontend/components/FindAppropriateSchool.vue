@@ -127,6 +127,31 @@ export default {
     showSchool() {
       this.mapSetAge(this.studentAge);
       this.$store.dispatch('map/show');
+      const cookieName = 'contactSchoolMessageIsAlreadyShown';
+      const contactSchoolMessageIsAlreadyShown = this.$cookies.get(cookieName);
+      if (!contactSchoolMessageIsAlreadyShown) {
+        this.showToaster(() => this.$cookies.set(cookieName, true));
+      }
+    },
+    showToaster(onClickCallback) {
+      const toastOptions = {
+        action: {
+          text: 'OK',
+          onClick: (e, toastObject) => {
+            toastObject.goAway(0);
+            onClickCallback();
+          },
+        },
+        position: 'top-right',
+        className: ['toast-info'],
+        iconPack: 'custom-class',
+        icon: {
+          name: 'toast-checkbox-icon',
+          after: true, // this will append the icon to the end of content
+        },
+      };
+
+      this.$toasted.show(this.$t('toasts.contact_a_school'), toastOptions);
     },
   },
 };

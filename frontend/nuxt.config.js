@@ -132,6 +132,10 @@ export default {
     '@nuxtjs/pwa',
     // https://i18n.nuxtjs.org/setup
     '@nuxtjs/i18n',
+    // https://www.npmjs.com/package/@nuxtjs/toast
+    '@nuxtjs/toast',
+    //https://www.npmjs.com/package/cookie-universal-nuxt
+    'cookie-universal-nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -16,6 +16,8 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/i18n": "^7.2.2",
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/toast": "^3.3.1",
+    "cookie-universal-nuxt": "^2.2.1",
     "core-js": "^3.19.3",
     "lodash": "4.17.21",
     "nuxt": "^2.15.8",
