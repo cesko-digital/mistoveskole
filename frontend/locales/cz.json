@@ -55,6 +55,9 @@
       "how_the_Czech_education_system_works": "Jak funguje český vzdělávací systém",
       "how_to_enroll_a_child_in_school": "Jak přihlásit dítě do školy",
       "more_information": "Další informace"
+    },
+    "Map": {
+      "filter_tooltip" : "Zafiltrovali jsme školy, které přijímají do"
     }
   },
   "pages": {

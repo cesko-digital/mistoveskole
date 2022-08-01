@@ -123,9 +123,11 @@ export default {
   methods: {
     ...mapMutations({
       mapSetAge: 'map/setAge',
+      mapSetAppropriateSchool: 'map/setAppropriateSchool',
     }),
     showSchool() {
       this.mapSetAge(this.studentAge);
+      this.mapSetAppropriateSchool(this.appropriateSchool);
       this.$store.dispatch('map/show');
     },
   },
