@@ -20,8 +20,8 @@
       </button>
     </div>
 
-    <div class="w-sidebar">
-      <div class="flex flex-col">
+    <div class="h-full w-sidebar">
+      <div class="flex flex-col justify-between">
         <div class="search">
           <InfoText />
 
@@ -61,7 +61,7 @@ export default {
 
 <style scoped>
 .sidebar {
-  @apply transition-[max-width] flex h-full flex-col flex-grow justify-between;
+  @apply duration-300 transition-[max-width] flex h-full flex-col flex-grow;
 }
 .sidebar.collapsed {
   @apply max-w-[var(--nav-height)];
@@ -85,7 +85,7 @@ export default {
 }
 
 .collapse button svg {
-  @apply transition-transform transform rotate-0;
+  @apply duration-300 transition-transform transform rotate-0;
 }
 .collapsed .collapse button svg {
   @apply rotate-180;
