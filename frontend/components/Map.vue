@@ -12,17 +12,23 @@
         <span>
           {{ $t('components.Map.filter_tooltip') }}
         </span>
-        <span class="font-body-bold">
+        <div class="flex flex-row text-body-bold leading-body-bold font-body-bold font-body-bold">
           {{ appropriateSchool }}
-        </span>
+          <button class="ml-s change lg:hidden" @click="changeFilter()">
+            {{ $t('components.Map.filter_change') }}
+          </button>
+          <span class="ml-s change change-animation hidden lg:block">
+            {{ $t('components.Map.filter_change') }}
+          </span>
+        </div>
       </div>
-      <span class="close" @click="setFilterTooltipVisible(false)" />
+      <button class="close" @click="setFilterTooltipVisible(false)" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -43,8 +49,14 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      mapActiveTab: 'map/setActiveTab',
+    }),
     setFilterTooltipVisible(visible) {
       this.filterTooltipVisible = visible;
+    },
+    changeFilter() {
+      this.mapActiveTab(0);
     },
   },
 };
@@ -76,8 +88,8 @@ export default {
 /* At width 1380px umapa changes position of filters */
 @media(max-width: 1380px) {
   .filter-popover {
-    bottom: 120px;
-    right: 65px;
+    bottom: 90px;
+    right: 75px;
   }
   /*right arrow*/
   .filter-popover::after {
@@ -112,5 +124,26 @@ export default {
 }
 .close:after {
   transform: rotate(-45deg);
+}
+
+.change {
+  color: #0d99ff;
+}
+
+.change-animation {
+  animation: fadeInOut 5s;
+  opacity: 0;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>

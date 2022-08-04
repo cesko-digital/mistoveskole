@@ -44,6 +44,7 @@ export const state = () => ({
   appropriateSchool: null,
   locale: 'uk',
   show: false,
+  activeTab: 0,
 });
 
 export const mutations = {
@@ -65,8 +66,9 @@ export const mutations = {
   setLocale(state, newLocale) {
     state.locale = newLocale;
   },
-  setShow(state, show) {
-    state.show = show;
+
+  setActiveTab(state, activeTab) {
+    state.activeTab = activeTab;
   },
 };
 
@@ -107,8 +109,8 @@ export const getters = {
     return url;
   },
 
-  show(state) {
-    return state.show;
+  activeTab(state) {
+    return state.activeTab;
   },
 };
 
@@ -117,10 +119,5 @@ export const actions = {
     context.commit('setBaseUrl', $config.umapaUrl);
     context.commit('setDefaultSearchParams', [...(new URLSearchParams($config.umapaDefaultSearchParams).entries())]);
     context.commit('setLocale', i18n.locale);
-  },
-
-  show(context) {
-    context.commit('setShow', true);
-    setTimeout(() => context.commit('setShow', false));
   },
 };

@@ -57,7 +57,8 @@
       "more_information": "Další informace"
     },
     "Map": {
-      "filter_tooltip" : "Zafiltrovali jsme školy, které přijímají do"
+      "filter_tooltip" : "Zafiltrovali jsme školy, které přijímají do",
+      "filter_change" : "Změnit"
     }
   },
   "pages": {

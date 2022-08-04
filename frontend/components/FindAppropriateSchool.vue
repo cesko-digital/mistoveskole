@@ -124,11 +124,12 @@ export default {
     ...mapMutations({
       mapSetAge: 'map/setAge',
       mapSetAppropriateSchool: 'map/setAppropriateSchool',
+      mapSetActiveTab: 'map/setActiveTab',
     }),
     showSchool() {
       this.mapSetAge(this.studentAge);
       this.mapSetAppropriateSchool(this.appropriateSchool);
-      this.$store.dispatch('map/show');
+      this.mapSetActiveTab(1);
     },
   },
 };
