@@ -1,6 +1,6 @@
 <template>
   <MatchMedia v-slot="{ matches }" class="flex flex-col grow" query="(max-width: 1024px)">
-    <InfoText class="px-m py-s md:hidden" />
+    <InfoText class="px-m py-s lg:hidden" />
 
     <div class="flex flex-col grow">
       <!--Tabs header - for mobile only-->

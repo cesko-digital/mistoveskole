@@ -227,4 +227,36 @@
   .select {
     @apply bg p-s rounded-outer flex-grow font-body text-body tracking-body leading-body border-[3px] border-default border-solid;
   }
+
+  /* custome styles for toast */
+
+.toasted-container.top-right {
+    top: 54px !important;
+    right: 0 !important;
+
+    a.action {
+      margine-right: 0 !important;
+    }
+  }
+  
+@media only screen and (max-width: theme("screens.lg")) {
+    .toasted-container.top-right {
+        top: 180px !important;
+    }
+  }
+
+.toast-info {
+    background-color: #C5F6FF !important;
+    color: #004186 !important;
+  }
+
+.toast-checkbox-icon {
+    background-image: url(~assets/images/icons/check.svg);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-right: -7px;
+    margin-left: 7px;
+  }
 }

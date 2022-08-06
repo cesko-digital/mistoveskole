@@ -4,7 +4,7 @@
       <div class="search">
         <InfoText />
 
-        <SchoolSelect class="hidden md:flex" />
+        <SchoolSelect />
       </div>
 
       <FindAppropriateSchool />
@@ -20,6 +20,6 @@
 }
 
 .search {
-  @apply hidden md:flex flex-col gap-l p-l;
+  @apply hidden lg:flex flex-col gap-l p-l;
 }
 </style>
