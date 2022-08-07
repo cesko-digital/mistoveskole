@@ -2,44 +2,37 @@
   <div ref="sidebar" class="sidebar">
     <div class="collapse">
       <button @click="toggleCollapse">
-        <svg
-          width="8"
-          height="14"
-          viewBox="0 0 8 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7 13L1 7L7 1"
-            stroke="#262729"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        <MenuIcon />
       </button>
     </div>
 
     <div class="h-full w-sidebar">
-      <div class="flex flex-col justify-between">
-        <div class="search">
-          <InfoText />
+      <div class="flex flex-col justify-between h-full">
+        <div class="flex flex-col">
+          <div class="search">
+            <InfoText />
 
-          <SchoolSelect class="hidden md:flex" />
+            <SchoolSelect class="hidden md:flex" />
+          </div>
+
+          <FindAppropriateSchool />
         </div>
 
-        <FindAppropriateSchool />
+        <StandWithUkraine type="sidebar" />
       </div>
-
-      <StandWithUkraine type="sidebar" />
     </div>
   </div>
 </template>
 
 <script>
+import MenuIcon from '~/assets/images/icons/menu.svg?inline';
+
 const COLLAPSED_CLASSNAME = 'collapsed';
 
 export default {
+  components: {
+    MenuIcon,
+  },
   data() {
     return {
       isCollapsed: false,
@@ -61,21 +54,26 @@ export default {
 
 <style scoped>
 .sidebar {
-  @apply duration-300 transition-[max-width] flex h-full flex-col flex-grow;
+  @apply duration-300 transition-[max-width] flex flex-col flex-grow;
 }
 .sidebar.collapsed {
   @apply max-w-[var(--nav-height)];
 }
-.sidebar.collapsed > .w-sidebar {
-  @apply hidden;
-}
 
 .w-sidebar {
-  @apply w-[var(--sidebar-width)] overflow-y-auto;
+  @apply w-[var(--sidebar-width)] duration-300 transition-opacity overflow-y-auto opacity-100;
+}
+@media screen and (max-width: theme("screens.xl")) {
+  .w-sidebar {
+    @apply w-full;
+  }
+}
+.sidebar.collapsed > .w-sidebar {
+  @apply opacity-0;
 }
 
 .collapse {
-  @apply lg:flex hidden flex-row place-content-end;
+  @apply md:flex hidden flex-row place-content-end;
 }
 .collapse button {
   @apply py-xs px-l;
@@ -85,10 +83,7 @@ export default {
 }
 
 .collapse button svg {
-  @apply duration-300 transition-transform transform rotate-0;
-}
-.collapsed .collapse button svg {
-  @apply rotate-180;
+  @apply duration-300 transition-transform transform;
 }
 
 .search {
