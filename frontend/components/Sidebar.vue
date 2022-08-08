@@ -4,7 +4,13 @@
       <div class="search">
         <InfoText />
 
-        <SchoolSelect class="hidden md:flex" />
+        <Typeahead
+          id="search"
+          class="hidden md:flex"
+          placeholder="Hledat město, kraj..."
+          :source="source"
+          @change="onTypeaheadChange"
+        />
       </div>
 
       <FindAppropriateSchool />
@@ -13,6 +19,28 @@
     <StandWithUkraine type="sidebar" />
   </div>
 </template>
+
+<script>
+import { mapMutations } from 'vuex';
+
+export default {
+  data() {
+    return {
+      source: new URL(this.$config.mapoticUrl + '/?categories_ids=25972&q='),
+    };
+  },
+  methods: {
+    ...mapMutations({
+      mapSetFullTextSearch: 'map/setFullTextSearch',
+    }),
+
+    onTypeaheadChange({ item }) {
+      const slug = item !== null ? item.slug : null;
+      this.mapSetFullTextSearch(slug);
+    },
+  },
+};
+</script>
 
 <style scoped>
 .sidebar {
