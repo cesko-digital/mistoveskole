@@ -3,7 +3,7 @@ module.exports = {
   'headline-h2': 400,
   'headline-h3': 700,
   'headline-h4': 400,
-  'headline-h5': 400,
+  'headline-h5': 700,
 
   overline: 700,
 
