@@ -12,33 +12,75 @@
           <div class="search">
             <InfoText />
 
-            <SchoolSelect class="hidden md:flex" />
+            <Typeahead
+              id="search"
+              class="hidden md:flex"
+              placeholder="Hledat město, kraj..."
+              :source="source"
+              @change="onTypeaheadChange"
+            />
           </div>
 
           <FindAppropriateSchool />
-        </div>
 
-        <StandWithUkraine type="sidebar" />
+          <div class="p-m md:p-l">
+            <NuxtLink
+              :to="localePath('how-the-czech-education-system-works')"
+              target="_blank"
+              class="block py-xs rounded-outer hover:bg-sg-neutral-80"
+            >
+              <div class="flex items-center space-x-s pr-s">
+                <BookIcon />
+
+                <span class="font-body-bold">
+                  {{
+                    $t("components.Sidebar.how_the_Czech_education_system_works")
+                  }}
+                </span>
+
+                <ArrowIcon class="m-xs" />
+              </div>
+            </NuxtLink>
+          </div>
+
+          <StandWithUkraine type="sidebar" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
+import BookIcon from '~/assets/images/icons/book.svg?inline';
+import ArrowIcon from '~/assets/images/icons/right-arrow.svg?inline';
 import MenuIcon from '~/assets/images/icons/menu.svg?inline';
 
 const COLLAPSED_CLASSNAME = 'collapsed';
 
 export default {
   components: {
+    BookIcon,
+    ArrowIcon,
     MenuIcon,
   },
   data() {
     return {
+      source: new URL(this.$config.mapoticUrl + '/?categories_ids=25972&q='),
       isCollapsed: false,
     };
   },
   methods: {
+    ...mapMutations({
+      mapSetFullTextSearch: 'map/setFullTextSearch',
+    }),
+
+    onTypeaheadChange({ item }) {
+      const slug = item !== null ? item.slug : null;
+      this.mapSetFullTextSearch(slug);
+    },
+
     toggleCollapse() {
       if (this.isCollapsed) {
         this.$refs.sidebar.classList.remove(COLLAPSED_CLASSNAME);

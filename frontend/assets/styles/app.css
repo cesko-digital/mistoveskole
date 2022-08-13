@@ -225,7 +225,10 @@
     }
   }
 
+  .wrapped-input {
+    @apply w-full rounded-outer py-s px-0 bg-transparent focus:ring-0 border-none;
+  }
   .select {
-    @apply bg p-s rounded-outer flex-grow font-body text-body tracking-body leading-body border-[3px] border-default border-solid;
+    @apply bg p-s rounded-outer flex-grow font-body text-body tracking-body leading-body border-[3px] border-default border-solid active:border-active focus:ring-0;
   }
 }
