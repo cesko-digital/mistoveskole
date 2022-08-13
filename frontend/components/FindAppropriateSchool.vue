@@ -126,6 +126,7 @@ export default {
     }),
     showSchool() {
       this.mapSetAge(this.studentAge);
+      this.$store.dispatch('map/show');
     },
   },
 };
