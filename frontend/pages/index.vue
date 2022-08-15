@@ -11,7 +11,7 @@
         >
           <li
             class="tabs-item"
-            :class="{ '!border-active !text-strong': activeTabIndex === 0 }"
+            :class="{ '!border-active': activeTabIndex === 0 }"
             role="presentation"
             @click="selectTab(0)"
           >
@@ -30,7 +30,7 @@
 
           <li
             class="tabs-item"
-            :class="{ '!border-active !text-strong': activeTabIndex === 1 }"
+            :class="{ '!border-active': activeTabIndex === 1 }"
             role="presentation"
             @click="selectTab(1)"
           >
