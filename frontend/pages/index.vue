@@ -11,14 +11,14 @@
         >
           <li
             class="tabs-item"
-            :class="{ '!border-active !text-strong': activeTabIndex === 0 }"
+            :class="{ '!border-active': activeTabIndex === 0 }"
             role="presentation"
             @click="selectTab(0)"
           >
             <HomeIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 0 }" />
 
             <button
-              class="inline-block"
+              class="inline-block font-overline"
               type="button"
               role="tab"
               aria-controls="search"
@@ -30,14 +30,14 @@
 
           <li
             class="tabs-item"
-            :class="{ '!border-active !text-strong': activeTabIndex === 1 }"
+            :class="{ '!border-active': activeTabIndex === 1 }"
             role="presentation"
             @click="selectTab(1)"
           >
             <MapIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 1 }" />
 
             <button
-              class="inline-block"
+              class="inline-block font-overline"
               type="button"
               role="tab"
               aria-controls="map"
