@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { MatchMedia } from 'vue-component-media-queries';
 
 import HomeIcon from '~/assets/images/icons/home.svg?inline';
@@ -90,22 +90,25 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ mapShow: 'map/show' }),
+    ...mapGetters({
+      getActiveTab: 'map/activeTab',
+    }),
   },
   watch: {
-    mapShow(show, _) {
-      console.log('mapShow index', show);
-      if (show) {
-        this.selectTab(1);
-      }
+    getActiveTab(activeTab, _) {
+      console.log('activeTab index', activeTab);
+      this.activeTabIndex = activeTab;
     },
   },
   mounted() {
     this.isMounted = true;
   },
   methods: {
+    ...mapMutations({
+      setActiveTab: 'map/setActiveTab',
+    }),
     selectTab(i) {
-      this.activeTabIndex = i;
+      this.setActiveTab(i);
     },
   },
 };
