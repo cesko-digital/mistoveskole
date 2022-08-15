@@ -18,7 +18,7 @@
             <HomeIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 0 }" />
 
             <button
-              class="inline-block"
+              class="inline-block font-overline"
               type="button"
               role="tab"
               aria-controls="search"
@@ -37,7 +37,7 @@
             <MapIcon class="stroke-icon" :class="{ '!stroke-icon-muted': activeTabIndex !== 1 }" />
 
             <button
-              class="inline-block"
+              class="inline-block font-overline"
               type="button"
               role="tab"
               aria-controls="map"

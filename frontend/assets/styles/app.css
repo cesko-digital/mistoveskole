@@ -206,10 +206,6 @@
   html {
     @apply font-serif !overflow-y-auto;
   }
-
-  button {
-    font-weight: inherit;
-  }
 }
 
 @layer components {
