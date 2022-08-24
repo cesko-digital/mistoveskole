@@ -10,6 +10,9 @@
       "faq_tooltip": "Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.",
       "age_corresponds": "Věk odpovídá",
       "information": "Informace",
+      "show_high_school_button": "Otevřít seznam vysokých škol",
+      "show_university_button": "Otevřít seznam univerzit",
+      "show_kindergarten_button": "Otevřít seznam mateřských škol",
       "appropriate_school_for_age_message": {
         "0": "Dětská skupina (od 6 měsíců věku)",
         "1": "Dětská skupina",
