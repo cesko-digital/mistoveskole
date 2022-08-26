@@ -73,7 +73,7 @@
       </button>
     </div>
 
-    <Button :disabled="showSchoolBtnDisabled" @click="showSchool()">
+    <Button v-if="showSchoolBtnVisible" @click="showSchool()">
       {{ $t("components.FindAppropriateSchool.search_button") }}
     </Button>
 
@@ -81,9 +81,17 @@
       {{ $t("components.FindAppropriateSchool.show_high_school_button") }}
     </Button>
 
+    <span v-if="openHightSchoolsBtnVisible && openUniversitiesBtnVisible" class="info">
+      {{ $t("components.FindAppropriateSchool.high_school_university_info") }}
+    </span>
+
     <Button v-if="openUniversitiesBtnVisible" @click="openUniversities()">
       {{ $t("components.FindAppropriateSchool.show_university_button") }}
     </Button>
+
+    <span v-if="openKindergartensBtnVisible && showSchoolBtnVisible" class="info">
+      {{ $t("components.FindAppropriateSchool.kindergarten_info") }}
+    </span>
 
     <Button v-if="openKindergartensBtnVisible" @click="openKindergartens()">
       {{ $t("components.FindAppropriateSchool.show_kindergarten_button") }}
@@ -118,8 +126,8 @@ export default {
     studentAge() {
       return CURRENT_YEAR - this.selectedYear - this.isNextYear;
     },
-    showSchoolBtnDisabled() {
-      return (this.appropriateSchool === null || this.studentAge < 3 || this.studentAge >= 15);
+    showSchoolBtnVisible() {
+      return (this.appropriateSchool !== null && this.studentAge >= 2 && this.studentAge < 15);
     },
     openHightSchoolsBtnVisible() {
       return this.selectedYear && this.studentAge >= 15;
