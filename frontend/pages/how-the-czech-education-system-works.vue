@@ -26,7 +26,7 @@
         </li>
         <li>
           <a
-            href="https://www.edu.cz/ukrajina/faq-v-dobe-valecneho-konfliktu-na-ukrajine/"
+            href="https://www.edu.cz/ukrajina/faq-ukrajina/"
           >
             {{ $t("pages.how-the-czech-education-system-works.FAQ") }}
           </a>
