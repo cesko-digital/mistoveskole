@@ -10,6 +10,11 @@
       "faq_tooltip": "Vzdělávací systém v ČR funguje trochu jinak, než ukrajinský. Jednoduše řečeno, děti by měly chodit do školy se stejně starými dětmi. Díky tomuto údaji vám rovnou ukážeme školy, které mají kapacitu přijmout takto staré dítě.",
       "age_corresponds": "Věk odpovídá",
       "information": "Informace",
+      "show_high_school_button": "Otevřít seznam středních škol",
+      "show_university_button": "Otevřít seznam univerzit",
+      "show_kindergarten_button": "Otevřít seznam mateřských škol",
+      "high_school_university_info":"Dítě ve věku 17-19 let může studovat střední nebo vysokou školu",
+      "kindergarten_info":"Dítě může jít do mateřské školy z 3 let",
       "appropriate_school_for_age_message": {
         "0": "Dětská skupina (od 6 měsíců věku)",
         "1": "Dětská skupina",
@@ -55,6 +60,9 @@
       "how_the_Czech_education_system_works": "Jak funguje český vzdělávací systém",
       "how_to_enroll_a_child_in_school": "Jak přihlásit dítě do školy",
       "more_information": "Další informace"
+    },
+    "Map": {
+      "filter_tooltip" : "Zafiltrovali jsme školy, které přijímají do"
     }
   },
   "pages": {

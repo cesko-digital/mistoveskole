@@ -73,8 +73,28 @@
       </button>
     </div>
 
-    <Button :disabled="appropriateSchool === null" @click="showSchool()">
+    <Button v-if="showSchoolBtnVisible" @click="showSchool()">
       {{ $t("components.FindAppropriateSchool.search_button") }}
+    </Button>
+
+    <Button v-if="openHightSchoolsBtnVisible" @click="openHighSchools()">
+      {{ $t("components.FindAppropriateSchool.show_high_school_button") }}
+    </Button>
+
+    <span v-if="openHightSchoolsBtnVisible && openUniversitiesBtnVisible" class="info">
+      {{ $t("components.FindAppropriateSchool.high_school_university_info") }}
+    </span>
+
+    <Button v-if="openUniversitiesBtnVisible" @click="openUniversities()">
+      {{ $t("components.FindAppropriateSchool.show_university_button") }}
+    </Button>
+
+    <span v-if="openKindergartensBtnVisible && showSchoolBtnVisible" class="info">
+      {{ $t("components.FindAppropriateSchool.kindergarten_info") }}
+    </span>
+
+    <Button v-if="openKindergartensBtnVisible" @click="openKindergartens()">
+      {{ $t("components.FindAppropriateSchool.show_kindergarten_button") }}
     </Button>
   </div>
 </template>
@@ -106,6 +126,18 @@ export default {
     studentAge() {
       return CURRENT_YEAR - this.selectedYear - this.isNextYear;
     },
+    showSchoolBtnVisible() {
+      return (this.appropriateSchool !== null && this.studentAge >= 2 && this.studentAge < 15);
+    },
+    openHightSchoolsBtnVisible() {
+      return this.selectedYear && this.studentAge >= 15;
+    },
+    openUniversitiesBtnVisible() {
+      return this.selectedYear && this.studentAge >= 17;
+    },
+    openKindergartensBtnVisible() {
+      return this.selectedYear && this.studentAge < 3;
+    },
     appropriateSchool() {
       const messages = this.$t('components.FindAppropriateSchool.appropriate_school_for_age_message');
 
@@ -123,10 +155,24 @@ export default {
   methods: {
     ...mapMutations({
       mapSetAge: 'map/setAge',
+      mapSetAppropriateSchool: 'map/setAppropriateSchool',
     }),
     showSchool() {
       this.mapSetAge(this.studentAge);
+      this.mapSetAppropriateSchool(this.appropriateSchool);
       this.$store.dispatch('map/show');
+    },
+    openHighSchools() {
+      this.openLink('https://www.uradprace.cz/hledani-skol-a-oboru');
+    },
+    openUniversities() {
+      this.openLink('https://www.studyin.cz/ukraine/');
+    },
+    openKindergartens() {
+      this.openLink('http://www.dsmpsv.cz/cs/najdete-si-svou-ds');
+    },
+    openLink(url) {
+      window.open(url, '_blank').focus();
     },
   },
 };

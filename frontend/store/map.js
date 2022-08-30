@@ -41,6 +41,7 @@ export const state = () => ({
   defaultSearchParams: [],
   fullTextSearch: null,
   age: null,
+  appropriateSchool: null,
   locale: 'uk',
   show: false,
 });
@@ -58,11 +59,13 @@ export const mutations = {
   setAge(state, newAge) {
     state.age = newAge;
   },
+  setAppropriateSchool(state, newAppropriateSchool) {
+    state.appropriateSchool = newAppropriateSchool;
+  },
   setLocale(state, newLocale) {
     state.locale = newLocale;
   },
   setShow(state, show) {
-    console.log('setShow', show);
     state.show = show;
   },
 };
@@ -70,6 +73,10 @@ export const mutations = {
 export const getters = {
   age(state) {
     return state.age;
+  },
+
+  appropriateSchool(state) {
+    return state.appropriateSchool;
   },
 
   // convert current state to URL
