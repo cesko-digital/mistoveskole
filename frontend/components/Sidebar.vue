@@ -15,7 +15,7 @@
             <Typeahead
               id="search"
               class="hidden md:flex"
-              placeholder="Hledat město, kraj..."
+              :placeholder="$t('components.Sidebar.search_sity_typeahear_hint')"
               :source="source"
               @change="onTypeaheadChange"
             />
