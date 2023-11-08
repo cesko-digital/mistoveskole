@@ -17,17 +17,17 @@
     },
     {
       "source": "/cs",
-      "destination": "https://doskolyspolecne.cz/",
+      "destination": "https://doskolyspolecne.cz/home/",
       "statusCode": 302
     },
     {
       "source": "/cs/o-%C5%A1kol%C3%A1ch-v-%C4%8Dr",
-      "destination": "https://doskolyspolecne.cz/",
+      "destination": "https://doskolyspolecne.cz/home/",
       "statusCode": 302
     },
     {
       "source": "/cs/o-m%C3%ADst%C4%9B-ve-%C5%A1kole",
-      "destination": "https://doskolyspolecne.cz/",
+      "destination": "https://doskolyspolecne.cz/home/",
       "statusCode": 302
     }
   ]
