@@ -10,7 +10,7 @@ export default {
   head: {
     title: TITLE,
     meta: [
-      { 'http-equiv': 'refresh', content: '0; url=https://doskolyspolecne.cz/'},
+      { 'http-equiv': 'refresh', content: '0; url=https://doskolyspolecne.cz/' },
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: DESCRIPTION },
